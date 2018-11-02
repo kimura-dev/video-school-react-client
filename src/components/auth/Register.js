@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
+import TextFieldGroup  from '../common/TextFieldGroup';
 
 
 class Register extends Component {
@@ -22,6 +23,13 @@ class Register extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
+  }
+
+  // makes sure a logged in user can not go to the login page
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
   }
 
   // will test for properties
@@ -61,24 +69,54 @@ class Register extends Component {
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your Video School account</p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input type="text" className="form-control form-control-lg" placeholder="First Name" name="firstname" value={this.state.firstname} onChange={this.onChange}/>
-                </div>
-                <div className="form-group">
-                  <input type="text" className="form-control form-control-lg" placeholder="Last Name" name="lastname" value={this.state.lastname} onChange={this.onChange} />
-                </div>
-                <div className="form-group">
-                  <input type="text" className="form-control form-control-lg" placeholder="Username" name="username" value={this.state.username} onChange={this.onChange} />
-                </div>
-                <div className="form-group">
-                  <input type="email" className="form-control form-control-lg" placeholder="Email Address" value={this.state.email} onChange={this.onChange} name="email" />
-                </div>
-                <div className="form-group">
-                  <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
-                </div>
-                <div className="form-group">
-                  <input type="password" className="form-control form-control-lg" placeholder="Confirm Password" value={this.state.password2} onChange={this.onChange} name="password2" />
-                </div>
+                <TextFieldGroup 
+                  placeholder="First Name"
+                  name='firstname'
+                  type="text"
+                  value={this.state.firstname}
+                  onChange={this.onChange}
+                  // error={errors.username}
+                />
+                <TextFieldGroup 
+                  placeholder="Last Name"
+                  name='lastname'
+                  type="text"
+                  value={this.state.lastname}
+                  onChange={this.onChange}
+                  // error={errors.username}
+                />
+                <TextFieldGroup 
+                  placeholder="Username"
+                  name='username'
+                  type="text"
+                  value={this.state.username}
+                  onChange={this.onChange}
+                  // error={errors.username}
+                />
+                <TextFieldGroup 
+                  placeholder="Email Address"
+                  name='email'
+                  type="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  // error={errors.username}
+                />
+                <TextFieldGroup 
+                  placeholder="Password"
+                  name='password'
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  // error={errors.username}
+                />
+                <TextFieldGroup 
+                  placeholder="Confirm Password"
+                  name='password2'
+                  type="password"
+                  value={this.state.password2}
+                  onChange={this.onChange}
+                  // error={errors.username}
+                />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

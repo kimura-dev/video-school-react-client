@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 
 class Login extends Component {
@@ -16,6 +17,12 @@ class Login extends Component {
     this.onChange = this.onChange;
     this.onSubmit = this.onSubmit.bind(this);
 
+  }
+
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,12 +59,22 @@ class Login extends Component {
             <h1 className="display-4 text-center">Log In</h1>
             <p className="lead text-center">Sign in to your Video School account</p>
             <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <input type="text" className="form-control form-control-lg" placeholder="Username" name="username" value={this.state.username} onChange={this.onChange}/>
-              </div>
-              <div className="form-group">
-                <input type="password" className="form-control form-control-lg" placeholder="Password" name="password" value={this.state.password} onChange={this.onChange}  />
-              </div>
+              <TextFieldGroup 
+                placeholder="Username"
+                name='username'
+                type="text"
+                value={this.state.username}
+                onChange={this.onChange}
+                // error={errors.username}
+              />
+              <TextFieldGroup 
+                placeholder="Password"
+                name='password'
+                type="password"
+                value={this.state.password}
+                onChange={this.onChange}
+                // error={errors.username}
+              />
               <input type="submit" className="btn btn-info btn-block mt-4" />
             </form>
           </div>

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions';
-
-
 import SearchBar from './search-bar';
 
 class NavBar extends Component {
@@ -14,7 +12,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.state.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
@@ -60,8 +58,10 @@ NavBar.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(NavBar);
+export default connect(mapStateToProps, { logoutUser })(
+  NavBar
+);
