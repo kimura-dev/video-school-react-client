@@ -15,6 +15,18 @@ export const getCurrentCourse = () => dispatch => {
     .catch(err => console.log(err))
 }
 
+export const getCoursePreviews = () => dispatch => {
+  dispatch(setCourseLoading());
+  axios.get('/api/course')
+    .then(res => 
+      dispatch({
+        type: GET_COURSE,
+        payload: res.data
+      })
+    )
+    .catch(err => console.log(err))
+}
+
 // Course Loading
 export const setCourseLoading = () => {
   return {

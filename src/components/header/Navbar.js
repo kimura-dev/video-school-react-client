@@ -16,6 +16,12 @@ class NavBar extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <Link className="nav-link" to="/course">Purchase Course</Link>
+      </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/course">Create Course</Link>
+        </li>
         <li className="nav-item">
          <a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link">Logout</a>
         </li>
@@ -24,9 +30,6 @@ class NavBar extends Component {
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/course">Create Course</Link>
-        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/login">Login</Link>
         </li>
@@ -37,17 +40,31 @@ class NavBar extends Component {
     );
     
     return (
-      <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark mb-3">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
       <div className="container">
         <Link className="navbar-brand" to="/">VS LOGO</Link>
-        <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+        <button className="navbar-toggler" data-toggle="collapse" data-target="#mobile-nav">
          <span className="navbar-toggler-icon"></span>
         </button>
-        <div id="navbarNav" className="collapse navbar-collapse">
+
+        {/* <div id="navbarNav" className="collapse navbar-collapse">
          <SearchBar /> 
         </div>
         {isAuthenticated ? authLinks: guestLinks}
-      </div>
+      </div> */}
+      <div className="collapse navbar-collapse" id="mobile-nav">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                {/* <Link className="nav-link" to="/profiles">
+                  {' '}
+                  Developers
+                </Link> */}
+                <SearchBar />
+              </li>
+            </ul>
+            {isAuthenticated ? authLinks : guestLinks}
+          </div>
+        </div>
     </nav>
     );
   }

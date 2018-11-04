@@ -59,7 +59,7 @@ class Register extends Component {
 
 
   render() {
-    // const { errors } = this.state.errors;
+    // const { errors } = this.state.errors; 
 
     return (
       <div className="register">

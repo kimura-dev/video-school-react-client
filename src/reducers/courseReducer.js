@@ -1,8 +1,10 @@
-import { GET_COURSE, COURSE_LOADING } from '../../actions/types';
+import { GET_COURSE, COURSE_LOADING } from '../actions/types';
 
 const initialState = {
-  course: null,
-  courses: null,
+  slectedCourse: null,
+  allCourses: [],
+  authoredCourses: [],
+  purchasedCourses: [],
   loading: false
 }
 
