@@ -1,9 +1,10 @@
-import { GET_COURSE, COURSE_LOADING } from '../actions/types';
+import { GET_AUTHORED_COURSES, GET_PURCHASED_COURSES, COURSE_LOADING } from '../actions/types';
 
 const initialState = {
+  // courses: null,
   slectedCourse: null,
   allCourses: [],
-  authoredCourses: [],
+  authoredCourses: null,
   purchasedCourses: [],
   loading: false
 }
@@ -15,10 +16,16 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       }
-      case GET_COURSE:
+      case GET_AUTHORED_COURSES:
         return {
           ...state,
-          course: action.payload,
+          authoredCourses: action.payload,
+          loading: false
+        }
+      case GET_PURCHASED_COURSES:
+        return {
+          ...state,
+          purchasedCourses: action.payload,
           loading: false
         }
     default:
