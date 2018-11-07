@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CourseListItem from './course-list-item';
+import CourseListItem from './CourseListItem';
 
 class CourseList extends Component {
   constructor(props) {

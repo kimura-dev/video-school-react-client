@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// Need withRouter to use history
-import { withRouter } from 'react-router-dom';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { createCourse } from '../../actions/courseActions';
+import { getCourse, editCourse } from '../../actions/courseActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
+import isEmpty from '../../validation/is-empty';
 
 class CourseForm extends Component {
   constructor(props) {
@@ -25,10 +24,34 @@ class CourseForm extends Component {
 
   }
 
-  // will test for properties
+  // When component loads this runs and looks for the current course
+  componentDidMount() {
+    this.props.getCourse();
+  }
+
+  
   componentWillReceiveProps(nextProps) {
     if(nextProps.errors) {
       this.setState({errors:nextProps.errors})
+    }
+
+    // Checking for the current course. Then if there is a course we supply the component with the course info
+    if(nextProps.courses.course) {
+      const course = nextProps.courses.course;
+  
+      // If a course field doesnt exist we set to empty string
+      course.title = !isEmpty(course.title) ? course.title : '';
+      course.description = !isEmpty(course.description) ? course.description : '';
+      course.price = !isEmpty(course.price) ? course.price : '';
+      course.lessons = !isEmpty(course.lessons) ? course.lessons : [];
+
+      // Set component fields state
+      this.setState({
+        title: course.title,
+        description: course.description,
+        price: course.price,
+        lessons: course.lessons
+      })
     }
   }
 
@@ -45,7 +68,7 @@ class CourseForm extends Component {
       lessons: this.state.lessons
     }
     // this.props.history allows you to redirect from an action, this is used with "withRouter"
-    this.props.createCourse(newCourse, this.props.history);
+    this.props.editCourse(newCourse, this.props.history);
   }
 
 
@@ -57,8 +80,10 @@ class CourseForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Course</h1>
-              {/* <p className="lead text-center">Supply course details below</p> */}
+              <Link to="/dashboard" className="btn btn-light">
+                Go Back
+              </Link>
+              <h1 className="display-4 text-center">Edit Course</h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
                   placeholder="Title"
@@ -98,14 +123,17 @@ class CourseForm extends Component {
 }
 
 CourseForm.propTypes = {
-  createCourse: PropTypes.func.isRequired,
+  editCourse: PropTypes.func.isRequired,
+  getCourse: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors
+  auth: state.auth, // .auth comes from my root reducer
+  errors: state.errors,
+  courses: state.courses
+  //now we can say this.props.auth
 });
 
-export default connect(mapStateToProps, { createCourse })(withRouter(CourseForm));
+export default connect(mapStateToProps, { editCourse , getCourse })(withRouter(CourseForm));

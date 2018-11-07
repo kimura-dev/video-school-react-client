@@ -12,7 +12,7 @@ class SearchBar extends Component {
       <form className="form-inline mr-auto">
         <input value={this.state.term}
         onChange={e => this.onInputChange(e.target.value)} className="form-control mr-2" />
-        <button className="btn btn-outline-success">Search</button>
+        <button className="btn btn-outline-light bg-success">Search</button>
       </form>
     );
   }

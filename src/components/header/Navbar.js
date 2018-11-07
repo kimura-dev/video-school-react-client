@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { logoutUser } from '../../actions/authActions';
-import SearchBar from './search-bar';
+import SearchBar from './SearchBar';
 
 class NavBar extends Component {
   onLogoutClick(e) {
@@ -17,10 +17,13 @@ class NavBar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <Link className="nav-link" to="/course">Purchase Course</Link>
+        <Link className="nav-link" to="/dashboard">Dashboard</Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/course-catalog">Catalog</Link>
       </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/course">Create Course</Link>
+          <Link className="nav-link" to="/course-form">Create Course</Link>
         </li>
         <li className="nav-item">
          <a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link">Logout</a>
@@ -40,7 +43,7 @@ class NavBar extends Component {
     );
     
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
       <div className="container">
         <Link className="navbar-brand" to="/">VS LOGO</Link>
         <button className="navbar-toggler" data-toggle="collapse" data-target="#mobile-nav">

@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser } from './actions/authActions';
 import { logoutUser } from './actions/authActions';
 import { Provider } from 'react-redux';
 import store from './store';
+import PrivateRoute from './components/common/PrivateRoute';
 import './App.css';
 import NavBar from './components/header/Navbar';
-import CourseList from './components/courses/course-list';
+import CourseList from './components/courses/CourseList';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
+import CourseForm from './components/courses/CourseForm';
+import EditCourse from './components/courses/CourseEdit';
+import LessonForm from './components/lessons/LessonForm';
+import EditLesson from './components/lessons/LessonEdit';
+import CourseCatalog from './components/courses/CourseCatalog';
+
 
 
 // Check for token
@@ -50,9 +57,25 @@ class App extends Component {
             <div className="container main">
               <Route exact path="/register" component={ Register } />
               <Route exact path="/login" component={ Login } />
-              <Route exact path="/dashboard" component={ Dashboard}   />
+              {/* <Route exact path="/course-catalog" component={ CourseCatalog } /> */}
+              {/* Switch allows for the redirect on logout w/out it stays on the page */}
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={ Dashboard}   />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/course-form" component={ CourseForm }   />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/edit-course" component={ EditCourse }   />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/lesson-form" component={ LessonForm }   />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/edit-lesson" component={ EditLesson }   />
+              </Switch>
             </div>
-            <CourseList />
+            {/* <CourseList /> */}
             <Footer />
           </div>
         </Router>
