@@ -2,16 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class DashLessonItem extends Component {
+class CourseLessonItem extends Component {
   render() {
     let lessons = '';
+    let title = '';
 
-    lessons = this.props.courses.authoredCourses.lessons.map(course => {
+    lessons = this.props.lessons.map(lesson => {
       return (
         // <DashCourseControls/>
-        <li className="p-2 bd-highlight bg-info" >{course.title}</li>
+        <li className="p-2 bd-highlight bg-info" >{lesson.title}</li>
       )
     })
+
+    title = this.props.lessons.title;
 
 
     return (
@@ -25,7 +28,7 @@ class DashLessonItem extends Component {
   }
 }
 
-DashLessonItem.propTypes = { 
+CourseLessonItem.propTypes = { 
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   lessons: PropTypes.object.isRequired,
@@ -39,4 +42,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps)(DashLessonItem);
+export default connect(mapStateToProps)(CourseLessonItem);

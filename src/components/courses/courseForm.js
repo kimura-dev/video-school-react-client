@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { createCourse } from '../../actions/courseActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
+import CourseLessonItem from '../lessons/CourseLessonItem';
 
 class CourseForm extends Component {
   constructor(props) {
@@ -87,6 +88,7 @@ class CourseForm extends Component {
                 <Link to="/lesson-form" className="btn btn-lg btn-success">
                   Add Lesson
                 </Link>
+                <CourseLessonItem />
                 <input type="submit" className="btn btn-success btn-block mt-4" />
               </form>
             </div>
