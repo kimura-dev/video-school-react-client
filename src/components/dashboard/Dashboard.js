@@ -17,7 +17,7 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-md-12">
               <h1 className="display-4">Dashboard</h1>
-              <Link to="/course-form" className="btn btn-lg btn-success mr-2">
+              <Link to="/course-form" className="btn btn-success mr-2">
                 Create A Course
               </Link>
               <h2>Welcome {user.user.username}</h2>

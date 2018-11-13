@@ -5,21 +5,25 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { createCourse } from '../../actions/courseActions';
+import { createCourse, updateNewCourse } from '../../actions/courseActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
-import CourseLessonItem from '../lessons/CourseLessonItem';
+// import NumberFieldGroup  from '../common/NumberFieldGroup';
+import CourseLessonList from './CourseLessonList';
+
 
 class CourseForm extends Component {
   constructor(props) {
-    super();
-    this.state = {
-      title: '',
-      description: '',
-      price: '',
-      lessons: [],
-      errors: {}
-    };
+    super(props);
+    // this.state = {
+    //   newCourse:{
+    //     title: '',
+    //     description: '',
+    //     price: '',
+    //     lessons: [],
+    //     errors: {}
+    //   }
+    // };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -34,16 +38,17 @@ class CourseForm extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    // this.setState({ [e.target.name]: e.target.value })
+    this.props.updateNewCourse({[e.target.name]: e.target.value })
   }
 
   onSubmit(e) {
     e.preventDefault();
     const newCourse = {
-      title: this.state.title,
-      description: this.state.description,
-      price: this.state.price,
-      lessons: this.state.lessons
+      title: this.props.newCourse.title,
+      description: this.props.newCourse.description,
+      price: this.props.newCourse.price,
+      lessons: this.props.newCourse.lessons
     }
     // this.props.history allows you to redirect from an action, this is used with "withRouter"
     this.props.createCourse(newCourse, this.props.history);
@@ -60,12 +65,12 @@ class CourseForm extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create Your Course</h1>
               {/* <p className="lead text-center">Supply course details below</p> */}
-              <form onSubmit={this.onSubmit}>
+              <form onSubmit={this.onSubmit}> 
                 <TextFieldGroup 
                   placeholder="Title"
                   name='title'
                   type="text"
-                  value={this.state.title}
+                  value={this.props.newCourse.title}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -73,22 +78,34 @@ class CourseForm extends Component {
                   placeholder="Description"
                   name='description'
                   type="text"
-                  value={this.state.description}
+                  value={this.props.newCourse.description}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
-                <TextFieldGroup 
+                 <div className="form-group">
+                  <input
+                    type="number"
+                    className='form-control form-control-lg'
+                    placeholder="0"
+                    name="price"
+                    value={this.props.newCourse.price}
+                    onChange={this.onChange}
+                  />
+                  {/* {info && <small className="form-text text-muted">{info}</small>}
+                  {error && <div className="invalid-feedback">{error}</div>} */}
+                </div>
+                {/* <TextFieldGroup 
                   placeholder="Price"
                   name='price'
-                  type="text"
-                  value={this.state.price}
+                  type="number"
+                  value={this.props.newCourse.price}
                   onChange={this.onChange}
                   // error={errors.username}
-                />
+                /> */}
                 <Link to="/lesson-form" className="btn btn-lg btn-success">
                   Add Lesson
                 </Link>
-                <CourseLessonItem />
+                <CourseLessonList  lessons={this.props.newCourse.lessons}/>
                 <input type="submit" className="btn btn-success btn-block mt-4" />
               </form>
             </div>
@@ -100,14 +117,13 @@ class CourseForm extends Component {
 }
 
 CourseForm.propTypes = {
-  createCourse: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  createCourse: PropTypes.func.isRequired, 
+  updateNewCourse: PropTypes.func.isRequired,
+  newCourse: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors
+  newCourse: state.courses.newCourse
 });
 
-export default connect(mapStateToProps, { createCourse })(withRouter(CourseForm));
+export default connect(mapStateToProps, { createCourse, updateNewCourse })(withRouter(CourseForm));

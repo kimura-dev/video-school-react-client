@@ -20,6 +20,7 @@ import EditCourse from './components/courses/CourseEdit';
 import LessonForm from './components/lessons/LessonForm';
 import EditLesson from './components/lessons/LessonEdit';
 import CourseCatalog from './components/courses/CourseCatalog';
+import PurchasedCourseView from './components/courses/purchasedCourses/PurchasedCourseView';
 
 
 
@@ -73,6 +74,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/edit-lesson" component={ EditLesson }   />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/purchased-course-view" component={ PurchasedCourseView }   />
               </Switch>
             </div>
             {/* <CourseList /> */}

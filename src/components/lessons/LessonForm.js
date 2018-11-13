@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createLesson } from '../../actions/lessonActions';
+import { addNewCourseLesson, updateNewLesson } from '../../actions/courseLessonActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 
 class LessonForm extends Component {
   constructor(props) {
-    super();
-    this.state = {
-      title: '',
-      description: '',
-      videoUrl: '',
-      errors: {}
-    };
+    super(props);
+    // this.state = {
+    //   title: '',
+    //   description: '',
+    //   videoUrl: '',
+    //   errors: {}
+    // };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -30,18 +30,20 @@ class LessonForm extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    // this.setState({ [e.target.name]: e.target.value })
+    this.props.updateNewLesson({[e.target.name]: e.target.value })
   }
 
   onSubmit(e) {
     e.preventDefault();
     const newLesson = {
-      title: this.state.title,
-      description: this.state.description,
-      videoUrl: this.state.videoUrl
+      title: this.props.newLesson.title,
+      description: this.props.newLesson.description,
+      videoUrl: this.props.newLesson.videoUrl
     }
-    // this.props.history allows you to redirect from an action, this is used with "withRouter"
-    this.props.createLesson(newLesson, this.props.history);
+
+    this.props.addNewCourseLesson(newLesson, this.props.history);
+    console.log('This is newLesson on LessonForm onSubmit: '+newLesson)
   }
 
 
@@ -60,7 +62,7 @@ class LessonForm extends Component {
                   placeholder="Title"
                   name='title'
                   type="text"
-                  value={this.state.title}
+                  value={this.props.newLesson.title}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -68,7 +70,7 @@ class LessonForm extends Component {
                   placeholder="Description"
                   name='description'
                   type="text"
-                  value={this.state.description}
+                  value={this.props.newLesson.description}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -76,7 +78,7 @@ class LessonForm extends Component {
                   placeholder="Video Url"
                   name='videoUrl'
                   type="text"
-                  value={this.state.videoUrl}
+                  value={this.props.newLesson.videoUrl}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -91,14 +93,13 @@ class LessonForm extends Component {
 }
 
 LessonForm.propTypes = {
-  createLesson: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  addNewCourseLesson: PropTypes.func.isRequired,
+  updateNewLesson: PropTypes.func.isRequired,
+  newLesson: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors
+  newLesson: state.courses.newLesson
 });
 
-export default connect(mapStateToProps, { createLesson })(withRouter(LessonForm));
+export default connect(mapStateToProps, { addNewCourseLesson, updateNewLesson })(withRouter(LessonForm));

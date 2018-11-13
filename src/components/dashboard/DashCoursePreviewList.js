@@ -34,7 +34,11 @@ class DashCoursePreviewList extends Component {
     } else {
       courses = this.props.courses.purchasedCourses.map( course => {
         return (
-          <li className="p-2 bd-highlight bg-secondary">{course.title}</li>
+          <li className="p-2 bd-highlight bg-secondary">{course.title}
+            <Link to="/purchased-course-view" className="btn btn-lg btn-success mr-2">
+              View
+            </Link>
+          </li>
         )
       })
       title = 'Purchased Courses'
