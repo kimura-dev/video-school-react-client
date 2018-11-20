@@ -3,7 +3,9 @@ import {
   GET_COURSE ,
   GET_ALL_COURSES, 
   GET_AUTHORED_COURSES, 
-  GET_PURCHASED_COURSES, 
+  GET_PURCHASED_COURSES,
+  // UPDATE_AUTHORED_COURSE,
+  // UPDATE_PURCHASED_COURSE, 
   ADD_NEW_COURSE_LESSON, 
   ADD_COURSE_LESSON, 
   UPDATE_NEW_COURSE, 
@@ -12,7 +14,7 @@ import {
   DELETE_COURSE, 
   DELETE_NEW_COURSE_LESSON, 
   COURSE_LOADING,
-  COURSE_PREVIEW_URL
+  SET_CURRENT_COURSE
 } from '../actions/types';
 
 const initialState = {
@@ -30,37 +32,11 @@ const initialState = {
     description:'',
     videoUrl:''
   }, // for adding a lesson onto newCourse
-  slectedCourse: null, // viewing of the course on course-view and course-desc
+  selectedCourse: null, // viewing of the course on course-view and course-desc
   allCourses: [], // use on course-catalog page
   // authoredCourse and purchasedCourses are for course views on the dashboard
-  authoredCourses: [{
-    title: 'JavaScript 101 Introduction Course',
-    description: 'this is a description for an example course',
-    price: 10.99,
-    lessons:[{
-      title: 'Test Lesson',
-      description: 'description of test lesson',
-      videoUrl: 'http://www.example.com'
-    }],
-    title: 'Node Development',
-    description: 'this is a description for an example course',
-    price: 10.99,
-    lessons:[{
-      title: 'Test Lesson',
-      description: 'description of test lesson',
-      videoUrl: 'http://www.example.com'
-    }]
-  }],
-  purchasedCourses: [{
-    title: 'How to make a Responsive Web App',
-    description: 'this is a description for an example course',
-    price: 10.99,
-    lessons:[{
-      title: 'Test Lesson',
-      description: 'description of test lesson',
-      videoUrl: 'http://www.example.com'
-    }]
-  }],
+  authoredCourses: [],
+  purchasedCourses: [],
   loading: false
 }
 
@@ -74,14 +50,15 @@ export default function(state = initialState, action) {
     case CREATE_COURSE:
       return {
         ...state,
-        authoredCourses: [ ...state.authoredCourses, action.payload],
-        loading: true
+        // authoredCourses: [ ...state.authoredCourses, action.payload],
+        allCourses: [ ...state.allCourses, action.payload],
+        loading: false
       }
     case GET_COURSE:
       return {
         ...state,
-        course: action.payload,
-        loading: true
+        selectedCourse: action.payload,
+        loading: false
       }
     case UPDATE_NEW_COURSE:
       const newCourse = {
@@ -95,7 +72,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         newCourse,
-        loading: true
+        loading: false
       }
     case ADD_NEW_COURSE_LESSON:
       return {
@@ -115,7 +92,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         newLesson,
-        loading: true
+        loading: false
       }
     case ADD_COURSE_LESSON:
       return {
@@ -126,25 +103,25 @@ export default function(state = initialState, action) {
     case GET_ALL_COURSES:
       return {
         ...state,
-        aLLCourses: action.payload,
-        loading: true
+        allCourses: action.payload || [],
+        loading: false
       }
     case GET_AUTHORED_COURSES:
         return {
           ...state,
-          authoredCourses: action.payload,
+          authoredCourses: action.payload || [],
           loading: false
         }
     case GET_PURCHASED_COURSES:
         return {
           ...state,
-          purchasedCourses: action.payload,
+          purchasedCourses: action.payload || [],
           loading: false
         }
-    case COURSE_PREVIEW_URL:
+    case SET_CURRENT_COURSE:
         return {
           ...state,
-          slectedCourse: action.payload,
+          selectedCourse: action.payload,
           loading: false
         }
     // case EDIT_COURSE:

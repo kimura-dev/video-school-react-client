@@ -3,14 +3,34 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import CourseListItem from '../courses/CourseListItem';
+import { getAuthoredCourses, getPurchasedCourses } from '../../actions/courseActions';
 // import DashCourseControls from './DashCourseControls.js';
 
 
 class DashCoursePreviewList extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      loading: true,
+      shouldUpdate: true
+    }
+  }
+
+  componentDidUpdate(oldProps) {
+
+    if(this.state.shouldUpdate && this.props.auth.isAuthenticated){
+      this.setState({
+        shouldUpdate: false
+      }) 
+      this.props.getAuthoredCourses(this.props.auth.user.user.username)
+      this.props.getPurchasedCourses(this.props.auth.user.user.username)
+    }  
+  }
+
   render() {
 
-    // const { user } = this.props.auth;
-    // const { courses, loading } = this.props;
     let courses = '';
     let title = '';
     let noCourses = '';
@@ -19,11 +39,13 @@ class DashCoursePreviewList extends Component {
     const  courseRole  = this.props.courseRole || 'student';
 
 
+    // This is where authoredCourses and purchasedCourses gets populated
     if(courseRole === 'teacher') {
       courses = this.props.courses.authoredCourses.map(course => {
         return (
           // <DashCourseControls/>
-          <li className="p-2 bd-highlight bg-info" >{course.title}</li>
+         
+          <CourseListItem course={course} courseRole="teacher"/>
         )
       })
       title = 'Authored Courses'
@@ -34,11 +56,7 @@ class DashCoursePreviewList extends Component {
     } else {
       courses = this.props.courses.purchasedCourses.map( course => {
         return (
-          <li className="p-2 bd-highlight bg-secondary">{course.title}
-            <Link to="/purchased-course-view" className="btn btn-lg btn-success mr-2">
-              View
-            </Link>
-          </li>
+          <CourseListItem course={course} courseRole="student"/>
         )
       })
       title = 'Purchased Courses'
@@ -70,6 +88,8 @@ class DashCoursePreviewList extends Component {
 }
 
 DashCoursePreviewList.propTypes = {
+  getAuthoredCourses: PropTypes.func.isRequired,
+  getPurchasedCourses: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired
@@ -81,7 +101,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { })(
+export default connect(mapStateToProps, {getAuthoredCourses, getPurchasedCourses })(
   DashCoursePreviewList
 );
 

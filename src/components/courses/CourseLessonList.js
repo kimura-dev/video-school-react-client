@@ -3,9 +3,22 @@ import CourseLessonListItem from './CourseLessonListItem';
 
 class CourseLessonList extends Component {
   render() {
-    const lessons = this.props.lessons.map((lesson, index) => (  
-     <CourseLessonListItem  lesson={lesson} onDeleteLesson={this.props.onDeleteLesson} key={index}/>
-    ));
+    const lessons = this.props.lessons.map((lesson, index) => {  
+    
+    let watchedLessons = this.props.watchedLessons || [];
+    
+    let watchedLesson = watchedLessons.includes(lesson._id);
+    
+    return   (  
+     <CourseLessonListItem  
+       watchedLesson={watchedLesson} 
+       lesson={lesson} 
+       key={index} 
+       {...this.props} />
+    )
+  });
+
+  // Need to bring in setCurrentLesson ??
 
     return (
       <div className="DashLessonItem">

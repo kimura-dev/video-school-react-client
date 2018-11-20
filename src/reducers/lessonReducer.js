@@ -1,8 +1,8 @@
-import { SAVE_LESSON, ADD_NEW_COURSE_LESSON, ADD_COURSE_LESSON, GET_LESSON, GET_ALL_LESSONS, LESSON_LOADING, EDIT_LESSON, DELETE_LESSON } from '../actions/types';
+import { SAVE_LESSON, ADD_NEW_COURSE_LESSON, ADD_COURSE_LESSON, GET_LESSON, GET_ALL_LESSONS, LESSON_LOADING, EDIT_LESSON, DELETE_LESSON, SET_CURRENT_LESSON } from '../actions/types';
 
 const initialState = {
   lesson: null,
-  slectedLesson: null,
+  selectedLesson: null,
   allLessons: [],
   watchedLessons: [],
   loading: false
@@ -37,6 +37,12 @@ export default function(state = initialState, action) {
         return {
           ...state,
           lesson: action.payload,
+          loading: false
+        }
+    case SET_CURRENT_LESSON:
+        return {
+          ...state,
+          slectedLesson: action.payload,
           loading: false
         }
     default:

@@ -5,7 +5,7 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser } from './actions/authActions';
 import { logoutUser } from './actions/authActions';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store'; 
 import PrivateRoute from './components/common/PrivateRoute';
 import './App.css';
 import NavBar from './components/header/Navbar';
@@ -20,8 +20,8 @@ import EditCourse from './components/courses/CourseEdit';
 import LessonForm from './components/lessons/LessonForm';
 import EditLesson from './components/lessons/LessonEdit';
 import CourseCatalog from './components/courses/CourseCatalog';
-import PurchasedCourseView from './components/courses/purchasedCourses/PurchasedCourseView';
-
+import CourseView from './components/courses/courseView/CourseView';
+import DataManager from './components/api/DataManager';
 
 
 // Check for token
@@ -46,19 +46,19 @@ if(localStorage.jwtToken) {
 
 
 class App extends Component {
-
   render() {
     return (
       <Provider store={ store } >
         <Router>
           <div className="App">
           <NavBar />
+          <DataManager />
             {/* <NavBar  {...this.state.auth} logoutUser={() => store.dispatch(logoutUser)} /> */}
             <Route exact path="/" component={ Landing } />
             <div className="container main">
               <Route exact path="/register" component={ Register } />
               <Route exact path="/login" component={ Login } />
-              {/* <Route exact path="/course-catalog" component={ CourseCatalog } /> */}
+              <Route exact path="/course-catalog" component={ CourseCatalog } />
               {/* Switch allows for the redirect on logout w/out it stays on the page */}
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={ Dashboard}   />
@@ -76,7 +76,7 @@ class App extends Component {
                 <PrivateRoute exact path="/edit-lesson" component={ EditLesson }   />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/purchased-course-view" component={ PurchasedCourseView }   />
+                <PrivateRoute exact path="/course/:id" component={ CourseView }   />
               </Switch>
             </div>
             {/* <CourseList /> */}

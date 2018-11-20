@@ -4,7 +4,8 @@ import {
    GET_ALL_LESSONS,
    EDIT_LESSON,
    LESSON_LOADING, 
-   GET_ERRORS
+   GET_ERRORS,
+   SET_CURRENT_LESSON
   } from './types';
 
 
@@ -21,6 +22,13 @@ export const getLesson = (id) => dispatch => {
       })
     )
     .catch(err => console.log(err))
+}
+  
+export const setCurrentLesson = (id) => dispatch => {
+  dispatch({
+    type: SET_CURRENT_LESSON,
+    payload: id
+  })
 }
   
 

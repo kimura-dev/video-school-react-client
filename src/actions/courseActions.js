@@ -5,10 +5,12 @@ import {
   GET_ALL_COURSES, 
   GET_AUTHORED_COURSES, 
   GET_PURCHASED_COURSES, 
+  UPDATE_AUTHORED_COURSE,
+  UPDATE_PURCHASED_COURSE,
   EDIT_COURSE,
   DELETE_COURSE,
   COURSE_LOADING,
-  COURSE_PREVIEW_URL, 
+  SET_CURRENT_COURSE, 
   GET_ERRORS,
   UPDATE_NEW_COURSE
   } from './types';
@@ -35,21 +37,6 @@ export const createCourse = (courseData, history)  => dispatch => {
       .catch(err => console.log(err));
 };
 
-// export const createCourse = (courseData, history)  => dispatch => {
-//   axios
-//       .post('/api/course', courseData)
-//       .then(res => history.push('/dashboard'))
-//       .catch(err => 
-//         // since this is an ajax call and we are waiting we need to call dispatch - Redux Thunk
-//         dispatch({
-//           type: GET_ERRORS,
-//           payload: err.response.data.message
-//         })
-      
-//       )
-//       .catch(err => console.log(`${err.response.data.location} ${err.response.data.message}`));
-// };
-
 //Update a new Course
 export const updateNewCourse = (newData) => dispatch => {
   dispatch({
@@ -58,12 +45,14 @@ export const updateNewCourse = (newData) => dispatch => {
   })
 }
 
-//Play Course Preview
-export const coursePreviewUrl = (url) => dispatch => {
-  dispatch({
-    type: COURSE_PREVIEW_URL,
-    payload: url
-  })
+
+//Set Current Course
+export const setCurrentCourse = (id) => dispatch => {
+    dispatch({
+      type: SET_CURRENT_COURSE,
+      // history: history.push('/dashboard'),
+      payload: id
+    })
 }
   
 // Get A Course 
@@ -75,20 +64,28 @@ export const getCourse = (id) => dispatch => {
         type: GET_COURSE,
         payload: res.data
       })
+      
     )
+
     .catch(err => console.log(err))
-}
+};
 
 // Get All Course 
 export const getAllCourses = () => dispatch => {
-  dispatch(setCourseLoading());
+  // dispatch(setCourseLoading());
+  console.log('Getting all Courses')
+
   axios.get('/api/course')
-    .then(res => 
+    .then(res => {
+      console.log(res.data)
+
       dispatch({
         type: GET_ALL_COURSES,
         payload: res.data
       })
-    )
+    }
+      
+)
     // .catch(err => dispatch({
     //   type: GET_ERRORS,
     //   payload: {}
@@ -97,9 +94,9 @@ export const getAllCourses = () => dispatch => {
 }
 
 // Get Authored Courses
-export const getAuthoredCourses = () => dispatch => {
+export const getAuthoredCourses = (username) => dispatch => {
   dispatch(setCourseLoading());
-  axios.get('/api/author/:username')
+  axios.get(`/api/course/author/${username}`)
     .then(res => 
       dispatch({
         type: GET_AUTHORED_COURSES,
@@ -110,9 +107,9 @@ export const getAuthoredCourses = () => dispatch => {
 }
 
 // Get Purchased Courses
-export const getPurchasedCourses = () => dispatch => {
+export const getPurchasedCourses = (username) => dispatch => {
   dispatch(setCourseLoading());
-  axios.get('/api/:username/courses')
+  axios.get(`/api/users/${username}/courses`)
     .then(res => 
       dispatch({
         type: GET_PURCHASED_COURSES,
