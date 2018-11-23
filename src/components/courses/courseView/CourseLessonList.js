@@ -21,7 +21,7 @@ class CourseLessonList extends Component {
   // Need to bring in setCurrentLesson ??
 
     return (
-      <div className="DashLessonItem">
+      <div className="CourseLessonItem">
         <h3>Lessons</h3>
         <ul className="d-flex flex-column bd-highlight mb-3">
           {lessons}

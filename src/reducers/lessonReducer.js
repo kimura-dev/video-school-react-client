@@ -24,7 +24,7 @@ export default function(state = initialState, action) {
     case GET_LESSON:
         return {
           ...state,
-          lesson: action.payload,
+          selectedLesson: action.payload,
           loading: false
         }
     case GET_ALL_LESSONS:

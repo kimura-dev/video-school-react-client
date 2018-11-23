@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CourseListItem from '../courses/CourseListItem';
 import { getAuthoredCourses, getPurchasedCourses } from '../../actions/courseActions';
-// import DashCourseControls from './DashCourseControls.js';
-
 
 class DashCoursePreviewList extends Component {
   constructor(props){
@@ -35,15 +32,12 @@ class DashCoursePreviewList extends Component {
     let title = '';
     let noCourses = '';
     let linkBtn = '';
-    // This is a React prop I am assigning, NOT a Redux prop
+    
     const  courseRole  = this.props.courseRole || 'student';
 
-
-    // This is where authoredCourses and purchasedCourses gets populated
     if(courseRole === 'teacher') {
       courses = this.props.courses.authoredCourses.map(course => {
         return (
-          // <DashCourseControls/>
          
           <CourseListItem course={course} courseRole="teacher"/>
         )
@@ -77,7 +71,7 @@ class DashCoursePreviewList extends Component {
     }
 
     return (
-      <div className="DashCoursePreviewList">
+      <div className="DashCoursePreviewList float-left">
         <h3>{title}</h3>
         <ul className="d-flex flex-column bd-highlight mb-3">
           {courses}
@@ -96,7 +90,7 @@ DashCoursePreviewList.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth, // .auth comes from my root reducer
+  auth: state.auth, 
   courses: state.courses,
   errors: state.errors
 });

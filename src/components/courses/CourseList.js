@@ -14,14 +14,14 @@ class CourseList extends Component {
     }
   }
   render() {
-    const courseListItems = this.state.courses.map((course) => (
+    const CourseListItems = this.state.courses.map((course) => (
       <CourseListItem  {...course} />
     ))
 
     return (
       <div className="course-preview-section" >
       <ul>
-        { courseListItems }
+        { CourseListItems }
       </ul>
     </div>
     );

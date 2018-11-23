@@ -9,7 +9,7 @@ import { createCourse, updateNewCourse } from '../../actions/courseActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 // import NumberFieldGroup  from '../common/NumberFieldGroup';
-import CourseLessonList from './CourseLessonList';
+import CourseLessonList from './courseView/CourseLessonList';
 
 
 class CourseForm extends Component {

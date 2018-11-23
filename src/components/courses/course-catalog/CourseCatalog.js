@@ -31,7 +31,7 @@ import './CourseCatalog.css';
         {
           allCourses.map(course => {
             return (
-                    <div class="course-list-item">
+                    <div class="course-catalog-list-item">
                       <h2>{course.title}</h2>
                         <img class="list-img" src="../../img/default-img.jpg" />
                       <p>{course.description}</p> 

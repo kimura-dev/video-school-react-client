@@ -7,7 +7,6 @@ import { logoutUser } from './actions/authActions';
 import { Provider } from 'react-redux';
 import store from './store'; 
 import PrivateRoute from './components/common/PrivateRoute';
-import './App.css';
 import NavBar from './components/header/Navbar';
 import CourseList from './components/courses/CourseList';
 import Footer from './components/layout/Footer';
@@ -19,8 +18,9 @@ import CourseForm from './components/courses/CourseForm';
 import EditCourse from './components/courses/CourseEdit';
 import LessonForm from './components/lessons/LessonForm';
 import EditLesson from './components/lessons/LessonEdit';
-import CourseCatalog from './components/courses/CourseCatalog';
+import CourseCatalog from './components/courses/course-catalog/CourseCatalog';
 import CourseView from './components/courses/courseView/CourseView';
+import LessonView from './components/lessons/LessonView';
 import DataManager from './components/api/DataManager';
 
 
@@ -77,6 +77,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/course/:id" component={ CourseView }   />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/lesson/:id" component={ LessonView }   />
               </Switch>
             </div>
             {/* <CourseList /> */}

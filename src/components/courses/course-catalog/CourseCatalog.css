@@ -6,9 +6,8 @@
   justify-content: space-evenly;
 }
 
-.course-list-item {
+.course-catalog-list-item {
   background-color: rgb(196, 255, 219);
   padding: 10px;
-  margin: 30px;
   color: blueviolet;
 }
