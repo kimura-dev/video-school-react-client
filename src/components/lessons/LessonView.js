@@ -5,8 +5,7 @@ import CourseLessonMenu from '../courses/courseLessons/CourseLessonMenu';
 import { getLesson } from '../../actions/lessonActions';
 import { toggleLessonList  as toggleMenu } from '../../actions/uiActions';
 import LessonViewNavbar from './LessonViewNavbar';
-
-
+import LessonVideoPlayer from './LessonVideoPlayer';
 
  class LessonView extends Component {
    constructor(props) {
@@ -16,6 +15,7 @@ import LessonViewNavbar from './LessonViewNavbar';
      }
    }
 
+
    componentDidMount() {
     if(this.props.match.params){
       this.props.getLesson(this.props.match.params.id);
@@ -24,11 +24,13 @@ import LessonViewNavbar from './LessonViewNavbar';
 
 
   render() {
+  //  console.log(this.props.lesson.videoUrl)
+
     return (
       <div className="LessonView">
-        <LessonViewNavbar toggleMenu={this.props.toggleMenu}/>
+        <LessonViewNavbar toggleMenu={this.props.toggleMenu} />
         <CourseLessonMenu />
-        {/* <LessonVideoPlayer /> */}
+        <LessonVideoPlayer videoUrl={this.props.lesson.videoUrl} />
       </div>
      
     )
@@ -37,7 +39,6 @@ import LessonViewNavbar from './LessonViewNavbar';
 
 LessonView.propTypes = {
   getLesson: PropTypes.func.isRequired,
-
 }
 
 const mapStateToProps = (state) => ({

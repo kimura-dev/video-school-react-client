@@ -18,7 +18,7 @@ class CourseLessonList extends Component {
     )
   });
 
-  // Need to bring in setCurrentLesson ??
+  // Need to bring in setCurrentLesson ?? 
 
     return (
       <div className="CourseLessonItem">
@@ -26,12 +26,7 @@ class CourseLessonList extends Component {
         <ul className="d-flex flex-column bd-highlight mb-3">
           {lessons}
         </ul>
-      </div>
-      // <table className="table">
-      //   <tbody>
-      //     {lessons}
-      //   </tbody>
-      // </table>
+      </div> 
     )
   }
 }

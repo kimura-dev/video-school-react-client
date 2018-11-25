@@ -11,36 +11,38 @@ import './CourseCatalog.css';
     const allCourses = this.props.courses.allCourses;
 
     return (
-      <main class="course-catalog-section"> 
- 
-        <img class="course-catalog-img" src="img/course-catalog-img.jpg"/>
-        <div class="ui placeholder segment">
-          <div class="catalog-search-box">
-            <h1 class="display-3">Hello, world!</h1>
-            <p>This is a template for video school. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          
-            <form class="form-inline mr-auto">
-              <input type="text" class="form-control mr-2" placeholder="Search for a Course"/>
-              <button class="btn btn-outline-success">Search</button>
-          </form>
-        </div>
+      <main className="course-catalog-section"> 
+          <div className="catalog-container">
+            <div className="catalog-search-box">
+              <h1 className="catalog-title display-3 pt-5">Welcome!</h1>
+              {/* <p className="catalog-text p-3">Video School is a place, where teachers and students alike can buy and sell online video courses. Teachers looking to spread their acquired knowledge in an online video format or students who perfer learning through online tutorials can get there needs .   </p> */}
+              <p className="catalog-text p-3">Search Video School below for all the latest courses.</p>
+              <form className="form-inline mr-auto pb-3">
+                <input type="text" className="form-control ml-2 " placeholder="Search for a Course"/>
+                <button className="btn btn-outline-success">Search</button>
+            </form>
+          </div>
 
         </div>
-        <section class="catalog-course-list">
-        <div class="course-container">  
+        <section className="catalog-course-list">
+        <h1 className="course-list-title">Catalog</h1>
+
+        <div class="catalog">  
         {
           allCourses.map(course => {
             return (
-                    <div class="course-catalog-list-item">
-                      <h2>{course.title}</h2>
-                        <img class="list-img" src="../../img/default-img.jpg" />
-                      <p>{course.description}</p> 
-                      <Link to={`/course/${course._id}`} className="btn btn-success">
-                        View Course »
-                      </Link>
+                    <div className="course-catalog-list-item">
+                      <div className="inner-list-item">
+                        <h2>{course.title}</h2>
+                          <img className="list-img" src={require('../../../img/course-img.jpg')} />
+                        <p>{course.description}</p> 
+                        <Link to={`/course/${course._id}`} className="btn btn-success">
+                          View Course »
+                        </Link>
+                      </div>
+                      
                     </div> 
             )
-        console.log(course)
       }, )
         }
           </div>

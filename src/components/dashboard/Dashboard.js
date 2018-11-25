@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
 import DashCoursePreviewList from './DashCoursePreviewList';
+import './Dashboard.css';
 
 class Dashboard extends Component {
 

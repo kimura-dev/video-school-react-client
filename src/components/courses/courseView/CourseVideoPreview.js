@@ -2,7 +2,6 @@ import React from 'react'
 
 
 export default function CourseVideoPreview(props) {
-  console.log(props)
   // Trying to bring in watchedLessons to give user a different message depending 
   // on wether they have watched lessons on this course or not.
 
@@ -27,14 +26,6 @@ export default function CourseVideoPreview(props) {
           </div>
         </div>
       </div>
-    // <div id="lesson-video">
-      
-    //       <div class="col-md-8 m-auto">
-    //         <div class="embed-responsive embed-responsive-16by9">
-    //           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-    //         </div>
-    //       </div>
-    //     </div>
     
   )
 }

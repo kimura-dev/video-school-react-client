@@ -43,7 +43,6 @@ class LessonForm extends Component {
     }
 
     this.props.addNewCourseLesson(newLesson, this.props.history);
-    console.log('This is newLesson on LessonForm onSubmit: '+newLesson)
   }
 
 

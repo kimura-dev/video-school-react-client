@@ -4,7 +4,6 @@ import React from 'react';
 export default function CourseData(props) {
   const {course, watchedLessons} = props;
 
-  console.log(course);
   return (
     <section className="course-data-section">
        <div class="container">

@@ -15,7 +15,6 @@ export const registerUser = (userData, history)  => dispatch => {
         })
       
       );
-      // .catch(err => console.log(`${err.response.data.location} ${err.response.data.message}`));
 };
 
 // Login - Get User Token

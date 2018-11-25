@@ -72,8 +72,6 @@ export const getCourse = (id) => dispatch => {
 
 // Get All Course 
 export const getAllCourses = () => dispatch => {
-  // dispatch(setCourseLoading());
-  console.log('Getting all Courses')
 
   axios.get('/api/course')
     .then(res => {
@@ -86,10 +84,7 @@ export const getAllCourses = () => dispatch => {
     }
       
 )
-    // .catch(err => dispatch({
-    //   type: GET_ERRORS,
-    //   payload: {}
-    // }))
+   
     .catch(err => console.log(err))
 }
 

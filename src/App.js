@@ -6,6 +6,7 @@ import { setCurrentUser } from './actions/authActions';
 import { logoutUser } from './actions/authActions';
 import { Provider } from 'react-redux';
 import store from './store'; 
+import './App.css'
 import PrivateRoute from './components/common/PrivateRoute';
 import NavBar from './components/header/Navbar';
 import CourseList from './components/courses/CourseList';
@@ -55,7 +56,7 @@ class App extends Component {
           <DataManager />
             {/* <NavBar  {...this.state.auth} logoutUser={() => store.dispatch(logoutUser)} /> */}
             <Route exact path="/" component={ Landing } />
-            <div className="container main">
+            <div className="main">
               <Route exact path="/register" component={ Register } />
               <Route exact path="/login" component={ Login } />
               <Route exact path="/course-catalog" component={ CourseCatalog } />

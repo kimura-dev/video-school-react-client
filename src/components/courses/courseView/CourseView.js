@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCourse } from '../../../actions/courseActions';
-// import { getLesson } from '../../../actions/lessonActions';
 import CourseVideoPreview from './CourseVideoPreview';
 import CourseData from './CourseData';
 import CourseLessonList from './CourseLessonList';
-
+import Spinner from '../../common/Spinner';
 
 class CourseView extends Component {
   constructor(props) {
@@ -32,8 +31,7 @@ class CourseView extends Component {
 
 
   render() {
-    console.log(this.props);
-
+    
     let videoUrl = ''
 
     if(!this.props.courses.selectedCourse || !this.props.match.params){
@@ -47,8 +45,10 @@ class CourseView extends Component {
     } 
 
     return (
+    
       <section className="course-description-section">
         <div className="container">
+
           <CourseVideoPreview 
             videoUrl={videoUrl} 
             title={this.props.courses.selectedCourse.title}

@@ -6,7 +6,7 @@ import { getAllCourses } from '../../actions/courseActions';
 class DataManager extends Component {
   // On App Load
   componentDidMount() {
-    console.log('data manager mounted')
+    // console.log('Data Manager mounted')
     this.props.getAllCourses();
   } 
 

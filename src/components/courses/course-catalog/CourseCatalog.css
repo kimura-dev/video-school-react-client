@@ -1,13 +1,62 @@
-.container {
+.catalog {
   /* background-color: #ccc; */
   padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+  display: grid;
+  grid-template-rows: repeat(2, 300px);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: row;
+  grid-auto-rows: 300px;
+  grid-auto-columns: 1fr;
+  grid-row-gap: 30px;
+  grid-column-gap: 30px;
 }
 
-.course-catalog-list-item {
-  background-color: rgb(196, 255, 219);
-  padding: 10px;
+.course-list-item {
+  background-color: rgb(24, 116, 88);
+
+  padding: 20px;
+  font-size: 16px;
+  /* margin: 30px auto; */
   color: blueviolet;
+} 
+
+
+.catalog-search-box {
+  height: 450px;
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../../../img/course-catalog-img.jpg');
+}
+
+.catalog-title {
+  color: #fff;
+}
+
+.catalog-text {
+  color: #fff;
+}
+
+.course-list-title {
+  height: 100px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.catalog-course-list {
+  background-image:  url('../../../img/dashbg2.jpg');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.inner-list-item {
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.list-img {
+
+  width: 100%;
 }
