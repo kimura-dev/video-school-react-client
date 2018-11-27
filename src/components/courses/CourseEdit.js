@@ -26,20 +26,25 @@ class CourseForm extends Component {
 
   // When component loads this runs and looks for the current course
   componentDidMount() {
-    this.props.getCourse();
+    this.props.getCourse(this.props.match.params.id);
   }
 
   
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
-      this.setState({errors:nextProps.errors})
-    }
+  componentDidUpdate(prevProps) {
+    // if(this.props.errors) {
+    //   this.setState({errors: this.props.errors})
+    // }
 
     // Checking for the current course. Then if there is a course we supply the component with the course info
-    if(nextProps.courses.course) {
-      const course = nextProps.courses.course;
+    if(this.props.courses && this.props.courses.selectedCourse && this.props.courses.selectedCourse._id) {
+
+      if(prevProps.courses && prevProps.courses.selectedCourse && prevProps.courses.selectedCourse._id === this.props.courses.selectedCourse._id){
+        return;
+      }
+      const course = this.props.courses.selectedCourse;
   
       // If a course field doesnt exist we set to empty string
+      course._id = !isEmpty(course._id) ? course._id : '';
       course.title = !isEmpty(course.title) ? course.title : '';
       course.description = !isEmpty(course.description) ? course.description : '';
       course.price = !isEmpty(course.price) ? course.price : '';
@@ -47,6 +52,7 @@ class CourseForm extends Component {
 
       // Set component fields state
       this.setState({
+        _id: course._id,
         title: course.title,
         description: course.description,
         price: course.price,

@@ -10,6 +10,7 @@ class CourseLessonMenu extends Component {
       <CourseLessonList  
       watchedLessons={this.props.watchedLessons} 
       lessons={this.props.course.lessons}
+      
       />
     )
   }

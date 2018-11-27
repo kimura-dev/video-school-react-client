@@ -7,6 +7,16 @@ import CourseVideoPreview from './CourseVideoPreview';
 import CourseData from './CourseData';
 import CourseLessonList from './CourseLessonList';
 import Spinner from '../../common/Spinner';
+import './CourseView.css';
+
+function getCourseRole(user, course) {
+  if(course && user && course.username === user.username) {
+    return 'author';
+  } else if(course && user && course._id && user.courses && user.courses.find instanceof Function && user.courses.find(c => c._id === course._id) ) {
+    return 'student';
+  }
+  return 'guest';
+}
 
 class CourseView extends Component {
   constructor(props) {
@@ -32,7 +42,8 @@ class CourseView extends Component {
 
   render() {
     
-    let videoUrl = ''
+    let videoUrl = '';
+    let courseRole = '';
 
     if(!this.props.courses.selectedCourse || !this.props.match.params){
       return (
@@ -40,19 +51,24 @@ class CourseView extends Component {
       )
     }
 
+    courseRole = getCourseRole(this.props.auth.user.user, this.props.courses.selectedCourse);
+
     if(this.props.lessons.selectedLesson){
        videoUrl = this.props.lessons.selectedLesson.videoUrl;
     } 
+
+
 
     return (
     
       <section className="course-description-section">
         <div className="container">
-
+        
           <CourseVideoPreview 
             videoUrl={videoUrl} 
-            title={this.props.courses.selectedCourse.title}
+            course={this.props.courses.selectedCourse}
             watchedLessons={this.props.auth.watchedLessons} 
+            courseRole={courseRole}
           />
 
           <CourseData 
@@ -63,7 +79,8 @@ class CourseView extends Component {
           <CourseLessonList  
             watchedLessons={this.props.auth.watchedLessons} 
             lessons={this.props.courses.selectedCourse.lessons}
-            // onLessonClick={this.onLessonClick}
+            onLessonClick={this.onLessonClick}
+            courseRole={courseRole}
           />
         </div>
       </section>

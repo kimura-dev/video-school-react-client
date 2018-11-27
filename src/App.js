@@ -9,7 +9,7 @@ import store from './store';
 import './App.css'
 import PrivateRoute from './components/common/PrivateRoute';
 import NavBar from './components/header/Navbar';
-import CourseList from './components/courses/CourseList';
+// import CourseList from './components/courses/CourseList';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
@@ -68,13 +68,13 @@ class App extends Component {
                 <PrivateRoute exact path="/course-form" component={ CourseForm }   />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/edit-course" component={ EditCourse }   />
+                <PrivateRoute exact path="/edit-course/:id" component={ EditCourse }   />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/lesson-form" component={ LessonForm }   />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/edit-lesson" component={ EditLesson }   />
+                <PrivateRoute exact path="/edit-lesson/:id" component={ EditLesson }   />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/course/:id" component={ CourseView }   />

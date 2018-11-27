@@ -15,7 +15,7 @@ class CourseList extends Component {
   }
   render() {
     const CourseListItems = this.state.courses.map((course) => (
-      <CourseListItem  {...course} />
+      <CourseListItem  course = {course} courseRole='student' />
     ))
 
     return (

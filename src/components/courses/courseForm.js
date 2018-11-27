@@ -10,7 +10,7 @@ import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 // import NumberFieldGroup  from '../common/NumberFieldGroup';
 import CourseLessonList from './courseView/CourseLessonList';
-
+import './CourseForm.css';
 
 class CourseForm extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class CourseForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Course</h1>
+              <h1 className="display-4 text-center mt-4 mb-4">Create Your Course</h1>
               {/* <p className="lead text-center">Supply course details below</p> */}
               <form onSubmit={this.onSubmit}> 
                 <TextFieldGroup 
@@ -93,11 +93,11 @@ class CourseForm extends Component {
                   onChange={this.onChange}
                   // error={errors.username}
                 /> */}
-                <Link to="/lesson-form" className="btn btn-lg btn-success">
+                <Link to="/lesson-form" className="btn btn-lg btn-success mt-3">
                   Add Lesson
                 </Link>
                 <CourseLessonList  lessons={this.props.newCourse.lessons}/>
-                <input type="submit" className="btn btn-success btn-block mt-4" />
+                <input type="submit" className="btn btn-success btn-block p-2 mt-5 mb-5" />
               </form>
             </div>
           </div>

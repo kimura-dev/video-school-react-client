@@ -33,9 +33,9 @@ import './CourseCatalog.css';
             return (
                     <div className="course-catalog-list-item">
                       <div className="inner-list-item">
-                        <h2>{course.title}</h2>
+                        <h2 className="list-item-title">{course.title}</h2>
                           <img className="list-img" src={require('../../../img/course-img.jpg')} />
-                        <p>{course.description}</p> 
+                        <p className="list-item-description">{course.description}</p> 
                         <Link to={`/course/${course._id}`} className="btn btn-success">
                           View Course »
                         </Link>

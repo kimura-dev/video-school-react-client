@@ -13,8 +13,8 @@ li.mb-2.p-2.bd-highlight.bg-secondary {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
+  /* margin-top: -24px;
+  margin-bottom: -50px; */
 }
 
 .landing-inner {

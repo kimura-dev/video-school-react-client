@@ -7,12 +7,12 @@ export default function CourseData(props) {
   return (
     <section className="course-data-section">
        <div class="container">
-         <div class="mb-3">
-           <h2>{course.title}</h2>
+         <div class="mb-5">
+           <h2>Course Details</h2>
            <p>{course.description}</p>      
-           <p>{course.username}</p>
-           <p>{course.date}</p>
-           <p>{course.timesPurchased}</p>     
+           <p>Authored by {course.username}</p>
+           <p>Created On: {course.date}</p>
+           <p>This course was purchased {course.timesPurchased} times</p>     
            {/* <p>Course Progress Bar</p>  */}
          </div>
        </div>

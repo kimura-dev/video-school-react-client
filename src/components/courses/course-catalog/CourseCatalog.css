@@ -14,14 +14,14 @@
   grid-column-gap: 30px;
 }
 
-.course-list-item {
+/* .course-list-item {
   background-color: rgb(24, 116, 88);
 
   padding: 20px;
   font-size: 16px;
-  /* margin: 30px auto; */
-  color: blueviolet;
-} 
+  
+ 
+}  */
 
 
 .catalog-search-box {
@@ -52,9 +52,18 @@
 }
 
 .inner-list-item {
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 50px;
+  max-height: 50px;
 }
+
+.list-item-title {
+  max-height: 100px;
+}
+
+/* .list-item-description {
+  min-height: 50px;
+  max-height: 50px;
+} */
 
 .list-img {
 

@@ -3,11 +3,12 @@ import CourseLessonListItem from './CourseLessonListItem';
 
 class CourseLessonList extends Component {
   render() {
+
     const lessons = this.props.lessons.map((lesson, index) => {  
-    
     let watchedLessons = this.props.watchedLessons || [];
-    
     let watchedLesson = watchedLessons.includes(lesson._id);
+    // let courseRole = watchedLessons.includes(lesson._id);
+
     
     return   (  
      <CourseLessonListItem  
@@ -18,12 +19,10 @@ class CourseLessonList extends Component {
     )
   });
 
-  // Need to bring in setCurrentLesson ?? 
-
     return (
       <div className="CourseLessonItem">
-        <h3>Lessons</h3>
-        <ul className="d-flex flex-column bd-highlight mb-3">
+        <h2 className="lesson-item-title mt-3">Lessons</h2>
+        <ul className="d-flex flex-column bd-highlight mb-4">
           {lessons}
         </ul>
       </div> 
