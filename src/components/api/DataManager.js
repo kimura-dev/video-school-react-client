@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { getAllCourses } from '../../actions/courseActions';
+import {refreshUserLogin, refreshUserData} from '../../actions/authActions';
 
 class DataManager extends Component {
   // On App Load
   componentDidMount() {
-    // console.log('Data Manager mounted')
     this.props.getAllCourses();
+    // this.props.refreshUserLogin(this.props.history);
+    this.props.refreshUserData(this.props.auth.user.user.username);
+
   } 
 
   // componentDidUpdate () {
@@ -27,7 +30,9 @@ class DataManager extends Component {
 }
 
 DataManager.propTypes = {
-  getAllCourses: PropTypes.func.isRequired
+  getAllCourses: PropTypes.func.isRequired,
+  refreshUserLogin: PropTypes.func.isRequired,
+  refreshUserData: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
@@ -40,4 +45,4 @@ const mapStateToProps = (state) => ({
 //   user: state.auth
 // });
 
-export default connect(mapStateToProps, { getAllCourses })(DataManager);
+export default connect(mapStateToProps, { getAllCourses, refreshUserLogin, refreshUserData })(DataManager);

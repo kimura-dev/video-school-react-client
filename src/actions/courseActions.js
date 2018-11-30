@@ -7,6 +7,7 @@ import {
   GET_PURCHASED_COURSES, 
   UPDATE_AUTHORED_COURSE,
   UPDATE_PURCHASED_COURSE,
+  GET_PURCHASE_TOKEN,
   EDIT_COURSE,
   DELETE_COURSE,
   COURSE_LOADING,
@@ -14,6 +15,15 @@ import {
   GET_ERRORS,
   UPDATE_NEW_COURSE
   } from './types';
+
+
+
+  export const getPurchaseToken = (course, user) => dispatch => {
+    dispatch({
+      type: GET_PURCHASE_TOKEN,
+      payload: 'Token PlaceHolder'
+    })
+  }
 
   // Create Course
 export const createCourse = (courseData, history)  => dispatch => {
@@ -75,7 +85,7 @@ export const getAllCourses = () => dispatch => {
 
   axios.get('/api/course')
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
 
       dispatch({
         type: GET_ALL_COURSES,

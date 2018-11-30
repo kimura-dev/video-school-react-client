@@ -22,7 +22,7 @@ export default function CourseLessonListItem(props) {
   if(courseRole === 'student'){
     return (
       <li className="bd-highlight bg-success shadow p-3 mb-3 rounded course-list-item">
-        <Link to={`/lesson/${lesson._id}`} onClick={this.props.onLessonClick}>
+        <Link to={`/lesson/${lesson._id}`} onClick={props.onLessonClick}>
           {lesson.title}
         </Link>
         {/* <a href={`#${lesson._id}`} onClick={this.props.onLessonClick} >

@@ -95,7 +95,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, {getAuthoredCourses, getPurchasedCourses })(
+export default connect(mapStateToProps, { getAuthoredCourses, getPurchasedCourses })(
   DashCoursePreviewList
 );
 

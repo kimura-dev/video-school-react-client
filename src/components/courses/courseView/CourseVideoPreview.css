@@ -1,3 +1,13 @@
 .fa-play-circle {
   font-size: 200%;
 }
+
+.btn-link-txt {
+  color: #fff;
+  height: 25px;
+  width: 25%;
+}
+
+.course-video-preview {
+  background-color: #0098ff;
+}

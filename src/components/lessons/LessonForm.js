@@ -81,7 +81,7 @@ class LessonForm extends Component {
                   onChange={this.onChange}
                   // error={errors.username}
                 />
-                <input type="submit" className="btn btn-success btn-block mt-4" />
+                <input type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2" />
               </form>
             </div>
           </div>

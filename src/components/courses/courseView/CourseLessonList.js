@@ -22,7 +22,7 @@ class CourseLessonList extends Component {
     return (
       <div className="CourseLessonItem">
         <h2 className="lesson-item-title mt-3">Lessons</h2>
-        <ul className="d-flex flex-column bd-highlight mb-4">
+        <ul className="d-flex flex-column bd-highlight">
           {lessons}
         </ul>
       </div> 

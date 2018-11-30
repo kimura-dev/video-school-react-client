@@ -7,13 +7,14 @@ import {
    GET_ERRORS,
    SET_CURRENT_LESSON
   } from './types';
+import {setCourseLoading } from './courseActions';
 
 
  
   
 // Get A Lesson
 export const getLesson = (id) => dispatch => {
-  dispatch(setLessonLoading());
+  dispatch(setCourseLoading());
   axios.get(`/api/lesson/${id}`)
     .then(res => 
       dispatch({

@@ -8,7 +8,7 @@ export default function CourseData(props) {
     <section className="course-data-section">
        <div class="container">
          <div class="mb-5">
-           <h2>Course Details</h2>
+           <h2 className="mt-3">Course Details</h2>
            <p>{course.description}</p>      
            <p>Authored by {course.username}</p>
            <p>Created On: {course.date}</p>

@@ -14,7 +14,9 @@ import {
   DELETE_COURSE, 
   DELETE_NEW_COURSE_LESSON, 
   COURSE_LOADING,
-  SET_CURRENT_COURSE
+  SET_CURRENT_COURSE,
+  // PURCHASE_COURSE,
+  GET_PURCHASE_TOKEN
 } from '../actions/types';
 
 const initialState = {
@@ -37,6 +39,7 @@ const initialState = {
   // authoredCourse and purchasedCourses are for course views on the dashboard
   authoredCourses: [],
   purchasedCourses: [],
+  purchaseToken: '',
   loading: false
 }
 
@@ -60,6 +63,18 @@ export default function(state = initialState, action) {
         selectedCourse: action.payload,
         loading: false
       }
+    case GET_PURCHASE_TOKEN:
+      return {
+        ...state,
+        purchaseToken: action.payload,
+        loading: false
+      }
+    // case PURCHASE_COURSE:
+    //   return {
+    //     ...state,
+    //     : action.payload,
+    //     loading: false
+    //   }
     case UPDATE_NEW_COURSE:
       const newCourse = {
         ...state.newCourse

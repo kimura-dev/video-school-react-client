@@ -1,7 +1,48 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, PURCHASE_COURSE } from './types';
+
+
+
+export const purchaseCourse = (id, token) => dispatch => {
+  // dispatch(setCourseLoading());
+  axios
+    .post(`/api/course/${id}/purchase/${token}`)
+    .then(res => {
+      dispatch({
+        type: PURCHASE_COURSE,
+        payload: id
+      })
+      // .catch(err => {
+        
+      // })
+    })
+}
+
+export const refreshUserLogin = (history) => dispatch => {
+  axios.post('/api/auth/refresh')
+  .then(res => {
+    // Save to localStorage
+    const token = res.data.authToken;
+    // Set token to localStorage
+    localStorage.setItem('jwtToken', token);
+    // Set token to auth header
+    setAuthToken(token);
+    // Decode token to get user data
+    const decoded = jwt_decode(token);
+    // Set current user
+    dispatch(setCurrentUser(decoded));
+  })
+  .catch(err => history.push('/login'));
+}
+
+export const refreshUserData = (username) => dispatch => {
+  axios.get(`/api/users/${username}`)
+    .then(res => {
+      dispatch(setCurrentUser)
+    })
+}
 
 export const registerUser = (userData, history)  => dispatch => {
   axios

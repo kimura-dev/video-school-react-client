@@ -6,6 +6,8 @@ import { getLesson } from '../../actions/lessonActions';
 import { toggleLessonList  as toggleMenu } from '../../actions/uiActions';
 import LessonViewNavbar from './LessonViewNavbar';
 import LessonVideoPlayer from './LessonVideoPlayer';
+import Spinner from '../common/Spinner';
+
 
  class LessonView extends Component {
    constructor(props) {
@@ -22,15 +24,21 @@ import LessonVideoPlayer from './LessonVideoPlayer';
     }   
   }
 
-
+  
   render() {
+    let videoPlayer = <Spinner/>;
+
+    if(this.props.lesson){
+      videoPlayer = <LessonVideoPlayer videoUrl={this.props.lesson.videoUrl} />;
+    }
+  
   //  console.log(this.props.lesson.videoUrl)
 
     return (
       <div className="LessonView">
         <LessonViewNavbar toggleMenu={this.props.toggleMenu} />
         <CourseLessonMenu />
-        <LessonVideoPlayer videoUrl={this.props.lesson.videoUrl} />
+        {videoPlayer}
       </div>
      
     )
