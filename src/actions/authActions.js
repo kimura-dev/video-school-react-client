@@ -14,10 +14,9 @@ export const purchaseCourse = (id, token) => dispatch => {
         type: PURCHASE_COURSE,
         payload: id
       })
-      // .catch(err => {
-        
-      // })
     })
+    .catch(err => console.log(err));
+
 }
 
 export const refreshUserLogin = (history) => dispatch => {
@@ -42,6 +41,7 @@ export const refreshUserData = (username) => dispatch => {
     .then(res => {
       dispatch(setCurrentUser)
     })
+    .catch(err => console.log(err));
 }
 
 export const registerUser = (userData, history)  => dispatch => {

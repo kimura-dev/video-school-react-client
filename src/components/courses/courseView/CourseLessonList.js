@@ -7,8 +7,6 @@ class CourseLessonList extends Component {
     const lessons = this.props.lessons.map((lesson, index) => {  
     let watchedLessons = this.props.watchedLessons || [];
     let watchedLesson = watchedLessons.includes(lesson._id);
-    // let courseRole = watchedLessons.includes(lesson._id);
-
     
     return   (  
      <CourseLessonListItem  
@@ -19,10 +17,16 @@ class CourseLessonList extends Component {
     )
   });
 
+  let ulClasses = "d-flex flex-column bd-highlight";
+
+  if(this.props.mode === 'menu'){
+    ulClasses += ' list-group'
+  }
+  
     return (
-      <div className="CourseLessonItem">
+      <div className="CourseLessonList">
         <h2 className="lesson-item-title mt-3">Lessons</h2>
-        <ul className="d-flex flex-column bd-highlight">
+        <ul className={ulClasses}>
           {lessons}
         </ul>
       </div> 

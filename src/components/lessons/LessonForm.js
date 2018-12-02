@@ -37,6 +37,7 @@ class LessonForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newLesson = {
+      // courseId: this.props.newCourse,
       title: this.props.newLesson.title,
       description: this.props.newLesson.description,
       videoUrl: this.props.newLesson.videoUrl

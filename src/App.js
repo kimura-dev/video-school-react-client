@@ -9,7 +9,6 @@ import store from './store';
 import './App.css'
 import PrivateRoute from './components/common/PrivateRoute';
 import NavBar from './components/header/Navbar';
-// import CourseList from './components/courses/CourseList';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
@@ -23,6 +22,11 @@ import CourseCatalog from './components/courses/course-catalog/CourseCatalog';
 import CourseView from './components/courses/courseView/CourseView';
 import LessonView from './components/lessons/LessonView';
 import DataManager from './components/api/DataManager';
+
+//  Version 2.0 Stripe Payment Method
+
+// import {Elements, StripeProvider} from 'react-stripe-elements';
+// import CheckoutForm from './CheckoutForm';
 
 
 // Check for token
@@ -82,8 +86,12 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/lesson/:id" component={ LessonView }   />
               </Switch>
+              {/* <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+                <Elements>
+                  <CheckoutForm />
+                </Elements>
+              </StripeProvider> */}
             </div>
-            {/* <CourseList /> */}
             <Footer />
           </div>
         </Router>

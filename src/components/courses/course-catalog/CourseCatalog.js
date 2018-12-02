@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './CourseCatalog.css';
 
+function truncate(str, no_words) {
+  return str.split(" ").splice(0,40).join(" ");
+}
 
  class CourseCatalog extends Component {
    
@@ -35,7 +38,7 @@ import './CourseCatalog.css';
                       <div className="inner-list-item">
                         <h2 className="list-item-title">{course.title}</h2>
                           <img className="list-img" src={require('../../../img/course-img.jpg')} />
-                        <p className="list-item-description">{course.description}</p> 
+                        <p className="list-item-description">{truncate(course.description,40)}</p> 
                         <Link to={`/course/${course._id}`} className="btn btn-success">
                           View Course »
                         </Link>

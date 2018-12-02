@@ -7,13 +7,14 @@ import { toggleLessonList  as toggleMenu } from '../../actions/uiActions';
 import LessonViewNavbar from './LessonViewNavbar';
 import LessonVideoPlayer from './LessonVideoPlayer';
 import Spinner from '../common/Spinner';
+import './LessonView.css';
 
 
  class LessonView extends Component {
    constructor(props) {
      super(props);
      this.state = {
-
+      
      }
    }
 
@@ -27,20 +28,23 @@ import Spinner from '../common/Spinner';
   
   render() {
     let videoPlayer = <Spinner/>;
+    let classNames = 'LessonView';
+    let menu = <CourseLessonMenu />;
 
     if(this.props.lesson){
       videoPlayer = <LessonVideoPlayer videoUrl={this.props.lesson.videoUrl} />;
     }
-  
-  //  console.log(this.props.lesson.videoUrl)
+
+    if(this.props.expanded) {
+      classNames += ' expanded';
+    }
 
     return (
-      <div className="LessonView">
+      <div className={classNames}>
         <LessonViewNavbar toggleMenu={this.props.toggleMenu} />
-        <CourseLessonMenu />
+        {menu}
         {videoPlayer}
       </div>
-     
     )
   }
 }
@@ -50,7 +54,9 @@ LessonView.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  lesson: state.lessons.selectedLesson
+  lesson: state.lessons.selectedLesson,
+  expanded: state.ui.lessonListExpanded,
+  courses: state.courses.allCourses
 });
 
 export default connect(mapStateToProps, { getLesson, toggleMenu })(LessonView);

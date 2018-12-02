@@ -1,0 +1,10 @@
+.LessonViewNavbar {
+  display: flex;
+  /* flex-direction: row-reverse; */
+  justify-content: space-between;
+}
+
+.openBtn:hover {
+  cursor: pointer;
+  background-color: azure;
+}

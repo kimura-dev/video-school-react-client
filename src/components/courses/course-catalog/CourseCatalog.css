@@ -7,6 +7,7 @@
   display: grid;
   grid-template-rows: repeat(2, 300px);
   grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
   grid-auto-flow: row;
   grid-auto-rows: 300px;
   grid-auto-columns: 1fr;
@@ -49,6 +50,11 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.course-catalog-list-item {
+  /* overflow: hidden; */
+
 }
 
 .inner-list-item {

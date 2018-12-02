@@ -15,7 +15,7 @@ class Dashboard extends Component {
 
 
     return (
-      <div className="dashboard">
+      <div className="Dashboard">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -35,20 +35,16 @@ class Dashboard extends Component {
   }
 }
 
-// Set all properties on this component here.
 Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired
 }
 
-// this.props.auth.user, etc
-// this.props.courses.authoredCourses
 const mapStateToProps = (state) => ({
   auth: state.auth, // .auth comes from my root reducer
   courses: state.courses,
   errors: state.errors
-  //now we can say this.props.auth
 });
 
 export default connect(mapStateToProps, {})(

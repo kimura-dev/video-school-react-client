@@ -1,45 +1,22 @@
-import React from 'react'
+import React from 'react';
+import './LessonVideoPlayer.css';
 
 export default function LessonVideoPlayer(props) {
   const {videoUrl} = props;
 
   return (
-    <div id="LessonVideoPlayer">
-      <div class="col-md-12 m-auto">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src={videoUrl} allowfullscreen></iframe>
-        </div>
-      </div>
+    // <div id="LessonVideoPlayer">
+    //   <div class="col-md-12 m-auto">
+    //     <div class="embed-responsive embed-responsive-21by9">
+    //       <iframe class="embed-responsive-item" src={videoUrl} allowfullscreen></iframe>
+    //     </div>
+    //   </div>
+    // </div>
+
+    <div class="resp-container">
+      <iframe class="resp-iframe" src={videoUrl} gesture="media"  allow="encrypted-media" allowfullscreen></iframe>
     </div>
   )
 }
 
-
-// import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-
-// class LessonVideoPlayer extends Component {
-//   render() {
-//     return (
-//       <div id="LessonVideoPlayer">
-//         <div class="col-md-12 m-auto">
-//           <div class="embed-responsive embed-responsive-16by9">
-//             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-//           </div>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-// LessonVideoPlayer.propTypes = {
-//   getLesson: PropTypes.func.isRequired,
-// }
-
-// const mapStateToProps = (state) => ({
-//   lesson: state.lessons.selectedLesson
-// });
-
-// export default connect(mapStateToProps)(LessonVideoPlayer);
-
+{/* <iframe width="956" height="538" src="https://www.youtube.com/embed/DYu-D4B69Bs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCourse } from '../../../actions/courseActions';
 import { purchaseCourse } from '../../../actions/authActions';
@@ -65,6 +65,9 @@ class CourseView extends Component {
     
       <section className="course-description-section">
         <div className="container">
+          <Link to="/dashboard" className="btn btn-light">
+            Go Back
+          </Link>
         
           <CourseVideoPreview 
             videoUrl={videoUrl} 

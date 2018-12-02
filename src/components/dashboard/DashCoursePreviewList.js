@@ -71,7 +71,7 @@ class DashCoursePreviewList extends Component {
     }
 
     return (
-      <div className="DashCoursePreviewList float-left">
+      <div className="DashCoursePreviewList">
         <h3>{title}</h3>
         <ul className="d-flex flex-column bd-highlight mb-3">
           {courses}

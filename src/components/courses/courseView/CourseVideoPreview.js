@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './CourseVideoPreview.css';
-
-
+import CourseProgressBar from './CourseProgressBar'
 
 function isLessonIdNotInWatchedLessons(lesson_id, watchedLessons){
   if(watchedLessons && watchedLessons.includes instanceof Function){
@@ -23,10 +22,20 @@ export default function CourseVideoPreview(props) {
   let linkTo;
   let linkText;
   let actionBtn;
+  let icon;
+
 
   // if(!props.course || !props.course.lessons || !props.course.lessons.length) {
   //    let lessons = props.course
   // }
+  if(linkText === 'Watch' || 'Restart'){
+
+    icon =  <i class="fas fa-play-circle"></i>;
+  } else if(linkText === 'Edit'){
+    icon =  <i class="far fa-edit"></i>;
+  } else if(linkText === 'Purchase') {
+    icon = <i class="fas fa-shopping-cart"></i>;
+  }
 
   if(props.courseRole === 'student'){
     if(!props.course || !props.course.lessons || !props.course.lessons.length){
@@ -66,7 +75,9 @@ export default function CourseVideoPreview(props) {
                   </button>
                 </Link>
   } else if(linkText) {
+   
     actionBtn =  <button onClick={props.purchaseCourse} className="bg-warning mt-3 mb-3 btn-link-txt">
+                    {icon}
                     {linkText}
                   </button>
   }
@@ -79,10 +90,11 @@ export default function CourseVideoPreview(props) {
         {/* <a href="#" className="video" data-video={props.videoUrl}/> */}
         {actionBtn}
         <p class="card-text mb-3">{previewMessage}</p>
-        <a href="#" class="btn btn-warning">
+        {/* <a href="#" class="btn btn-warning">
           <i class="fas fa-play-circle"></i>
-        </a>
-      </div>
+        </a> */}
+        <CourseProgressBar />
+      </div>    
     </div>
     
   )

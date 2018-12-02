@@ -16,7 +16,8 @@ import {
   COURSE_LOADING,
   SET_CURRENT_COURSE,
   // PURCHASE_COURSE,
-  GET_PURCHASE_TOKEN
+  GET_PURCHASE_TOKEN,
+  GET_LESSON
 } from '../actions/types';
 
 const initialState = {
@@ -93,6 +94,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         newCourse:  {...state.newCourse, lessons: [ ...state.newCourse.lessons, action.payload]},
+        loading: false
+      }
+    case GET_LESSON:
+      return {
+        ...state,
+        selectedCourse: action.payload.courseId,
         loading: false
       }
     case UPDATE_NEW_LESSON:

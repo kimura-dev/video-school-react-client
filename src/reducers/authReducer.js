@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  console.log(JSON.stringify(action))
   switch(action.type) {
     case SET_CURRENT_USER:
       return {
@@ -20,7 +19,6 @@ export default function(state = initialState, action) {
         ...state,
         user: { user: { ...state.user.user, courses: [...state.user.user.courses, action.payload ]} }
       }
-      console.log('NewState: '+ JSON.stringify(state))
     default: 
       return state;
   }
