@@ -11,9 +11,15 @@ import Spinner from '../../common/Spinner';
 import './CourseView.css';
 
 function getCourseRole(user, course) {
+  console.log(course);
+  console.log(user);
+
   if(course && user && course.username === user.username) {
     return 'author';
-  } else if(course && user && course._id && user.courses && user.courses.find instanceof Function && user.courses.find(c => c === course._id) ) {
+  } else if(course && user && course._id && user.courses && 
+            user.courses.find instanceof Function && 
+            user.courses.find(c => c && c === course._id || c._id === course._id) ) 
+            {
     return 'student';
   }
   return 'guest';
@@ -37,7 +43,6 @@ class CourseView extends Component {
 
   onLessonClick(e) {
     const lessonId = e.target.getAttribute('href').replace('#','')
-    // this.props.getLesson(lessonId);
   }
 
 

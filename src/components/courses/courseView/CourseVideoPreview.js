@@ -22,20 +22,16 @@ export default function CourseVideoPreview(props) {
   let linkTo;
   let linkText;
   let actionBtn;
-  let icon;
+  // let icon;
 
+  // if(linkText === 'Watch' || 'Restart'){
 
-  // if(!props.course || !props.course.lessons || !props.course.lessons.length) {
-  //    let lessons = props.course
+  //   icon =  <i class="fas fa-play-circle"></i>;
+  // } else if(linkText === 'Edit'){
+  //   icon =  <i class="far fa-edit"></i>;
+  // } else if(linkText === 'Purchase') {
+  //   icon = <i class="fas fa-shopping-cart"></i>;
   // }
-  if(linkText === 'Watch' || 'Restart'){
-
-    icon =  <i class="fas fa-play-circle"></i>;
-  } else if(linkText === 'Edit'){
-    icon =  <i class="far fa-edit"></i>;
-  } else if(linkText === 'Purchase') {
-    icon = <i class="fas fa-shopping-cart"></i>;
-  }
 
   if(props.courseRole === 'student'){
     if(!props.course || !props.course.lessons || !props.course.lessons.length){
@@ -77,7 +73,7 @@ export default function CourseVideoPreview(props) {
   } else if(linkText) {
    
     actionBtn =  <button onClick={props.purchaseCourse} className="bg-warning mt-3 mb-3 btn-link-txt">
-                    {icon}
+                    {/* {icon} */}
                     {linkText}
                   </button>
   }

@@ -15,10 +15,12 @@ import {
   DELETE_NEW_COURSE_LESSON, 
   COURSE_LOADING,
   SET_CURRENT_COURSE,
-  // PURCHASE_COURSE,
+  SET_CURRENT_USER,
+  PURCHASE_COURSE,
   GET_PURCHASE_TOKEN,
   GET_LESSON
 } from '../actions/types';
+import { setCurrentUser } from '../actions/authActions';
 
 const initialState = {
   // courses: null,
@@ -46,6 +48,26 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case SET_CURRENT_USER:
+    if(action.payload) {
+      // This is where I can set the defaults
+      return {
+        ...state,
+        authoredCourses : state.allCourses.filter(function(course){
+          return course.username === action.payload.username
+        }),
+        purchasedCourses : state.allCourses.filter(function(course) {
+          return   action.payload.courses && action.payload.courses.includes(course._id)
+        })
+      }
+    } else {
+      // Clear any info on the user
+      return {
+        ...state,
+        authoredCourses: [],
+        purchasedCourses: []
+      }
+    }
     case COURSE_LOADING:
       return {
         ...state,
@@ -54,8 +76,9 @@ export default function(state = initialState, action) {
     case CREATE_COURSE:
       return {
         ...state,
-        // authoredCourses: [ ...state.authoredCourses, action.payload],
+        authoredCourses: [ ...state.authoredCourses, action.payload],
         allCourses: [ ...state.allCourses, action.payload],
+        newCourse: {},
         loading: false
       }
     case GET_COURSE:
@@ -94,6 +117,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         newCourse:  {...state.newCourse, lessons: [ ...state.newCourse.lessons, action.payload]},
+        newLesson: {},
         loading: false
       }
     case GET_LESSON:
@@ -132,6 +156,12 @@ export default function(state = initialState, action) {
         return {
           ...state,
           authoredCourses: action.payload || [],
+          loading: false
+        }
+    case PURCHASE_COURSE:
+        return {
+          ...state,
+          purchasedCourses: [ ...state.purchasedCourses, action.payload ],
           loading: false
         }
     case GET_PURCHASED_COURSES:

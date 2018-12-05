@@ -12,7 +12,7 @@ export const purchaseCourse = (id, token) => dispatch => {
     .then(res => {
       dispatch({
         type: PURCHASE_COURSE,
-        payload: id
+        payload: res.data
       })
     })
     .catch(err => console.log(err));
@@ -25,7 +25,7 @@ export const refreshUserLogin = (history) => dispatch => {
     // Save to localStorage
     const token = res.data.authToken;
     // Set token to localStorage
-    localStorage.setItem('jwtToken', token);
+    localStorage.setItem('jwtToken', token)
     // Set token to auth header
     setAuthToken(token);
     // Decode token to get user data
@@ -39,7 +39,10 @@ export const refreshUserLogin = (history) => dispatch => {
 export const refreshUserData = (username) => dispatch => {
   axios.get(`/api/users/${username}`)
     .then(res => {
-      dispatch(setCurrentUser)
+      let user = res.data;
+    
+      dispatch(setCurrentUser(user))
+      // dispatch(setCurrentUser);
     })
     .catch(err => console.log(err));
 }
@@ -91,5 +94,5 @@ export const logoutUser = () => dispatch => {
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to {} which will set isAuthenticated to false
-  dispatch(setCurrentUser({}));
+  dispatch(setCurrentUser(null));
 }

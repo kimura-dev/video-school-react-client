@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './CourseCatalog.css';
 
@@ -23,18 +22,21 @@ function truncate(str, no_words) {
               <form className="form-inline mr-auto pb-3">
                 <input type="text" className="form-control ml-2 " placeholder="Search for a Course"/>
                 <button className="btn btn-outline-success">Search</button>
-            </form>
+              </form>
+            </div>
           </div>
 
-        </div>
+          
         <section className="catalog-course-list">
         <h1 className="course-list-title">Catalog</h1>
 
         <div class="catalog">  
+          <div className="container">
+            <div className="row">
         {
           allCourses.map(course => {
             return (
-                    <div className="course-catalog-list-item">
+                    <div className="course-catalog-list-item col-4">
                       <div className="inner-list-item">
                         <h2 className="list-item-title">{course.title}</h2>
                           <img className="list-img" src={require('../../../img/course-img.jpg')} />
@@ -49,15 +51,13 @@ function truncate(str, no_words) {
       }, )
         }
           </div>
+          </div>
+          </div>
         </section>
       </main>
     )
   }
 }
-
-// CourseCatalog.propTypes = {
-
-// }
 
 const mapStateToProps = (state) => ({
   courses: state.courses

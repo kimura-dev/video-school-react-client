@@ -12,13 +12,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload), // boolean value
-        user: action.payload
+        // user: { user: action.payload }
+        user:  action.payload 
       }
      case PURCHASE_COURSE:
-      state =  {
+      return  {
         ...state,
-        user: { user: { ...state.user.user, courses: [...state.user.user.courses, action.payload ]} }
+        user: { user: { ...state.user.user, courses: [...state.user.user.courses, action.payload._id ]} }
       }
+      console.log({state})
     default: 
       return state;
   }

@@ -9,7 +9,6 @@ import './Dashboard.css';
 class Dashboard extends Component {
 
   render() {
-    // const { errors } = this.state.errors; 
     const user  = this.props.auth.user;
     const { authoredCourses, purchasedCourses } = this.props.courses;
 

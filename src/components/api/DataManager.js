@@ -10,17 +10,10 @@ class DataManager extends Component {
     this.props.getAllCourses();
     // this.props.refreshUserLogin(this.props.history);
     if(this.props.auth.user && this.props.auth.user.user){
-      this.props.refreshUserData(this.props.auth.user.user.username);
+      // this.props.refreshUserData(this.props.auth.user.user.username);
     }
 
   } 
-
-  // componentDidUpdate () {
-  //   this.updatedAuthoredCourse();
-  //   this.updatedPurchasedCourse();
-  // }
-  
- 
 
   render(){
     return(
