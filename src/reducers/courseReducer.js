@@ -20,10 +20,8 @@ import {
   GET_PURCHASE_TOKEN,
   GET_LESSON
 } from '../actions/types';
-import { setCurrentUser } from '../actions/authActions';
 
 const initialState = {
-  // courses: null,
   course: null, // for viewing
   // brand new course on course form no ajax calls on newCourse or newLessson
   newCourse: {
@@ -31,7 +29,7 @@ const initialState = {
     description:'',
     price: 0,
     lessons:[]
-  }, // for adding
+  }, // for adding a newLesson onto a newCourse so that then can be sent together
   newLesson: {
     title:'',
     description:'',
@@ -42,7 +40,7 @@ const initialState = {
   // authoredCourse and purchasedCourses are for course views on the dashboard
   authoredCourses: [],
   purchasedCourses: [],
-  purchaseToken: '',
+  purchaseToken: '', // For the purchase of the course
   loading: false
 }
 
@@ -50,7 +48,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
     if(action.payload) {
-      // This is where I can set the defaults
+      // Set the defaults
       return {
         ...state,
         authoredCourses : state.allCourses.filter(function(course){
@@ -93,21 +91,13 @@ export default function(state = initialState, action) {
         purchaseToken: action.payload,
         loading: false
       }
-    // case PURCHASE_COURSE:
-    //   return {
-    //     ...state,
-    //     : action.payload,
-    //     loading: false
-    //   }
     case UPDATE_NEW_COURSE:
       const newCourse = {
         ...state.newCourse
       }
-
       Object.keys(action.payload).forEach(key => {
         newCourse[key] = action.payload[key]
       })
-
       return {
         ...state,
         newCourse,
@@ -130,11 +120,9 @@ export default function(state = initialState, action) {
       const newLesson = {
         ...state.newLesson
       }
-
       Object.keys(action.payload).forEach(key => {
         newLesson[key] = action.payload[key]
       })
-       
       return {
         ...state,
         newLesson,
@@ -176,12 +164,31 @@ export default function(state = initialState, action) {
           selectedCourse: action.payload,
           loading: false
         }
-    // case EDIT_COURSE:
-    //     return {
-    //       ...state,
-    //       aLLCourses: action.payload,
-    //       loading: true
-    //     }
+    case EDIT_COURSE:
+        let editedCourse = action.payload // Find the old array state.allCourses
+
+        function copyArrayWithEditedCourseById(editedCourse, courses){
+          let updatedCourses = [...courses]  // Make the the new array
+
+          let index = updatedCourses.findIndex(function(course){
+            let matched = editedCourse._id === course._id;
+            return matched;
+          })
+  
+          if(index) {
+             updatedCourses[index] = editedCourse;
+          }
+
+          return updatedCourses;
+        }
+
+        return {
+          ...state,
+          allCourses: copyArrayWithEditedCourseById(editedCourse, state.allCourses),
+          authoredCourses: copyArrayWithEditedCourseById(editedCourse, state.authoredCourses),
+          selectedCourse: null,
+          loading: true
+        }
     case DELETE_NEW_COURSE_LESSON:
       return {
         ...state,
@@ -191,7 +198,7 @@ export default function(state = initialState, action) {
     case DELETE_COURSE:
         return {
           ...state,
-          courses: state.posts.filter(post => post._id !== action.payload),
+          courses: state.courses.filter(course => course._id !== action.payload),
           loading: true
         }
     default:

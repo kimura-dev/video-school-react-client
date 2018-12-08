@@ -40,7 +40,7 @@ export default function CourseVideoPreview(props) {
     else if(!props.watchedLessons || !props.watchedLessons.length) {
       previewMessage = `Begin watching ${props.course.title} now!`
       linkTo = `/lesson/${props.course.lessons[0]._id}`;    
-      linkText = 'Watch'; 
+      linkText = 'Start'; 
     } else {
       let unwatchedLesson = firstUnwatchedLesson(props.course.lessons, props.watchedLesson );
 
@@ -50,14 +50,15 @@ export default function CourseVideoPreview(props) {
         previewMessage = 'Start course over';
       } else {
         linkTo = `/lesson/${unwatchedLesson._id}`;
-        linkText = 'Watch'
+        linkText = 'Continue'
         previewMessage = `Continue watching ${props.course.title} now!`
       }
     }
   } else if(props.courseRole === 'author'){
-    linkTo = `/edit-course/${props.course._id}`;
-    linkText = 'Edit'
-    previewMessage = `Edit ${props.course.title}`;
+    linkTo = `/lesson/${props.course.lessons[0]._id}`;
+    // linkTo = `/edit-course/${props.course._id}`;
+    linkText = 'Preview'
+    previewMessage = `Preview ${props.course.title}`;
   } else {
     linkText = 'Purchase';
     previewMessage = `Preview ${props.course.title} below`
@@ -79,17 +80,17 @@ export default function CourseVideoPreview(props) {
   }
 
   return (
-    <div class="card w-50">
-      <div class="card-body course-video-preview">
-        <h2 class="card-title">{props.course.title}</h2>
+    <div className="card w-50">
+      <div className="card-body course-video-preview">
+        <h2 className="card-title">{props.course.title}</h2>
         <img className="list-img" src={require('../../../img/course-img.jpg')} />
         {/* <a href="#" className="video" data-video={props.videoUrl}/> */}
         {actionBtn}
-        <p class="card-text mb-3">{previewMessage}</p>
+        <p className="card-text mb-3 text-white">{previewMessage}</p>
         {/* <a href="#" class="btn btn-warning">
           <i class="fas fa-play-circle"></i>
         </a> */}
-        <CourseProgressBar />
+        <CourseProgressBar  watchedLessons={props.watchedLessons} />
       </div>    
     </div>
     

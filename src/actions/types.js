@@ -27,6 +27,8 @@ export const ADD_NEW_COURSE_LESSON = 'ADD_NEW_COURSE_LESSON';
 export const ADD_COURSE_LESSON = 'ADD_COURSE_LESSON';
 export const UPDATE_NEW_COURSE = 'UPDATE_NEW_COURSE';
 export const UPDATE_NEW_LESSON = 'UPDATE_NEW_LESSON';
+export const LESSON_LOADING = 'LESSON_LOADING';
+
 
 
 // Lesson Types
@@ -35,7 +37,6 @@ export const GET_LESSON = 'GET_LESSON';
 export const GET_ALL_LESSONS = 'GET_LESSONS';
 export const EDIT_LESSON = 'EDIT_LESSON';
 export const DELETE_LESSON = 'DELETE_LESSON';
-export const LESSON_LOADING = 'LESSON_LOADING';
 export const SET_CURRENT_LESSON = 'SET_CURRENT_LESSON';
 
 // UI Reducer

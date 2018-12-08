@@ -32,18 +32,21 @@ function truncate(str, no_words) {
 
         <div class="catalog">  
           <div className="container">
-            <div className="row">
+            <div className="catalog-course-item-container">
         {
           allCourses.map(course => {
             return (
-                    <div className="course-catalog-list-item col-4">
+                    <div className="course-catalog-list-item col-4 mb-3">
                       <div className="inner-list-item">
+                        <img className="list-img" src={require('../../../img/course-img.jpg')} />
                         <h2 className="list-item-title">{course.title}</h2>
-                          <img className="list-img" src={require('../../../img/course-img.jpg')} />
                         <p className="list-item-description">{truncate(course.description,40)}</p> 
-                        <Link to={`/course/${course._id}`} className="btn btn-success">
-                          View Course »
-                        </Link>
+                        <div classname="">
+                          <Link to={`/course/${course._id}`} className="btn btn-success course-list-item-btn">
+                            View Course »
+                          </Link>
+                        </div>
+                       
                       </div>
                       
                     </div> 

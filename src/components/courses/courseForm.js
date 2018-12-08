@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Need withRouter to use history
 import { withRouter } from 'react-router-dom';
-// import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { createCourse, updateNewCourse } from '../../actions/courseActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
-// import NumberFieldGroup  from '../common/NumberFieldGroup';
 import CourseLessonList from './courseView/CourseLessonList';
 import './CourseForm.css';
-
+ 
 class CourseForm extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +27,6 @@ class CourseForm extends Component {
   }
 
   onChange(e) {
-    // this.setState({ [e.target.name]: e.target.value })
     this.props.updateNewCourse({[e.target.name]: e.target.value })
   }
 
@@ -41,13 +38,13 @@ class CourseForm extends Component {
       price: this.props.newCourse.price,
       lessons: this.props.newCourse.lessons
     }
-    // this.props.history allows you to redirect from an action, this is used with "withRouter"
     this.props.createCourse(newCourse, this.props.history);
   }
 
 
   render() {
     // const { errors } = this.state.errors; 
+    
 
     return (
       <div className="course-form">

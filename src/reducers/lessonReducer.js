@@ -1,4 +1,15 @@
-import { SAVE_LESSON, ADD_NEW_COURSE_LESSON, ADD_COURSE_LESSON, GET_LESSON, GET_ALL_LESSONS, LESSON_LOADING, EDIT_LESSON, DELETE_LESSON, SET_CURRENT_LESSON } from '../actions/types';
+import { 
+        SAVE_LESSON, 
+        ADD_NEW_COURSE_LESSON, 
+        ADD_COURSE_LESSON, 
+        GET_LESSON, 
+        GET_ALL_LESSONS, 
+        LESSON_LOADING, 
+        EDIT_LESSON, 
+        DELETE_LESSON, 
+        SET_CURRENT_LESSON 
+      } 
+      from '../actions/types';
 
 const initialState = {
   lesson: null,
@@ -43,6 +54,12 @@ export default function(state = initialState, action) {
         return {
           ...state,
           slectedLesson: action.payload,
+          loading: false
+        }
+    case DELETE_LESSON:
+        return {
+          ...state,
+          lessons: state.lessons.filter(lesson => lesson._id !== action.payload),          
           loading: false
         }
     default:

@@ -39,7 +39,11 @@ class DashCoursePreviewList extends Component {
       courses = this.props.courses.authoredCourses.map(course => {
         return (
          
-          <CourseListItem course={course} courseRole="teacher"/>
+          <CourseListItem 
+            course={course} 
+            courseRole="teacher"
+            // deleteCourse={(e) => this.props.deleteCourse(this.props.courses.selectedCourse._id)}
+            />
         )
       })
       title = 'Authored Courses'
@@ -84,6 +88,7 @@ class DashCoursePreviewList extends Component {
 DashCoursePreviewList.propTypes = {
   getAuthoredCourses: PropTypes.func.isRequired,
   getPurchasedCourses: PropTypes.func.isRequired,
+  // deleteCourses: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired

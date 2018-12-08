@@ -18,7 +18,6 @@ import './LessonView.css';
      }
    }
 
-
    componentDidMount() {
     if(this.props.match.params){
       this.props.getLesson(this.props.match.params.id);

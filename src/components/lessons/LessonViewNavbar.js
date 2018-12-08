@@ -8,7 +8,7 @@ export default function LessonViewNavbar(props) {
       <button onClick={props.toggleMenu} className="openBtn">
         Open
       </button>
-      <Link to='/dashboard' classname="dashBtn text-light">Go to Dashboard</Link> 
+      <Link to='/dashboard' className="dashBtn text-light">Go to Dashboard</Link> 
     </div>
   )
 }

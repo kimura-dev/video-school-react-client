@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { getCourse, editCourse } from '../../actions/courseActions';
+import CourseLessonListItem from './courseView/CourseLessonListItem';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 import isEmpty from '../../validation/is-empty';
+import Spinner from '../common/Spinner';
+
 
 class CourseForm extends Component {
   constructor(props) {
@@ -67,22 +70,33 @@ class CourseForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const newCourse = {
+    const editCourse = {
+      _id: this.state._id,
       title: this.state.title,
       description: this.state.description,
       price: this.state.price,
       lessons: this.state.lessons
     }
     // this.props.history allows you to redirect from an action, this is used with "withRouter"
-    this.props.editCourse(newCourse, this.props.history);
+    this.props.editCourse(editCourse, this.props.history);
   }
 
 
   render() {
     // const { errors } = this.state.errors; 
+    // let course = this.props.courses.selectedCourse;
+
+    // if(!course){
+    //   return  <Spinner />
+    //    return (
+    //      <div>Course Not Found</div>
+    //    )
+    //  }
+ 
 
     return (
       <div className="course-form">
+      {/* <Spinner /> */}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -118,6 +132,10 @@ class CourseForm extends Component {
                 <Link to="/lesson-form" className="btn btn-lg btn-success">
                   Add Lesson
                 </Link>
+                <div>
+                  Lessons go here...
+                  {/* <CourseLessonListItem lesson={course.lessons}/> */}
+                </div>
                 <input type="submit" className="btn btn-success btn-block mt-4" />
               </form>
             </div>

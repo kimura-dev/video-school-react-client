@@ -4,8 +4,7 @@ import './CourseLessonListItem.css'
 
 export default function CourseLessonListItem(props) {
   const {lesson, courseRole, mode} = props;
-  let liClasses = "bd-highlight bg-warning shadow p-2 mb-3 rounded course-list-item";
-
+  let liClasses = "bd-highlight bg-warning shadow p-2 mb-3 rounded lesson-list-item";
   if(props.mode === 'menu'){
     liClasses = "lesson-item list-group-item list-group-item-action";
   }

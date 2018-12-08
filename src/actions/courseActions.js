@@ -125,12 +125,13 @@ export const getPurchasedCourses = (username) => dispatch => {
 }
 
 // Edit Course
-export const editCourse = (id) => dispatch => {
-  dispatch(setCourseLoading());
-  axios.put(`/api/courses/${id}`)
+export const editCourse = (course, history) => dispatch => {
+  dispatch(setCourseLoading());  
+  axios.put(`/api/course/${course._id}`, course)
     .then(res => 
       dispatch({
         type: EDIT_COURSE,
+        history: history.push('/dashboard'),
         payload: res.data
       })
     )

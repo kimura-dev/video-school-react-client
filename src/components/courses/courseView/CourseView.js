@@ -11,9 +11,7 @@ import Spinner from '../../common/Spinner';
 import './CourseView.css';
 
 function getCourseRole(user, course) {
-  console.log(course);
-  console.log(user);
-
+  
   if(course && user && course.username === user.username) {
     return 'author';
   } else if(course && user && course._id && user.courses && 
@@ -71,7 +69,7 @@ class CourseView extends Component {
       <section className="course-description-section">
         <div className="container">
           <Link to="/dashboard" className="btn btn-light">
-            Go Back
+            Go to Dashboard
           </Link>
         
           <CourseVideoPreview 

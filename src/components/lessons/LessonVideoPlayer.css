@@ -2,6 +2,9 @@
   position: relative;
   overflow: hidden;
   padding-top: 56.25%;
+  background-color: antiquewhite;
+  /* min-width: 200%;
+  min-height: 200%; */
 }
 
 .resp-iframe {

@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
         ...state,
         user: { user: { ...state.user.user, courses: [...state.user.user.courses, action.payload._id ]} }
       }
-      console.log({state})
+      
     default: 
       return state;
   }

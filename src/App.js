@@ -22,6 +22,7 @@ import CourseCatalog from './components/courses/course-catalog/CourseCatalog';
 import CourseView from './components/courses/courseView/CourseView';
 import LessonView from './components/lessons/LessonView';
 import DataManager from './components/api/DataManager';
+import SearchResult from './components/searchResult/SearchResult';
 
 //  Version 2.0 Stripe Payment Method
 
@@ -64,6 +65,7 @@ class App extends Component {
               <Route exact path="/register" component={ Register } />
               <Route exact path="/login" component={ Login } />
               <Route exact path="/course-catalog" component={ CourseCatalog } />
+              <Route exact path="/search-result" component={ SearchResult } />
               {/* Switch allows for the redirect on logout w/out it stays on the page */}
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={ Dashboard}   />

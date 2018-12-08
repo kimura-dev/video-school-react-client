@@ -30,7 +30,6 @@ class LessonForm extends Component {
   }
 
   onChange(e) {
-    // this.setState({ [e.target.name]: e.target.value })
     this.props.updateNewLesson({[e.target.name]: e.target.value })
   }
 
