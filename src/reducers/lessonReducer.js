@@ -10,6 +10,7 @@ import {
         SET_CURRENT_LESSON 
       } 
       from '../actions/types';
+import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
 const initialState = {
   lesson: null,
@@ -47,13 +48,16 @@ export default function(state = initialState, action) {
     case EDIT_LESSON:
         return {
           ...state,
-          lesson: action.payload,
+          selectedCourse: {
+            ...state.selectedCourse, 
+            lessons: copyArrayWithEditedItemById( state.selectedLesson.lessons,action.payload) 
+          },
           loading: false
         }
     case SET_CURRENT_LESSON:
         return {
           ...state,
-          slectedLesson: action.payload,
+          selectedLesson: action.payload,
           loading: false
         }
     case DELETE_LESSON:

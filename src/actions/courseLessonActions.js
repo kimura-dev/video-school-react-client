@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   ADD_NEW_COURSE_LESSON,
   ADD_COURSE_LESSON,
+  ADD_SELECTED_COURSE_LESSON,
   DELETE_LESSON,
   DELETE_NEW_COURSE_LESSON,
   UPDATE_NEW_COURSE,
@@ -18,6 +19,16 @@ import {
     })
   };
 
+  // addselectedCourseLesson
+  // type change and history changes lessonData still payload
+  export const addSelectedCourseLesson = (lessonData, history, courseId) => dispatch => {
+    dispatch({
+      type: ADD_SELECTED_COURSE_LESSON,
+      payload: lessonData,
+      history: history.goBack(/*`/edit-course/${courseId}`*/)
+    })
+  };
+
   //Update a new Course
 export const updateNewLesson = (newData) => dispatch => {
   dispatch({
@@ -26,18 +37,17 @@ export const updateNewLesson = (newData) => dispatch => {
   })
 }
  
+  // export const addCourseLesson = (lessonData, history) => dispatch => {
+  //   axios.post('/api/lesson')
+  //     .then(lesson => 
+  //       dispatch({
+  //         type: ADD_COURSE_LESSON,
+  //         payload: lessonData,
+  //         history: history.push('/course-form')
+  //       })
+  //     )
+  // };
 
-  // A
-  export const addCourseLesson = (lessonData, history) => dispatch => {
-    axios.post('/api/lesson')
-      .then(lesson => 
-        dispatch({
-          type: ADD_COURSE_LESSON,
-          payload: lessonData,
-          history: history.push('/course-form')
-        })
-      )
-  };
 
 // Delete A Lesson
 export const deleteLesson = (id) => dispatch => {

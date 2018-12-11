@@ -57,9 +57,14 @@ class LessonForm extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  // New ACTION to add lesson to selectedCourse
+  // New ACTION to edit lesson to selectedCourse
+  // New action to delete lesson to selectedCourse
+
   onSubmit(e) {
     e.preventDefault();
     const newLesson = {
+      _id: this.state._id,
       title: this.state.title,
       description: this.state.description,
       videoUrl: this.state.videoUrl
@@ -68,6 +73,8 @@ class LessonForm extends Component {
     this.props.editLesson(newLesson, this.props.history);
   }
 
+   // AddEditCourseLesson and EditEditCourseLesson
+  // 
 
   render() {
     // const { errors } = this.state.errors; 

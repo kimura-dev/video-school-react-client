@@ -7,6 +7,7 @@ import {
   // UPDATE_AUTHORED_COURSE,
   // UPDATE_PURCHASED_COURSE, 
   ADD_NEW_COURSE_LESSON, 
+  ADD_SELECTED_COURSE_LESSON,
   ADD_COURSE_LESSON, 
   UPDATE_NEW_COURSE, 
   UPDATE_NEW_LESSON, 
@@ -20,6 +21,7 @@ import {
   GET_PURCHASE_TOKEN,
   GET_LESSON
 } from '../actions/types';
+import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
 const initialState = {
   course: null, // for viewing
@@ -131,7 +133,13 @@ export default function(state = initialState, action) {
     case ADD_COURSE_LESSON:
       return {
         ...state,
-        lesson: [ ...state.lessons, action.payload],
+        lessons: [ ...state.lessons, action.payload],
+        loading: false
+      }
+    case ADD_SELECTED_COURSE_LESSON:
+      return {
+        ...state,
+        lessons: [ ...state.lessons, action.payload],
         loading: false
       }
     case GET_ALL_COURSES:
@@ -167,25 +175,10 @@ export default function(state = initialState, action) {
     case EDIT_COURSE:
         let editedCourse = action.payload // Find the old array state.allCourses
 
-        function copyArrayWithEditedCourseById(editedCourse, courses){
-          let updatedCourses = [...courses]  // Make the the new array
-
-          let index = updatedCourses.findIndex(function(course){
-            let matched = editedCourse._id === course._id;
-            return matched;
-          })
-  
-          if(index) {
-             updatedCourses[index] = editedCourse;
-          }
-
-          return updatedCourses;
-        }
-
         return {
           ...state,
-          allCourses: copyArrayWithEditedCourseById(editedCourse, state.allCourses),
-          authoredCourses: copyArrayWithEditedCourseById(editedCourse, state.authoredCourses),
+          allCourses: copyArrayWithEditedItemById(editedCourse, state.allCourses),
+          authoredCourses: copyArrayWithEditedItemById(editedCourse, state.authoredCourses),
           selectedCourse: null,
           loading: true
         }

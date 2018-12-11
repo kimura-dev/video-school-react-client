@@ -50,12 +50,13 @@ export const getAllLessons = () => dispatch => {
 }
 
 // Edit A Lesson
-export const editLesson = (id) => dispatch => {
+export const editLesson = (lesson, history) => dispatch => {
   dispatch(setLessonLoading());
-  axios.put(`/api/lesson/${id}`)
+  axios.put(`/api/lesson/${lesson._id}`, lesson)
     .then(res => 
       dispatch({
         type: EDIT_LESSON,
+        history: history.push(`/edit-course/${lesson.course._id}`),
         payload: res.data
       })
     )

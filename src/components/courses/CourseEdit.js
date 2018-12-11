@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { getCourse, editCourse } from '../../actions/courseActions';
-import CourseLessonListItem from './courseView/CourseLessonListItem';
+import CourseLessonList from './courseView/CourseLessonList';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 import isEmpty from '../../validation/is-empty';
@@ -29,19 +29,28 @@ class CourseForm extends Component {
 
   // When component loads this runs and looks for the current course
   componentDidMount() {
-    this.props.getCourse(this.props.match.params.id);
+    console.log('Mounting');
+    console.log({selectedCourse: this.props.courses.selectedCourse, state: this.state});
+
+    // Prevent getCourse if we know we are already editing a course
+    if(/*!this.props.courses.selectedCourse || this.props.courses.selectedCourse._id !==*/ this.props.match.params.id){ 
+
+      this.props.getCourse(this.props.match.params.id);
+    }
+
   }
 
   
-  componentDidUpdate(prevProps) {
-    // if(this.props.errors) {
-    //   this.setState({errors: this.props.errors})
-    // }
-
+  componentDidUpdate(prevProps, prevState) {
     // Checking for the current course. Then if there is a course we supply the component with the course info
     if(this.props.courses && this.props.courses.selectedCourse && this.props.courses.selectedCourse._id) {
 
-      if(prevProps.courses && prevProps.courses.selectedCourse && prevProps.courses.selectedCourse._id === this.props.courses.selectedCourse._id){
+    console.log('Updating');
+
+
+
+      if(this.props.courses.selectedCourse._id === this.state._id){
+        console.log('Skipping update');
         return;
       }
       const course = this.props.courses.selectedCourse;
@@ -133,8 +142,10 @@ class CourseForm extends Component {
                   Add Lesson
                 </Link>
                 <div>
-                  Lessons go here...
-                  {/* <CourseLessonListItem lesson={course.lessons}/> */}
+                  <CourseLessonList 
+                    lessons={ this.props.courses.selectedCourse ?  this.props.courses.selectedCourse.lessons : []}
+                    courseRole={'author'}
+                    />
                 </div>
                 <input type="submit" className="btn btn-success btn-block mt-4" />
               </form>
@@ -146,11 +157,24 @@ class CourseForm extends Component {
   }
 }
 
+// history course form
+// Add lesson on a newCourse  = addnewcourselesson
+// Edit lesson on a newCourse 
+// Delete lesson on a newCourse 
+
+// history courseEdit
+// Add lesson on selectedCourse = 
+// Edit lesson on selectedCourse = editLesson rename editSelectedCourseLesson
+// Delete lesson on selectedCourse
+
+
+
 CourseForm.propTypes = {
   editCourse: PropTypes.func.isRequired,
   getCourse: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  courses: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

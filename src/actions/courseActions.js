@@ -141,7 +141,7 @@ export const editCourse = (course, history) => dispatch => {
 // Delete Course
 export const deleteCourse = (id) => dispatch => {
   dispatch(setCourseLoading());
-  axios.delete(`/api/courses/${id}`)
+  axios.delete(`/api/course/${id}`)
     .then(res => 
       dispatch({
         type: DELETE_COURSE,
