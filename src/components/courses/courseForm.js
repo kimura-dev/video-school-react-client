@@ -51,7 +51,7 @@ class CourseForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center mt-4 mb-4">Create Your Course</h1>
+              <h1 className="display-4 text-center mt-4 mb-4">Create Course</h1>
               {/* <p className="lead text-center">Supply course details below</p> */}
               <form onSubmit={this.onSubmit}> 
                 <TextFieldGroup 
@@ -90,11 +90,11 @@ class CourseForm extends Component {
                   onChange={this.onChange}
                   // error={errors.username}
                 /> */}
-                <Link to="/lesson-form" className="btn btn-lg btn-success mt-3">
+                <Link to="/lesson-form" className="btn btn-lg btn-success mt-3 font-weight-bold">
                   Add Lesson
                 </Link>
                 <CourseLessonList  lessons={this.props.newCourse.lessons} courseRole={'author'}/>
-                <input type="submit" className="btn btn-success btn-block p-2 mt-5 mb-5" />
+                <input type="submit" className="btn btn-success btn-block p-2 mt-5 mb-5 font-weight-bold" />
               </form>
             </div>
           </div>

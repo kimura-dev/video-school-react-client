@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SearchBar.css';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class SearchBar extends Component {
       <form className="form-inline mr-auto">
         <input value={this.state.term}
         onChange={e => this.onInputChange(e.target.value)} className="form-control mr-2" />
-        <button className="btn btn-outline-light bg-success">Search</button>
+        <button className="btn btn-outline-light bg-success search-bar-btn">Search</button>
       </form>
     );
   }

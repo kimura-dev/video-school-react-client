@@ -161,7 +161,7 @@ class CourseForm extends Component {
                     courseRole={'author'}
                     />
                 </div>
-                <input type="submit" className="btn btn-success btn-block mt-4" />
+                <input type="submit" className="btn btn-success btn-block mt-4 mb-3 p-3" />
               </form>
             </div>
           </div>

@@ -44,7 +44,7 @@
 
 .course-catalog-list-item {
   margin: 0 auto;
-  flex: 1;
+  /* flex: 1; */
   border: 1px solid black;
   position: relative;
   padding: 10px 10px 50px 10px;

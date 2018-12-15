@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CourseListItem from '../courses/CourseListItem';
 import { getAuthoredCourses, getPurchasedCourses, setCourseLoaded } from '../../actions/courseActions';
+import './DashCoursePreviewList.css'
 
 class DashCoursePreviewList extends Component {
   constructor(props){
@@ -37,6 +38,7 @@ class DashCoursePreviewList extends Component {
     let title = '';
     let noCourses = '';
     let linkBtn = '';
+    let icon = ''
     
     const  courseRole  = this.props.courseRole || 'student';
 
@@ -51,20 +53,25 @@ class DashCoursePreviewList extends Component {
             />
         )
       })
+      icon = (<i class="fa fa-user-md mr-3 text-dark author-icon"/>)
       title = 'Authored Courses'
-      noCourses = (<p>You have not yet created any courses.</p>)
-      linkBtn = (<Link to="/course-form" className="btn btn-lg btn-success mr-2">
+      noCourses = (<p className="mb-4">You have not yet created any courses.</p>)
+      linkBtn = (<Link to="/course-form" className="btn btn-lg btn-success mr-2 mt-2 mb-4">
                   Create A Course
                 </Link>)
     } else {
+
+      icon = (<i class="fa fa-book mr-3 purchased-icon text-white"></i>)
+    
       courses = this.props.courses.purchasedCourses.map( course => {
         return (
           <CourseListItem course={course} courseRole="student"/>
         )
       })
+      // An icon for purchased courses <i class="fa fa-eye"></i>
       title = 'Purchased Courses'
       noCourses = (<p>You have not yet purchased any courses.</p>)
-      linkBtn = (<Link to="/course-catalog" className="btn btn-lg btn-success">
+      linkBtn = (<Link to="/course-catalog" className="btn btn-lg btn-success mt-2 mb-4">
                   Course Catalog
                 </Link>)
     }
@@ -81,7 +88,7 @@ class DashCoursePreviewList extends Component {
 
     return (
       <div className="DashCoursePreviewList">
-        <h3>{title}</h3>
+        <h3 className="mb-4">{icon}{title}</h3>
         <ul className="d-flex flex-column bd-highlight mb-3">
           {courses}
         </ul>

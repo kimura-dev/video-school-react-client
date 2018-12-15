@@ -4,7 +4,7 @@ import './CourseLessonListItem.css'
 
 export default function CourseLessonListItem(props) {
   const {lesson, courseRole, mode} = props;
-  let liClasses = "bd-highlight bg-warning shadow p-2 mb-3 rounded lesson-list-item";
+  let liClasses = "bd-highlight bg-warning shadow p-2 mb-3 rounded text-white lesson-list-item";
   if(props.mode === 'menu'){
     liClasses = "lesson-item list-group-item list-group-item-action";
   }
@@ -32,9 +32,6 @@ export default function CourseLessonListItem(props) {
         <Link to={`/lesson/${lesson._id}`} onClick={props.onLessonClick}>
           {lesson.title}
         </Link>
-        {/* <a href={`#${lesson._id}`} onClick={this.props.onLessonClick} >
-          {lesson.title}
-        </a> */}
       </li>
     )
   }

@@ -21,7 +21,7 @@ class Landing extends Component {
               <div className="row">
                 <div className="col-md-12 text-center">
                   <h1 className="display-3 mt-5 mb-4">Video School</h1>
-                  <p className="lead">Create or Purchase a course to begin Video School. Start your online video learning today.</p>
+                  <p className="lead">Create or Purchase a course to begin Video School. Start your online video teaching and learning today.</p>
                   <hr />
                   <Link to="/register" className="btn btn-lg btn-success mr-2">Sign Up</Link>
                   <Link to="/login" className="btn btn-lg btn-light">Login</Link>
