@@ -126,7 +126,7 @@ class CourseForm extends Component {
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Edit Course</h1>
+              <h1 className="display-4 text-center">Edit {state.title}</h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
                   placeholder="Title"

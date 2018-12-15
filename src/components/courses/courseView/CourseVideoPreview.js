@@ -22,17 +22,7 @@ export default function CourseVideoPreview(props) {
   let linkTo;
   let linkText;
   let actionBtn;
-  // let icon;
-
-  // if(linkText === 'Watch' || 'Restart'){
-
-  //   icon =  <i class="fas fa-play-circle"></i>;
-  // } else if(linkText === 'Edit'){
-  //   icon =  <i class="far fa-edit"></i>;
-  // } else if(linkText === 'Purchase') {
-  //   icon = <i class="fas fa-shopping-cart"></i>;
-  // }
-
+  
   if(props.courseRole === 'student'){
     if(!props.course || !props.course.lessons || !props.course.lessons.length){
       previewMessage = 'No lessons to watch';
@@ -61,7 +51,7 @@ export default function CourseVideoPreview(props) {
     previewMessage = `Preview ${props.course.title}`;
   } else {
     linkText = 'Purchase';
-    previewMessage = `Preview ${props.course.title} below`
+    previewMessage = `Preview ${props.course.title}`
   }
 
   if(linkTo) {
