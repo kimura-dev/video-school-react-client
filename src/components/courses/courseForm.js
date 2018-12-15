@@ -93,7 +93,7 @@ class CourseForm extends Component {
                 <Link to="/lesson-form" className="btn btn-lg btn-success mt-3">
                   Add Lesson
                 </Link>
-                <CourseLessonList  lessons={this.props.newCourse.lessons}/>
+                <CourseLessonList  lessons={this.props.newCourse.lessons} courseRole={'author'}/>
                 <input type="submit" className="btn btn-success btn-block p-2 mt-5 mb-5" />
               </form>
             </div>

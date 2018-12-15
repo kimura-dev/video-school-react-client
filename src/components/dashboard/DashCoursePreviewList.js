@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CourseListItem from '../courses/CourseListItem';
-import { getAuthoredCourses, getPurchasedCourses } from '../../actions/courseActions';
+import { getAuthoredCourses, getPurchasedCourses, setCourseLoaded } from '../../actions/courseActions';
 
 class DashCoursePreviewList extends Component {
   constructor(props){
@@ -13,6 +13,11 @@ class DashCoursePreviewList extends Component {
       loading: true,
       shouldUpdate: true
     }
+  }
+
+  componentDidMount() {
+    this.setState({ shouldUpdate: true });
+    this.props.setCourseLoaded(false);
   }
 
   componentDidUpdate(oldProps) {
@@ -88,6 +93,7 @@ class DashCoursePreviewList extends Component {
 DashCoursePreviewList.propTypes = {
   getAuthoredCourses: PropTypes.func.isRequired,
   getPurchasedCourses: PropTypes.func.isRequired,
+  setCourseLoaded: PropTypes.func.isRequired,
   // deleteCourses: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
@@ -100,7 +106,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { getAuthoredCourses, getPurchasedCourses })(
+export default connect(mapStateToProps, { getAuthoredCourses, getPurchasedCourses, setCourseLoaded })(
   DashCoursePreviewList
 );
 

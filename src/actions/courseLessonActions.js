@@ -1,11 +1,9 @@
 import axios from 'axios';
 import {
   ADD_NEW_COURSE_LESSON,
-  ADD_COURSE_LESSON,
   ADD_SELECTED_COURSE_LESSON,
   DELETE_LESSON,
   DELETE_NEW_COURSE_LESSON,
-  UPDATE_NEW_COURSE,
   UPDATE_NEW_LESSON,
   GET_ERRORS
   } from './types';
@@ -15,10 +13,11 @@ import {
     dispatch({
       type: ADD_NEW_COURSE_LESSON,
       payload: lessonData,
-      history: history.push('/course-form')
+      history: history.goBack()
     })
   };
 
+  
   // addselectedCourseLesson
   // type change and history changes lessonData still payload
   export const addSelectedCourseLesson = (lessonData, history, courseId) => dispatch => {

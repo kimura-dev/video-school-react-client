@@ -18,7 +18,7 @@ export default function CourseLessonListItem(props) {
                 className="btn btn-danger m-2">
                 Delete
             </button>
-            <Link to={`/edit-lesson/${lesson.id}`} className="btn btn-success m-2">
+            <Link to={`/edit-lesson/${lesson._id}`} className="btn btn-success m-2">
               Edit
             </Link>
           </div>

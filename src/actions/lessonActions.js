@@ -6,6 +6,7 @@ import {
    LESSON_LOADING, 
    GET_ERRORS,
    SET_CURRENT_LESSON,
+   SET_CURRENT_COURSE,
   } from './types';
 import {setCourseLoading } from './courseActions';
 
@@ -14,12 +15,21 @@ import {setCourseLoading } from './courseActions';
 export const getLesson = (id) => dispatch => {
   dispatch(setCourseLoading());
   axios.get(`/api/lesson/${id}`)
-    .then(res => 
+    .then(res => {  
       dispatch({
-        type: GET_LESSON,
+        type: SET_CURRENT_LESSON,
         payload: res.data
-      })
-    )
+      });
+
+      let course = res.data.course;
+      
+      if(course){
+        dispatch({
+          type: SET_CURRENT_COURSE,
+          payload: course
+        })
+      }
+    })
     .catch(err => console.log(err))
 }
 

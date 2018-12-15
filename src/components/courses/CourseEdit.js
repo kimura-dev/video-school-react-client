@@ -3,7 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { getCourse, editCourse } from '../../actions/courseActions';
+// import { Field, reduxForm } from 'redux-form';
+import { getCourse, editCourse, setCourseLoaded, selectedCourseFieldChange } from '../../actions/courseActions';
 import CourseLessonList from './courseView/CourseLessonList';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
@@ -25,67 +26,72 @@ class CourseForm extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
+    console.log('Creating course form!')
   }
 
   // When component loads this runs and looks for the current course
   componentDidMount() {
     console.log('Mounting');
-    console.log({selectedCourse: this.props.courses.selectedCourse, state: this.state});
+    console.log({selectedCourse: this.props.courses.selectedCourse});
 
     // Prevent getCourse if we know we are already editing a course
-    if(/*!this.props.courses.selectedCourse || this.props.courses.selectedCourse._id !==*/ this.props.match.params.id){ 
-
+    if(this.props.match.params.id && !this.props.courses.loaded){ 
       this.props.getCourse(this.props.match.params.id);
     }
-
   }
 
-  
   componentDidUpdate(prevProps, prevState) {
     // Checking for the current course. Then if there is a course we supply the component with the course info
-    if(this.props.courses && this.props.courses.selectedCourse && this.props.courses.selectedCourse._id) {
-
-    console.log('Updating');
 
 
+    if (this.props.courses && this.props.courses.selectedCourse && !this.props.courses.loaded){
+        if(!prevProps.selectedCourse || this.props.courses.selectedCourse._id !== prevProps.selectedCourse._id) {
+          console.log('Updating');
 
-      if(this.props.courses.selectedCourse._id === this.state._id){
-        console.log('Skipping update');
-        return;
+          this.props.setCourseLoaded(true);
+
+          const course = this.props.courses.selectedCourse;
+
+          if(this.props.courses.selectedCourse._id !== this.state._id){
+            console.log('Initializng form editor');
+            // If a course field doesnt exist we set to empty string
+            course._id = !isEmpty(course._id) ? course._id : '';
+            course.title = !isEmpty(course.title) ? course.title : '';
+            course.description = !isEmpty(course.description) ? course.description : '';
+            course.price = !isEmpty(course.price) ? course.price : '';
+            
+          }
+      
+          course.lessons = !isEmpty(course.lessons) ? course.lessons : [];
+
+          // Set component fields state
+          this.setState({
+            _id: course._id,
+            title: course.title,
+            description: course.description,
+            price: course.price,
+            lessons: course.lessons
+          })
       }
-      const course = this.props.courses.selectedCourse;
-  
-      // If a course field doesnt exist we set to empty string
-      course._id = !isEmpty(course._id) ? course._id : '';
-      course.title = !isEmpty(course.title) ? course.title : '';
-      course.description = !isEmpty(course.description) ? course.description : '';
-      course.price = !isEmpty(course.price) ? course.price : '';
-      course.lessons = !isEmpty(course.lessons) ? course.lessons : [];
-
-      // Set component fields state
-      this.setState({
-        _id: course._id,
-        title: course.title,
-        description: course.description,
-        price: course.price,
-        lessons: course.lessons
-      })
     }
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    this.props.selectedCourseFieldChange(e.target.name, e.target.value);
+    // this.setState({ [e.target.name]: e.target.value })
+   
   }
 
   onSubmit(e) {
     e.preventDefault();
-    const editCourse = {
-      _id: this.state._id,
-      title: this.state.title,
-      description: this.state.description,
-      price: this.state.price,
-      lessons: this.state.lessons
-    }
+    const editCourse = this.props.courses.selectedCourse;
+    // const editCourse = {
+    //   _id: this.state._id,
+    //   title: this.state.title,
+    //   description: this.state.description,
+    //   price: this.state.price,
+    //   lessons: this.state.lessons
+    // }
     // this.props.history allows you to redirect from an action, this is used with "withRouter"
     this.props.editCourse(editCourse, this.props.history);
   }
@@ -103,6 +109,14 @@ class CourseForm extends Component {
     //  }
  
 
+    let state = this.props.courses.selectedCourse;
+
+    if(this.props.courses.loading) {
+      return <Spinner />
+    } else if(!state) {
+      return <div>Course not found...</div>
+    }
+
     return (
       <div className="course-form">
       {/* <Spinner /> */}
@@ -118,7 +132,7 @@ class CourseForm extends Component {
                   placeholder="Title"
                   name='title'
                   type="text"
-                  value={this.state.title}
+                  value={state.title}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -126,7 +140,7 @@ class CourseForm extends Component {
                   placeholder="Description"
                   name='description'
                   type="text"
-                  value={this.state.description}
+                  value={state.description}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -134,7 +148,7 @@ class CourseForm extends Component {
                   placeholder="Price"
                   name='price'
                   type="text"
-                  value={this.state.price}
+                  value={state.price}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -143,7 +157,7 @@ class CourseForm extends Component {
                 </Link>
                 <div>
                   <CourseLessonList 
-                    lessons={ this.props.courses.selectedCourse ?  this.props.courses.selectedCourse.lessons : []}
+                    lessons={ this.props.courses.selectedCourse ?  this.props.courses.selectedCourse.lessons : [] }
                     courseRole={'author'}
                     />
                 </div>
@@ -157,21 +171,11 @@ class CourseForm extends Component {
   }
 }
 
-// history course form
-// Add lesson on a newCourse  = addnewcourselesson
-// Edit lesson on a newCourse 
-// Delete lesson on a newCourse 
-
-// history courseEdit
-// Add lesson on selectedCourse = 
-// Edit lesson on selectedCourse = editLesson rename editSelectedCourseLesson
-// Delete lesson on selectedCourse
-
-
-
 CourseForm.propTypes = {
   editCourse: PropTypes.func.isRequired,
   getCourse: PropTypes.func.isRequired,
+  setCourseLoaded: PropTypes.func.isRequired,
+  selectedCourseFieldChange: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired
@@ -184,4 +188,4 @@ const mapStateToProps = (state) => ({
   //now we can say this.props.auth
 });
 
-export default connect(mapStateToProps, { editCourse , getCourse })(withRouter(CourseForm));
+export default connect(mapStateToProps, { editCourse , getCourse, setCourseLoaded, selectedCourseFieldChange })(withRouter(CourseForm));

@@ -3,22 +3,17 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { editLesson, getLesson } from '../../actions/lessonActions';
+import { editLesson, setCurrentLesson } from '../../actions/lessonActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 import isEmpty from '../../validation/is-empty';
+import Spinner from '../common/Spinner';
 
 
 class LessonForm extends Component {
   constructor(props) {
-    super();
-    this.state = {
-      title: '',
-      description: '',
-      videoUrl: '',
-      errors: {}
-    };
-
+    super(props);
+  
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -26,58 +21,39 @@ class LessonForm extends Component {
 
   // When component loads this runs and looks for the current course
   componentDidMount() {
-    this.props.getLesson();
-  }
-
-  // will test for properties
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
-      this.setState({errors:nextProps.errors})
-    }
-
-     // Checking for the current lesson. Then if there is a lesson we supply the component with the lesson info
-     if(nextProps.lessons.lesson) {
-      const lesson = nextProps.lessons.lesson;
-  
-      // If a lesson field doesnt exist we set to empty string
-      lesson.title = !isEmpty(lesson.title) ? lesson.title : '';
-      lesson.description = !isEmpty(lesson.description) ? lesson.description : '';
-      lesson.videoUrl = !isEmpty(lesson.videoUrl) ? lesson.videoUrl : '';
-
-      // Set component fields state
-      this.setState({
-        title: lesson.title,
-        description: lesson.description,
-        videoUrl: lesson.videoUrl
-      })
+    if(this.props.selectedCourse){
+      let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
+      if(lesson){
+        this.props.setCurrentLesson(lesson);
+      }
     }
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+    let newLesson = {
+      ...this.props.lessons.selectedLesson
+    }
 
-  // New ACTION to add lesson to selectedCourse
-  // New ACTION to edit lesson to selectedCourse
-  // New action to delete lesson to selectedCourse
+    newLesson[e.target.name] = e.target.value;
+
+    this.props.setCurrentLesson(newLesson);
+  }
 
   onSubmit(e) {
     e.preventDefault();
-    const newLesson = {
-      _id: this.state._id,
-      title: this.state.title,
-      description: this.state.description,
-      videoUrl: this.state.videoUrl
-    }
-    // this.props.history allows you to redirect from an action, this is used with "withRouter"
+    const newLesson = this.props.selectedLesson;
     this.props.editLesson(newLesson, this.props.history);
   }
 
-   // AddEditCourseLesson and EditEditCourseLesson
-  // 
-
   render() {
     // const { errors } = this.state.errors; 
+    let state = this.props.lessons.selectedLesson;
+
+    if(this.props.lessons.loading) {
+      return <Spinner />
+    } else if(!state) {
+      return <div>Lesson not found...</div>
+    }
 
     return (
       <div className="lesson-form">
@@ -94,7 +70,7 @@ class LessonForm extends Component {
                   placeholder="Title"
                   name='title'
                   type="text"
-                  value={this.state.title}
+                  value={state.title}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -102,7 +78,7 @@ class LessonForm extends Component {
                   placeholder="Description"
                   name='description'
                   type="text"
-                  value={this.state.description}
+                  value={state.description}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
@@ -110,11 +86,11 @@ class LessonForm extends Component {
                   placeholder="Video Url"
                   name='videoUrl'
                   type="text"
-                  value={this.state.videoUrl}
+                  value={state.videoUrl}
                   onChange={this.onChange}
                   // error={errors.username}
                 />
-                <input type="submit" className="btn btn-success btn-block mt-4" />
+                <input type="submit" className="btn btn-success btn-block mt-4 mb-3" />
               </form>
             </div>
           </div>
@@ -126,7 +102,7 @@ class LessonForm extends Component {
 
 LessonForm.propTypes = {
   editLesson: PropTypes.func.isRequired,
-  getLesson: PropTypes.func.isRequired,
+  setCurrentLesson: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
@@ -134,7 +110,8 @@ LessonForm.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   lessons: state.lessons,
+  selectedCourse : state.courses.selectedCourse,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { editLesson, getLesson })(withRouter(LessonForm));
+export default connect(mapStateToProps, { editLesson, setCurrentLesson })(withRouter(LessonForm));

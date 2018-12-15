@@ -19,7 +19,9 @@ import {
   SET_CURRENT_USER,
   PURCHASE_COURSE,
   GET_PURCHASE_TOKEN,
-  GET_LESSON
+  GET_LESSON,
+  SELECTED_COURSE_FIELD_CHANGE,
+  SET_COURSE_LOADED
 } from '../actions/types';
 import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
@@ -43,7 +45,8 @@ const initialState = {
   authoredCourses: [],
   purchasedCourses: [],
   purchaseToken: '', // For the purchase of the course
-  loading: false
+  loading: false,
+  loaded: false
 }
 
 export default function(state = initialState, action) {
@@ -72,6 +75,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      }
+    case SET_COURSE_LOADED:
+      return {
+        ...state,
+        // selectedCourse: action.payload ? state.selectedCourse : null,
+        loaded: action.payload
       }
     case CREATE_COURSE:
       return {
@@ -103,21 +112,25 @@ export default function(state = initialState, action) {
       return {
         ...state,
         newCourse,
-        loading: false
+        loading: false,
+        loaded: false
       }
     case ADD_NEW_COURSE_LESSON:
       return {
         ...state,
         newCourse:  {...state.newCourse, lessons: [ ...state.newCourse.lessons, action.payload]},
         newLesson: {},
-        loading: false
+        loading: false,
+        loaded: true
       }
-    case GET_LESSON:
-      return {
-        ...state,
-        selectedCourse: action.payload.courseId,
-        loading: false
-      }
+    case ADD_SELECTED_COURSE_LESSON:
+        return {
+          ...state,
+          selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, action.payload]},
+          newLesson: {},
+          loading: false,
+          loaded: true
+        }
     case UPDATE_NEW_LESSON:
       const newLesson = {
         ...state.newLesson
@@ -128,20 +141,25 @@ export default function(state = initialState, action) {
       return {
         ...state,
         newLesson,
-        loading: false
+        loading: false,
+        loaded: true
       }
-    case ADD_COURSE_LESSON:
+    case SELECTED_COURSE_FIELD_CHANGE:
+      let course = {...state.selectedCourse}
+             
+      course[action.name] = action.value
+      
       return {
         ...state,
-        lessons: [ ...state.lessons, action.payload],
+        selectedCourse: course,
         loading: false
       }
-    case ADD_SELECTED_COURSE_LESSON:
-      return {
-        ...state,
-        lessons: [ ...state.lessons, action.payload],
-        loading: false
-      }
+    // case GET_LESSON:
+    //   return {
+    //     ...state,
+    //     selectedCourse: action.payload.courseId,
+    //     loading: false
+    //   }
     case GET_ALL_COURSES:
       return {
         ...state,

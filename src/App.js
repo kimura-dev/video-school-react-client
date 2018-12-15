@@ -57,6 +57,7 @@ class App extends Component {
       <Provider store={ store } >
         <Router>
           <div className="App">
+            <div className="">
           <NavBar />
           <DataManager />
             {/* <NavBar  {...this.state.auth} logoutUser={() => store.dispatch(logoutUser)} /> */}
@@ -95,6 +96,7 @@ class App extends Component {
               </StripeProvider> */}
             </div>
             <Footer />
+          </div>
           </div>
         </Router>
       </Provider>

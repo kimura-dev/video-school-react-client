@@ -13,10 +13,19 @@ import {
   COURSE_LOADING,
   SET_CURRENT_COURSE, 
   GET_ERRORS,
-  UPDATE_NEW_COURSE
+  UPDATE_NEW_COURSE,
+  SELECTED_COURSE_FIELD_CHANGE,
+  SET_COURSE_LOADED
   } from './types';
 
 
+
+  export const setCourseLoaded = (boolean) => dispatch => {
+    dispatch({
+      type: SET_COURSE_LOADED,
+      payload: boolean
+    })
+  }
 
   export const getPurchaseToken = (course, user) => dispatch => {
     dispatch({
@@ -57,12 +66,20 @@ export const updateNewCourse = (newData) => dispatch => {
 
 
 //Set Current Course
-export const setCurrentCourse = (id) => dispatch => {
+export const setCurrentCourse = (course) => dispatch => {
     dispatch({
       type: SET_CURRENT_COURSE,
       // history: history.push('/dashboard'),
-      payload: id
+      payload: course
     })
+}
+
+export const selectedCourseFieldChange = (name, value) => dispatch => {
+  dispatch({
+    type: SELECTED_COURSE_FIELD_CHANGE,
+    name,
+    value
+  })
 }
   
 // Get A Course 

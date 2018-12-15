@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addNewCourseLesson, updateNewLesson, addSelectedCourseLesson } from '../../actions/courseLessonActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
@@ -42,7 +42,7 @@ class LessonForm extends Component {
       videoUrl: this.props.newLesson.videoUrl
     }
 
-    if(this.props.selectedLesson){
+    if(this.props.selectedCourse){
       this.props.addSelectedCourseLesson(newLesson, this.props.history);
     } else {
       this.props.addNewCourseLesson(newLesson, this.props.history);
@@ -55,6 +55,9 @@ class LessonForm extends Component {
     return (
       <div className="lesson-form">
         <div className="container">
+          <button onClick={this.props.history.goBack} className="btn btn-light">
+              Go Back
+          </button>
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create A Lesson</h1>
