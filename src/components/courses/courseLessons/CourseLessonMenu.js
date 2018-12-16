@@ -19,7 +19,6 @@ class CourseLessonMenu extends Component {
               lessons={this.props.course.lessons}
               mode='menu'
               />
-      
     }
 
     if (this.props.expanded) {

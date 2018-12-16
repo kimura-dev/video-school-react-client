@@ -46,7 +46,6 @@ export default function CourseVideoPreview(props) {
     }
   } else if(props.courseRole === 'author'){
     linkTo = `/lesson/${props.course.lessons[0]._id}`;
-    // linkTo = `/edit-course/${props.course._id}`;
     linkText = 'Preview'
     previewMessage = `Preview ${props.course.title}`;
   } else {
@@ -64,7 +63,6 @@ export default function CourseVideoPreview(props) {
   } else if(linkText) {
    
     actionBtn =  <button onClick={props.purchaseCourse} className="bg-warning mt-3 mb-3 btn-link-txt">
-                    {/* {icon} */}
                     {linkText}
                   </button>
   }
@@ -74,12 +72,8 @@ export default function CourseVideoPreview(props) {
       <div className="card-body course-video-preview">
         <h2 className="card-title">{props.course.title}</h2>
         <img className="list-img" src={require('../../../img/course-img.jpg')} />
-        {/* <a href="#" className="video" data-video={props.videoUrl}/> */}
         {actionBtn}
         <p className="card-text mb-3 text-white">{previewMessage}</p>
-        {/* <a href="#" class="btn btn-warning">
-          <i class="fas fa-play-circle"></i>
-        </a> */}
         <CourseProgressBar  watchedLessons={props.watchedLessons} />
       </div>    
     </div>
