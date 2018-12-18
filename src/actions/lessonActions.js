@@ -66,7 +66,7 @@ export const editLesson = (lesson, history) => dispatch => {
     .then(res => 
       dispatch({
         type: EDIT_LESSON,
-        history: history.push(`/edit-course/${lesson.course._id}`),
+        history: history.goBack(),
         payload: res.data
       })
     )

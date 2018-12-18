@@ -41,7 +41,7 @@ class LessonForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const newLesson = this.props.selectedLesson;
+    const newLesson = this.props.lessons.selectedLesson;
     this.props.editLesson(newLesson, this.props.history);
   }
 

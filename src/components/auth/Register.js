@@ -59,7 +59,7 @@ class Register extends Component {
 
 
   render() {
-    // const { errors } = this.state.errors; 
+    const { errors } = this.state; 
 
     return (
       <div className="register">
@@ -75,7 +75,7 @@ class Register extends Component {
                   type="text"
                   value={this.state.firstname}
                   onChange={this.onChange}
-                  // error={errors.username}
+                  // error={errors}
                 />
                 <TextFieldGroup 
                   placeholder="Last Name"
@@ -91,7 +91,7 @@ class Register extends Component {
                   type="text"
                   value={this.state.username}
                   onChange={this.onChange}
-                  // error={errors.username}
+                  error={errors.username}
                 />
                 <TextFieldGroup 
                   placeholder="Email Address"

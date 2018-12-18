@@ -46,11 +46,13 @@ export default function(state = initialState, action) {
           loading: false
         }
     case EDIT_LESSON:
+
+        console.log('Edit Lesson reducer firing', action.payload, state.selectedCourse)
         return {
           ...state,
           selectedCourse: {
             ...state.selectedCourse, 
-            lessons: copyArrayWithEditedItemById( state.selectedLesson.lessons,action.payload) 
+            lessons: copyArrayWithEditedItemById( state.selectedCourse.lessons, action.payload) 
           },
           loading: false
         }

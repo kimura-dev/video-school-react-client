@@ -17,7 +17,6 @@ function truncate(str, no_words) {
           <div className="catalog-container">
             <div className="catalog-search-box">
               <h1 className="catalog-title display-3 pt-5">Welcome!</h1>
-              {/* <p className="catalog-text p-3">Video School is a place, where teachers and students alike can buy and sell online video courses. Teachers looking to spread their acquired knowledge in an online video format or students who perfer learning through online tutorials can get there needs .   </p> */}
               <p className="catalog-text p-3">Search Video School below for all the latest courses.</p>
               <form className="form-inline mr-auto pb-3">
                 <input type="text" className="form-control ml-2 " placeholder="Search for a Course"/>

@@ -50,7 +50,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    // const { errors } = this.state;
 
     return (
       <div className="login">
@@ -66,7 +66,7 @@ class Login extends Component {
                 type="text"
                 value={this.state.username}
                 onChange={this.onChange}
-                // error={errors.username}
+                // error={errors}
               />
               <TextFieldGroup 
                 placeholder="Password"
@@ -74,7 +74,7 @@ class Login extends Component {
                 type="password"
                 value={this.state.password}
                 onChange={this.onChange}
-                // error={errors.username}
+                // error={errors}
               />
               <input type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2 font-weight-bold" />
             </form>

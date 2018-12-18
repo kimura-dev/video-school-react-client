@@ -54,6 +54,14 @@
   width: 100%;
 }
 
+/* At 770px Breaks */
+
+/* @media screen and (max-width: 770px){
+  .course-catalog-list-item {
+    
+  }
+} */
+
 @media screen and (max-width: 700px){
   .course-catalog-list-item {
     flex-direction: column;

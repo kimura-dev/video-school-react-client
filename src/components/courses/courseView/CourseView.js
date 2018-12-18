@@ -83,7 +83,6 @@ class CourseView extends Component {
           <CourseData 
             watchedLessons={this.props.auth.user.user.watchedLessons}  
             course={this.props.courses.selectedCourse} 
-            user={this.props.auth.user}
           />
 
           <CourseLessonList  

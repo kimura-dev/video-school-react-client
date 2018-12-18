@@ -10,13 +10,7 @@ import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 class LessonForm extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   title: '',
-    //   description: '',
-    //   videoUrl: '',
-    //   errors: {}
-    // };
-
+    
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -41,6 +35,8 @@ class LessonForm extends Component {
       description: this.props.newLesson.description,
       videoUrl: this.props.newLesson.videoUrl
     }
+
+    
 
     if(this.props.selectedCourse){
       this.props.addSelectedCourseLesson(newLesson, this.props.history);
@@ -105,7 +101,8 @@ LessonForm.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  newLesson: state.courses.newLesson
+  newLesson: state.courses.newLesson,
+  selectedCourse: state.courses.selectedCourse
 });
 
 export default connect(mapStateToProps, { addNewCourseLesson, updateNewLesson, addSelectedCourseLesson })(withRouter(LessonForm));

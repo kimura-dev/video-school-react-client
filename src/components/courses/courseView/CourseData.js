@@ -3,8 +3,8 @@ import './CourseData.css';
 
 // need to know about course and lessons watched
 export default function CourseData(props) {
-  const {course, watchedLessons, user} = props;
-
+  const {course, watchedLessons} = props;
+  console.log(course)
   function friendlyDate(date){
     let creationDate = Date.now();
   
@@ -30,7 +30,7 @@ export default function CourseData(props) {
            <p className="lead text-primary">Price: ${course.price}</p>
            <p className="lead text-dark">{course.description}</p>
            <div className="lead course-data">
-            <p className="">Authored by {user.user.firstName} {user.user.lastName}</p>
+            <p className="">Authored by {course.user.firstName} {course.user.lastName}</p>
             <p className="">Created On: {friendlyDate(course.date)}</p>
             <p className="">This course was purchased {course.timesPurchased} times</p>     
            </div>      
