@@ -49,6 +49,10 @@ const initialState = {
   loaded: false
 }
 
+
+
+
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
@@ -114,22 +118,39 @@ export default function(state = initialState, action) {
         loading: false,
         loaded: false
       }
+
     case ADD_NEW_COURSE_LESSON:
+      // return {
+      //   ...state,
+      //   newCourse:  {...state.newCourse, lessons: [ ...state.newCourse.lessons, action.payload]},
+      //   newLesson: {},
+      //   loading: false,
+      //   loaded: true
+      // }
+    case ADD_SELECTED_COURSE_LESSON:
+      // return {
+      //   ...state,
+      //   selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, action.payload]},
+      //   newLesson: {},
+      //   loading: false,
+      //   loaded: true
+      // }
+      
+      let course = 'selectedCourse';
+      if( state.newCourse ){
+        course = 'newCourse';
+      }
+      // not having a new course means we are in edit mode or view mode
+      // meaning we HAVE loaded a course from the server API
+      let loaded = !state.newCourse;
+      
       return {
         ...state,
-        newCourse:  {...state.newCourse, lessons: [ ...state.newCourse.lessons, action.payload]},
+        [course]:  {...state[course], lessons: [ ...state[course].lessons, action.payload]},
         newLesson: {},
         loading: false,
-        loaded: true
+        loaded
       }
-    case ADD_SELECTED_COURSE_LESSON:
-        return {
-          ...state,
-          selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, action.payload]},
-          newLesson: {},
-          loading: false,
-          loaded: true
-        }
     case UPDATE_NEW_LESSON:
       const newLesson = {
         ...state.newLesson
