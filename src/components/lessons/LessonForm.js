@@ -36,8 +36,8 @@ class LessonForm extends Component {
       videoUrl: this.props.newLesson.videoUrl
     }
 
-    console.log('OnSubmit');
-    console.log(this.props.selectedCourse);
+    // console.log('OnSubmit');
+    // console.log(this.props.selectedCourse);
 
   
     if(this.props.selectedCourse){ 
