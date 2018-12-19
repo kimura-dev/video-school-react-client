@@ -134,18 +134,24 @@ export default function(state = initialState, action) {
       //   loading: false,
       //   loaded: true
       // }
-      
+     
+
       let courseName = 'selectedCourse';
       if( state.newCourse ){
         courseName = 'newCourse';
       }
+      let theCourse = state[courseName];
+      if( theCourse ){
+        theCourse.lessons = [...theCourse.lessons, action.payload]
+
+      }
       // not having a new course means we are in edit mode or view mode
       // meaning we HAVE loaded a course from the server API
       let loaded = !state.newCourse;
-      
       return {
         ...state,
-        [courseName]:  {...state[courseName], lessons: [ ...state[courseName].lessons, action.payload]},
+        [courseName]:  theCourse,
+
         newLesson: {},
         loading: false,
         loaded
