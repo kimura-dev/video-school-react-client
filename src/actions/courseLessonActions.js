@@ -20,7 +20,7 @@ import {
   
   // addselectedCourseLesson
   // type change and history changes lessonData still payload
-  export const addSelectedCourseLesson = (lessonData, history, courseId) => dispatch => {
+  export const addSelectedCourseLesson = (lessonData, history) => dispatch => {
     dispatch({
       type: ADD_SELECTED_COURSE_LESSON,
       payload: lessonData,

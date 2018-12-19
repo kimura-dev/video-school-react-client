@@ -68,9 +68,9 @@ class CourseView extends Component {
     
       <section className="course-description-section">
         <div className="container">
-          <Link to="/dashboard" className="btn btn-light">
-            Go to Dashboard
-          </Link>
+          <button onClick={this.props.history.goBack} className="btn btn-light">
+              Go Back
+          </button>
         
           <CourseVideoPreview 
             videoUrl={videoUrl} 
@@ -83,6 +83,7 @@ class CourseView extends Component {
           <CourseData 
             watchedLessons={this.props.auth.user.user.watchedLessons}  
             course={this.props.courses.selectedCourse} 
+            user={this.props.auth.user}
           />
 
           <CourseLessonList  

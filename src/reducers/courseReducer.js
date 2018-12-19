@@ -79,7 +79,6 @@ export default function(state = initialState, action) {
     case SET_COURSE_LOADED:
       return {
         ...state,
-        // selectedCourse: action.payload ? state.selectedCourse : null,
         loaded: action.payload
       }
     case CREATE_COURSE:
@@ -154,12 +153,6 @@ export default function(state = initialState, action) {
         selectedCourse: course,
         loading: false
       }
-    // case GET_LESSON:
-    //   return {
-    //     ...state,
-    //     selectedCourse: action.payload.courseId,
-    //     loading: false
-    //   }
     case GET_ALL_COURSES:
       return {
         ...state,

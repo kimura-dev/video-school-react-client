@@ -67,6 +67,8 @@ export default function CourseVideoPreview(props) {
                   </button>
   }
 
+  
+
   return (
     <div className="card w-50">
       <div className="card-body course-video-preview">

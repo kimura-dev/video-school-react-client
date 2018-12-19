@@ -26,7 +26,6 @@ class CourseForm extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    console.log('Creating course form!')
   }
 
   // When component loads this runs and looks for the current course
@@ -85,14 +84,7 @@ class CourseForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const editCourse = this.props.courses.selectedCourse;
-    // const editCourse = {
-    //   _id: this.state._id,
-    //   title: this.state.title,
-    //   description: this.state.description,
-    //   price: this.state.price,
-    //   lessons: this.state.lessons
-    // }
-    // this.props.history allows you to redirect from an action, this is used with "withRouter"
+   
     this.props.editCourse(editCourse, this.props.history);
   }
 
