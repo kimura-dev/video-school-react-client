@@ -4,11 +4,8 @@ import {
   GET_ALL_COURSES, 
   GET_AUTHORED_COURSES, 
   GET_PURCHASED_COURSES,
-  // UPDATE_AUTHORED_COURSE,
-  // UPDATE_PURCHASED_COURSE, 
   ADD_NEW_COURSE_LESSON, 
   ADD_SELECTED_COURSE_LESSON,
-  ADD_COURSE_LESSON, 
   UPDATE_NEW_COURSE, 
   UPDATE_NEW_LESSON, 
   EDIT_COURSE, 
@@ -19,7 +16,6 @@ import {
   SET_CURRENT_USER,
   PURCHASE_COURSE,
   GET_PURCHASE_TOKEN,
-  GET_LESSON,
   SELECTED_COURSE_FIELD_CHANGE,
   SET_COURSE_LOADED
 } from '../actions/types';
@@ -33,17 +29,20 @@ const initialState = {
     description:'',
     price: 0,
     lessons:[]
-  }, // for adding a newLesson onto a newCourse so that then can be sent together
+  }, 
+  // for adding a newLesson onto a newCourse so they can be sent together
   newLesson: {
     title:'',
     description:'',
     videoUrl:''
-  }, // for adding a lesson onto newCourse
+  },
   selectedCourse: null, // viewing of the course on course-view and course-desc
   allCourses: [], // use on course-catalog page
-  // authoredCourse and purchasedCourses are for course views on the dashboard
+
+  // authoredCourse and purchasedCourses are for courseView's on the dashboard
   authoredCourses: [],
   purchasedCourses: [],
+
   purchaseToken: '', // For the purchase of the course
   loading: false,
   loaded: false
@@ -135,7 +134,7 @@ export default function(state = initialState, action) {
       //   loading: false,
       //   loaded: true
       // }
-      
+     
 
       let courseName = 'selectedCourse';
       if( state.newCourse ){
@@ -144,6 +143,7 @@ export default function(state = initialState, action) {
       let theCourse = state[courseName];
       if( theCourse ){
         theCourse.lessons = [...theCourse.lessons, action.payload]
+
       }
       // not having a new course means we are in edit mode or view mode
       // meaning we HAVE loaded a course from the server API
@@ -151,6 +151,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         [courseName]:  theCourse,
+
         newLesson: {},
         loading: false,
         loaded

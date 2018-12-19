@@ -9,7 +9,7 @@ export function copyArrayWithEditedItemById( items, editedItem ){
   if(index) {
      updatedItems[index] = editedItem;
   }
-
+  
   return updatedItems;
 }
 

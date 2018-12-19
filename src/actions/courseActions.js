@@ -5,8 +5,6 @@ import {
   GET_ALL_COURSES, 
   GET_AUTHORED_COURSES, 
   GET_PURCHASED_COURSES, 
-  UPDATE_AUTHORED_COURSE,
-  UPDATE_PURCHASED_COURSE,
   GET_PURCHASE_TOKEN,
   EDIT_COURSE,
   DELETE_COURSE,
@@ -144,6 +142,11 @@ export const getPurchasedCourses = (username) => dispatch => {
 // Edit Course
 export const editCourse = (course, history) => dispatch => {
   dispatch(setCourseLoading());  
+  console.log('EditCourse action');
+  console.log(course._id);
+
+
+  // console.log(course._id);
   axios.put(`/api/course/${course._id}`, course)
     .then(res => 
       dispatch({
