@@ -22,13 +22,14 @@ class DashCoursePreviewList extends Component {
   }
 
   componentDidUpdate(oldProps) {
+    let username = this.props.auth.user.user.username;
 
     if(this.state.shouldUpdate && this.props.auth.isAuthenticated){
       this.setState({
         shouldUpdate: false
       }) 
-      this.props.getAuthoredCourses(this.props.auth.user.user.username)
-      this.props.getPurchasedCourses(this.props.auth.user.user.username)
+      this.props.getAuthoredCourses(username)
+      this.props.getPurchasedCourses(username)
     }  
   }
 
@@ -38,22 +39,23 @@ class DashCoursePreviewList extends Component {
     let title = '';
     let noCourses = '';
     let linkBtn = '';
-    let icon = ''
+    let icon = '';
+    let usersCourses = this.props.courses;
     
     const  courseRole  = this.props.courseRole || 'student';
 
     if(courseRole === 'teacher') {
-      courses = this.props.courses.authoredCourses.map(course => {
+      courses = usersCourses.authoredCourses.map(course => {
         return (
          
           <CourseListItem 
             course={course} 
             courseRole="teacher"
-            // deleteCourse={(e) => this.props.deleteCourse(this.props.courses.selectedCourse._id)}
+            key={course._id}
             />
         )
       })
-      icon = (<i class="fa fa-user-md mr-3 text-dark author-icon"/>)
+      icon = (<i className="fa fa-user-md mr-3 text-dark author-icon"/>)
       title = 'Authored Courses'
       noCourses = (<p className="mb-4">You have not yet created any courses.</p>)
       linkBtn = (<Link to="/course-form" className="btn btn-lg btn-success mr-2 mt-2 mb-4">
@@ -61,14 +63,17 @@ class DashCoursePreviewList extends Component {
                 </Link>)
     } else {
 
-      icon = (<i class="fa fa-book mr-3 purchased-icon text-white"></i>)
+      icon = (<i className="fa fa-book mr-3 purchased-icon text-white"></i>)
     
-      courses = this.props.courses.purchasedCourses.map( course => {
+      courses = usersCourses.purchasedCourses.map( course => {
         return (
-          <CourseListItem course={course} courseRole="student"/>
+          <CourseListItem 
+            key={course._id} 
+            course={course} 
+            courseRole="student"
+          />
         )
       })
-      // An icon for purchased courses <i class="fa fa-eye"></i>
       title = 'Purchased Courses'
       noCourses = (<p>You have not yet purchased any courses.</p>)
       linkBtn = (<Link to="/course-catalog" className="btn btn-lg btn-success mt-2 mb-4">

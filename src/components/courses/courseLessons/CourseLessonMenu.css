@@ -1,18 +1,20 @@
-.sideBar {
+.sidebar {
   height: 100vh; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   transition: width .5s;
-  position: fixed; /* Stay in place */
+  /* position: fixed;  */
+  float: left;
+  position: relative;
   z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
+  /* top: 0;
+  left: 0; */
   background-color: rgb(91, 134, 255); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
-.sideBar .closebtn {
+.sidebar .closebtn {
   position: absolute;
   top: 0;
   right: 25px;

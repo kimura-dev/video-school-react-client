@@ -62,7 +62,7 @@ class NavBar extends Component {
                   {' '}
                   Developers
                 </Link> */}
-                <SearchBar />
+                {/* <SearchBar /> */}
               </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}

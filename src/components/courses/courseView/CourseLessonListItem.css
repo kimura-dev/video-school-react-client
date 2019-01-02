@@ -1,3 +1,8 @@
+.lesson-list-item:hover { 
+  cursor: pointer;
+  background-color:#c7a235;
+}
+
 .btnBox {
   display: flex;
   justify-content: flex-end;

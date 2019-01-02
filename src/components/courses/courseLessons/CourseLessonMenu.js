@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { expandLessonList, collapseLessonList } from '../../../actions/uiActions';
+import getCourseRole from '../../common/getCourseRole';
 import CourseLessonList from '../courseView/CourseLessonList';
 import Spinner from '../../common/Spinner';
 import './CourseLessonMenu.css';
@@ -9,15 +10,19 @@ import './CourseLessonMenu.css';
 
 class CourseLessonMenu extends Component {
   render() {
-
-    let classNames = 'CourseLessonMenu sideBar';
+    let courseRole = getCourseRole(this.props.auth.user.user, this.props.course);
+    let classNames = 'CourseLessonMenu sidebar';
     let list = <Spinner/>;
+
+
 
     if(this.props.course){
       list = <CourseLessonList  
-              watchedLessons={this.props.watchedLessons} 
+              // watchedLessons={this.props.watchedLessons} 
               lessons={this.props.course.lessons}
+              courseRole={courseRole}
               mode='menu'
+              // onLessonClick={this.props.onLessonClick}
               />
     }
 
@@ -28,7 +33,7 @@ class CourseLessonMenu extends Component {
     return (
       <div id="mySidebar" className={classNames}>
         <div>
-          <a href="javascript:void(0)" class="closebtn" onClick={this.props.collapseLessonList}>&times;</a>
+          <a href="javascript:void(0)" className="closebtn" onClick={this.props.collapseLessonList}>&times;</a>
         </div>
         {list}
       </div>
@@ -41,14 +46,16 @@ CourseLessonMenu.propTypes = {
   expandLessonList: PropTypes.func.isRequired,
   collapseLessonList: PropTypes.func.isRequired,
   expanded: PropTypes.bool,
-  watchedLessons: PropTypes.object.isRequired,
-  selectedLesson: PropTypes.object.isRequired,
-  course: PropTypes.object.isRequired  
+  // watchedLessons: PropTypes.array.isRequired,
+  selectedLesson: PropTypes.object,
+  course: PropTypes.object,
+  auth: PropTypes.object.isRequired  
 }
 
 const mapStateToProps = (state) => ({
-  watchedLessons: state.auth.user.user.watchedLessons,
+  // watchedLessons: state.auth.user.user.watchedLessons,
   course: state.courses.selectedCourse,
+  auth: state.auth,
   selectedLesson: state.lessons.selectedLesson,
   expanded: state.ui.lessonListExpanded
 });

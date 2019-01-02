@@ -17,7 +17,8 @@ import {
   PURCHASE_COURSE,
   GET_PURCHASE_TOKEN,
   SELECTED_COURSE_FIELD_CHANGE,
-  SET_COURSE_LOADED
+  SET_COURSE_LOADED,
+  GET_LESSON
 } from '../actions/types';
 import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
@@ -98,6 +99,18 @@ export default function(state = initialState, action) {
         selectedCourse: action.payload,
         loading: false
       }
+    case GET_LESSON:
+      if(!action.payload.course){
+        return {
+          ...state,
+          loading: false
+        };
+      }
+      return {
+        ...state,
+        selectedCourse: action.payload.course,
+        loading: false
+      }
     case GET_PURCHASE_TOKEN:
       return {
         ...state,
@@ -127,35 +140,32 @@ export default function(state = initialState, action) {
       //   loaded: true
       // }
     case ADD_SELECTED_COURSE_LESSON:
-      // return {
-      //   ...state,
-      //   selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, action.payload]},
-      //   newLesson: {},
-      //   loading: false,
-      //   loaded: true
-      // }
-     
+      
+      let newState = {
+        ...state, 
+        newLesson: {},
+        loading: false
+      };
 
-      let courseName = 'selectedCourse';
-      if( state.newCourse ){
-        courseName = 'newCourse';
+      let courseName = 'newCourse';
+
+      if( state.selectedCourse ){
+        courseName = 'selectedCourse';
       }
-      let theCourse = state[courseName];
-      if( theCourse ){
-        theCourse.lessons = [...theCourse.lessons, action.payload]
+      let theCourse = {...state[courseName]};
 
+      if( state[courseName] ){
+        theCourse.lessons = [...theCourse.lessons, action.payload]
+        console.log('updated Lessons', theCourse.lessons)
       }
       // not having a new course means we are in edit mode or view mode
       // meaning we HAVE loaded a course from the server API
-      let loaded = !state.newCourse;
-      return {
-        ...state,
-        [courseName]:  theCourse,
+      newState.loaded = !!state.selectedCourse;
 
-        newLesson: {},
-        loading: false,
-        loaded
-      }
+      newState[courseName] = theCourse;
+
+      return newState;
+      
     case UPDATE_NEW_LESSON:
       const newLesson = {
         ...state.newLesson

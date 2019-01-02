@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCourse } from '../../../actions/courseActions';
+import  getCourseRole  from '../../common/getCourseRole';
 import { purchaseCourse } from '../../../actions/authActions';
 import CourseVideoPreview from './CourseVideoPreview';
 import CourseData from './CourseData';
@@ -10,53 +11,50 @@ import CourseLessonList from './CourseLessonList';
 import Spinner from '../../common/Spinner';
 import './CourseView.css';
 
-function getCourseRole(user, course) {
-  
-  if(course && user && course.username === user.username) {
-    return 'author';
-  } else if(course && user && course._id && user.courses && 
-            user.courses.find instanceof Function && 
-            user.courses.find(c => c && c === course._id || c._id === course._id) ) 
-            {
-    return 'student';
-  }
-  return 'guest';
-}
+// function getCourseRole(user, course) { 
+//   if(course && user && course.username === user.username) {
+//     return 'author';
+//   } else if(course && user && course._id && user.courses && 
+//             user.courses.find instanceof Function && 
+//             user.courses.find(c => c && c === course._id || c._id === course._id) ) 
+//             {
+//     return 'student';
+//   }
+//   return 'guest';
+// }
 
 class CourseView extends Component {
   constructor(props) {
-
     super(props);
-    this.state = {
-     
-    };
-
   }
 
   componentDidMount() {
-    if(this.props.match.params){
-      this.props.getCourse(this.props.match.params.id);
+    let urlString = this.props.match.params;
+    let courseId = this.props.match.params.id;
+
+    if(urlString){
+      this.props.getCourse(courseId);
     }   
   }
 
-  onLessonClick(e) {
-    const lessonId = e.target.getAttribute('href').replace('#','')
-  }
-
+  // onLessonClick(e) {
+  //   const lessonId = e.target.getAttribute('href').replace('#','')
+  // }
 
   render() {
-    
     let videoUrl = '';
     let courseRole = '';
+    let watchedLessons= this.props.auth.user.user.watchedLessons;
+    let course = this.props.courses.selectedCourse;
 
-    if(!this.props.courses.selectedCourse || !this.props.match.params){
+    if(!course || !this.props.match.params){
      return  <Spinner />
       return (
         <div>Course Not Found</div>
       )
     }
 
-    courseRole = getCourseRole(this.props.auth.user.user, this.props.courses.selectedCourse);
+    courseRole = getCourseRole(this.props.auth.user.user, course);
 
     if(this.props.lessons.selectedLesson){
        videoUrl = this.props.lessons.selectedLesson.videoUrl;
@@ -74,22 +72,22 @@ class CourseView extends Component {
         
           <CourseVideoPreview 
             videoUrl={videoUrl} 
-            course={this.props.courses.selectedCourse}
-            watchedLessons={this.props.auth.user.user.watchedLessons} 
+            course={course}
+            watchedLessons={watchedLessons} 
             courseRole={courseRole}
-            purchaseCourse={(e) => this.props.purchaseCourse(this.props.courses.selectedCourse._id)}
+            purchaseCourse={(e) => this.props.purchaseCourse(course._id)}
           />
 
           <CourseData 
-            watchedLessons={this.props.auth.user.user.watchedLessons}  
-            course={this.props.courses.selectedCourse} 
+            watchedLessons={watchedLessons}  
+            course={course} 
             user={this.props.auth.user}
           />
 
           <CourseLessonList  
-            watchedLessons={this.props.auth.user.user.watchedLessons} 
-            lessons={this.props.courses.selectedCourse.lessons}
-            onLessonClick={this.onLessonClick}
+            watchedLessons={watchedLessons} 
+            lessons={course.lessons}
+            // onLessonClick={this.onLessonClick}
             courseRole={courseRole}
           />
         </div>
@@ -101,7 +99,6 @@ class CourseView extends Component {
 CourseView.propTypes = {
   getCourse: PropTypes.func.isRequired,
   purchaseCourse: PropTypes.func.isRequired,
-  // getLesson: PropTypes.func.isRequired,
   courses: PropTypes.object.isRequired  
 }
 

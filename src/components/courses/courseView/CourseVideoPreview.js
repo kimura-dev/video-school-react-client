@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './CourseVideoPreview.css';
-import CourseProgressBar from './CourseProgressBar'
+// import CourseProgressBar from './CourseProgressBar'
 
 function isLessonIdNotInWatchedLessons(lesson_id, watchedLessons){
   if(watchedLessons && watchedLessons.includes instanceof Function){
@@ -76,7 +76,9 @@ export default function CourseVideoPreview(props) {
         <img className="list-img" src={require('../../../img/course-img.jpg')} />
         {actionBtn}
         <p className="card-text mb-3 text-white">{previewMessage}</p>
-        <CourseProgressBar  watchedLessons={props.watchedLessons} />
+        {/* <CourseProgressBar  
+          watchedLessons={props.watchedLessons} 
+        /> */}
       </div>    
     </div>
     

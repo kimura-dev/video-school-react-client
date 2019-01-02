@@ -13,9 +13,6 @@ import './LessonView.css';
  class LessonView extends Component {
    constructor(props) {
      super(props);
-     this.state = {
-      
-     }
    }
 
    componentDidMount() {
@@ -24,6 +21,13 @@ import './LessonView.css';
     }   
   }
 
+  componentDidUpdate(oldProps, oldState) {
+    // General componentDidUpdate pattern
+    if(oldProps.match.params && this.props.match.params && this.props.match.params.id !== oldProps.match.params.id ){
+      this.props.getLesson(this.props.match.params.id);
+    }
+  }
+  
   
   render() {
     let videoPlayer = <Spinner/>;

@@ -41,11 +41,9 @@ class CourseForm extends Component {
     this.props.createCourse(newCourse, this.props.history);
   }
 
-
   render() {
     // const { errors } = this.state.errors; 
     
-
     return (
       <div className="course-form">
         <div className="container">
@@ -71,6 +69,7 @@ class CourseForm extends Component {
                   // error={errors.username}
                 />
                  <div className="form-group">
+                 <h3>Set Course Price</h3>
                   <input
                     type="number"
                     className='form-control form-control-lg'

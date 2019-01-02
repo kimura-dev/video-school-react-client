@@ -22,10 +22,9 @@ export default function CourseData(props) {
   return (
     
     <section className="course-data-section">
-       <div class="container">
-         <div class="mb-5 text-white">
-           <h2 className="mt-3 text-dark font-weight-bold">{course.title} Course Overview</h2>
-           {/* <p className="lead text-primary">Price: ${course.price}</p> */}
+       <div className="container">
+         <div className="mb-5 text-white">
+           <h2 className="mt-3 text-dark font-weight-bold">{course.title}: Course Overview</h2>
            {priceDisplay}
            <p className="lead text-dark">{course.description}</p>
            <div className="lead course-data">

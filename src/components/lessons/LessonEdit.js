@@ -13,13 +13,10 @@ import Spinner from '../common/Spinner';
 class LessonForm extends Component {
   constructor(props) {
     super(props);
-  
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
   }
 
-  // When component loads this runs and looks for the current course
   componentDidMount() {
     if(this.props.selectedCourse){
       let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
@@ -33,9 +30,7 @@ class LessonForm extends Component {
     let newLesson = {
       ...this.props.lessons.selectedLesson
     }
-
     newLesson[e.target.name] = e.target.value;
-
     this.props.setCurrentLesson(newLesson);
   }
 
@@ -64,7 +59,7 @@ class LessonForm extends Component {
                 Go Back
               </Link>
               <h1 className="display-4 text-center">Edit Lesson</h1>
-              {/* <p className="lead text-center">Supply course details below</p> */}
+              {/* <p className="lead text-center">Supply lesson details below</p> */}
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
                   placeholder="Title"
@@ -72,7 +67,6 @@ class LessonForm extends Component {
                   type="text"
                   value={state.title}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <TextAreaFieldGroup 
                   placeholder="Description"
@@ -80,7 +74,6 @@ class LessonForm extends Component {
                   type="text"
                   value={state.description}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <TextFieldGroup 
                   placeholder="Video Url"
@@ -88,7 +81,6 @@ class LessonForm extends Component {
                   type="text"
                   value={state.videoUrl}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <input type="submit" className="btn btn-success btn-block mt-4 mb-3 p-3" />
               </form>

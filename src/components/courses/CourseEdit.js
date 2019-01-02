@@ -120,6 +120,7 @@ class CourseForm extends Component {
               </Link>
               <h1 className="display-4 text-center">Edit {state.title}</h1>
               <form onSubmit={this.onSubmit}>
+                <h3>Title</h3>
                 <TextFieldGroup 
                   placeholder="Title"
                   name='title'
@@ -128,6 +129,7 @@ class CourseForm extends Component {
                   onChange={this.onChange}
                   // error={errors.username}
                 />
+                <h3>Description</h3>
                 <TextAreaFieldGroup 
                   placeholder="Description"
                   name='description'
@@ -136,14 +138,25 @@ class CourseForm extends Component {
                   onChange={this.onChange}
                   // error={errors.username}
                 />
-                <TextFieldGroup 
+                 <div className="form-group">
+                  <h3>Price</h3>
+                    <input
+                      type="number"
+                      className='form-control form-control-lg'
+                      placeholder="0"
+                      name="price"
+                      value={state.price}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                {/* <TextFieldGroup 
                   placeholder="Price"
                   name='price'
                   type="text"
                   value={state.price}
                   onChange={this.onChange}
                   // error={errors.username}
-                />
+                /> */}
                 <Link to="/lesson-form" className="btn btn-lg btn-success">
                   Add Lesson
                 </Link>

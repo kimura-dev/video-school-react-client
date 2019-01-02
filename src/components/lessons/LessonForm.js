@@ -10,10 +10,8 @@ import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 class LessonForm extends Component {
   constructor(props) {
     super(props);
-    
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
   }
 
   // will test for properties
@@ -30,15 +28,10 @@ class LessonForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newLesson = {
-      // courseId: this.props.newCourse,
       title: this.props.newLesson.title,
       description: this.props.newLesson.description,
       videoUrl: this.props.newLesson.videoUrl
     }
-
-    // console.log('OnSubmit');
-    // console.log(this.props.selectedCourse);
-
   
     if(this.props.selectedCourse){ 
       this.props.addSelectedCourseLesson(newLesson, this.props.history);
@@ -59,7 +52,7 @@ class LessonForm extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create A Lesson</h1>
-              {/* <p className="lead text-center">Supply course details below</p> */}
+              {/* <p className="lead text-center">Supply lessons details below</p> */}
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
                   placeholder="Title"
