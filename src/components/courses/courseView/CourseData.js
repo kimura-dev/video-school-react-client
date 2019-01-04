@@ -10,6 +10,7 @@ export default function CourseData(props) {
   let currentUser = user.user.username;
   let student = user.user.courses.includes(course._id);
   let priceDisplay = course.price;
+  let authorFullName = '';
   
   if( currentUser === author ){
     priceDisplay = <p className="lead text-primary">Current Price: ${priceDisplay}</p>;
@@ -17,6 +18,14 @@ export default function CourseData(props) {
     priceDisplay = '';
   } else {
     priceDisplay = <p className="lead text-primary">Price: ${priceDisplay}</p>;
+  }
+
+
+
+  if(!course.user.firstName || !course.user.lastName){
+    authorFullName = author;
+  } else if (course.user.firstName && course.user.lastName){
+    authorFullName = (course.user.firstName +' '+ course.user.lastName)
   }
   
   return (
@@ -28,7 +37,8 @@ export default function CourseData(props) {
            {priceDisplay}
            <p className="lead text-dark">{course.description}</p>
            <div className="lead course-data">
-            <p className="">Authored by {course.user.firstName} {course.user.lastName}</p>
+            {/* <p className="">Authored by {course.user.firstName} {course.user.lastName}</p> */}
+            <p className="">Authored by {authorFullName}</p>
             <p className="">Created On: {friendlyDate(course.date)}</p>
             <p className="">This course was purchased {course.timesPurchased} times</p>     
            </div>      

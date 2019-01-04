@@ -6,7 +6,7 @@ export default function LessonVideoPlayer(props) {
 
   return (
     <div className="resp-container">
-      <iframe className="resp-iframe" src={videoUrl} gesture="media"  allow="encrypted-media" allowFullScreen></iframe>
+      <iframe className="resp-iframe" src={videoUrl} gesture="media"  allow="encrypted-media" allowFullScreen title="Current Lesson Video"></iframe>
     </div>
   )
 }

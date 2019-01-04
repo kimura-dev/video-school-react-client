@@ -91,16 +91,6 @@ class CourseForm extends Component {
 
   render() {
     // const { errors } = this.state.errors; 
-    // let course = this.props.courses.selectedCourse;
-
-    // if(!course){
-    //   return  <Spinner />
-    //    return (
-    //      <div>Course Not Found</div>
-    //    )
-    //  }
- 
-
     let state = this.props.courses.selectedCourse;
 
     if(this.props.courses.loading) {

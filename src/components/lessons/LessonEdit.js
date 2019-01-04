@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { editLesson, setCurrentLesson } from '../../actions/lessonActions';
+import { addNewCourseLesson, addSelectedCourseLesson } from '../../actions/courseLessonActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
-import isEmpty from '../../validation/is-empty';
 import Spinner from '../common/Spinner';
 
 
@@ -37,7 +37,12 @@ class LessonForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newLesson = this.props.lessons.selectedLesson;
-    this.props.editLesson(newLesson, this.props.history);
+    // this.props.editLesson(newLesson, this.props.history);
+    if(this.props.selectedCourse){ 
+      this.props.addSelectedCourseLesson(newLesson, this.props.history);
+    } else {
+      this.props.addNewCourseLesson(newLesson, this.props.history);
+    }
   }
 
   render() {
@@ -82,7 +87,7 @@ class LessonForm extends Component {
                   value={state.videoUrl}
                   onChange={this.onChange}
                 />
-                <input type="submit" className="btn btn-success btn-block mt-4 mb-3 p-3" />
+                <button type="submit" className="btn btn-success btn-block mt-4 mb-3 p-3">Submit</button>
               </form>
             </div>
           </div>

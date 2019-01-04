@@ -13,7 +13,7 @@ class CourseLessonList extends Component {
        watchedLesson={watchedLesson} 
        lesson={lesson} 
        key={index} 
-       onDeleteLesson={(e) => this.props.deleteSelectedCourseLesson()}
+       index={index}
        {...this.props} />
     )
   });

@@ -12,16 +12,13 @@ class DataManager extends Component {
     if(this.props.auth.user && this.props.auth.user.user){
       // this.props.refreshUserData(this.props.auth.user.user.username);
     }
-
   } 
 
   render(){
     return(
       null
     )
-  }
-
-  
+  } 
 }
 
 DataManager.propTypes = {

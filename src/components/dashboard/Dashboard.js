@@ -23,8 +23,8 @@ class Dashboard extends Component {
               </Link>
               <h2>Welcome {user.user.username}</h2>
               <Spinner />
-              <DashCoursePreviewList  courseRole='teacher' courses={authoredCourses}/>
-              <DashCoursePreviewList  courseRole='student'  courses={purchasedCourses}/>
+              <DashCoursePreviewList  courseRole='teacher' courses={authoredCourses} key={1}/>
+              <DashCoursePreviewList  courseRole='student'  courses={purchasedCourses} key={2}/>
             </div>
           </div>
         </div>

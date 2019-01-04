@@ -86,8 +86,13 @@ export const getCourse = (id) => dispatch => {
         type: GET_COURSE,
         payload: res.data
       })
-      
     )
+    // .catch(err => 
+    //   dispatch({
+    //     type: GET_ERRORS,
+    //     payload: err.response.data
+    //   })
+    // )
 
     .catch(err => console.log(err))
 };
@@ -139,11 +144,7 @@ export const getPurchasedCourses = (username) => dispatch => {
 // Edit Course
 export const editCourse = (course, history) => dispatch => {
   dispatch(setCourseLoading());  
-  console.log('EditCourse action');
-  console.log(course._id);
 
-
-  // console.log(course._id);
   axios.put(`/api/course/${course._id}`, course)
     .then(res => 
       dispatch({

@@ -1,7 +1,5 @@
 import { 
         SAVE_LESSON, 
-        ADD_NEW_COURSE_LESSON, 
-        ADD_COURSE_LESSON, 
         GET_LESSON, 
         GET_ALL_LESSONS, 
         LESSON_LOADING, 
@@ -65,7 +63,7 @@ export default function(state = initialState, action) {
     case DELETE_LESSON:
         return {
           ...state,
-          lessons: state.lessons.filter(lesson => lesson._id !== action.payload),          
+          lessons: state.selectedCourse.lessons.filter(lesson => lesson._id !== action.payload),          
           loading: false
         }
     default:

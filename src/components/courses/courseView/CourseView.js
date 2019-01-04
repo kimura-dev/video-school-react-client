@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCourse } from '../../../actions/courseActions';
 import  getCourseRole  from '../../common/getCourseRole';
@@ -11,22 +11,10 @@ import CourseLessonList from './CourseLessonList';
 import Spinner from '../../common/Spinner';
 import './CourseView.css';
 
-// function getCourseRole(user, course) { 
-//   if(course && user && course.username === user.username) {
-//     return 'author';
-//   } else if(course && user && course._id && user.courses && 
-//             user.courses.find instanceof Function && 
-//             user.courses.find(c => c && c === course._id || c._id === course._id) ) 
-//             {
-//     return 'student';
-//   }
-//   return 'guest';
-// }
-
 class CourseView extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     let urlString = this.props.match.params;
@@ -37,21 +25,16 @@ class CourseView extends Component {
     }   
   }
 
-  // onLessonClick(e) {
-  //   const lessonId = e.target.getAttribute('href').replace('#','')
-  // }
-
   render() {
     let videoUrl = '';
     let courseRole = '';
     let watchedLessons= this.props.auth.user.user.watchedLessons;
     let course = this.props.courses.selectedCourse;
 
-    if(!course || !this.props.match.params){
-     return  <Spinner />
-      return (
-        <div>Course Not Found</div>
-      )
+    if(this.props.courses.loading) {
+      return <Spinner />
+    } else if(!course) {
+      return <div>Course not found...</div>
     }
 
     courseRole = getCourseRole(this.props.auth.user.user, course);

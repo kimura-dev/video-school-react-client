@@ -73,7 +73,7 @@ export default function CourseVideoPreview(props) {
     <div className="card w-50">
       <div className="card-body course-video-preview">
         <h2 className="card-title">{props.course.title}</h2>
-        <img className="list-img" src={require('../../../img/course-img.jpg')} />
+        <img className="list-img" src={require('../../../img/course-img.jpg')} alt="course thumbnail"/>
         {actionBtn}
         <p className="card-text mb-3 text-white">{previewMessage}</p>
         {/* <CourseProgressBar  

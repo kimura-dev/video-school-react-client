@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {
-   GET_LESSON, 
    GET_ALL_LESSONS,
    EDIT_LESSON,
    LESSON_LOADING, 
@@ -14,7 +13,7 @@ import {setCourseLoading } from './courseActions';
   
 // Get A Lesson
 export const getLesson = (id) => dispatch => {
-  dispatch(setCourseLoading());
+  dispatch(setLessonLoading());
   axios.get(`/api/lesson/${id}`)
     .then(res => {  
       dispatch({
@@ -84,8 +83,8 @@ export const setLessonLoading = () => {
 
 // Delete Course
 export const deleteLesson = (id) => dispatch => {
-  dispatch(setCourseLoading());
-  axios.delete(`/api/course/${id}`)
+  dispatch(setLessonLoading());
+  axios.delete(`/api/lesson/${id}`)
     .then(res => 
       dispatch({
         type: DELETE_LESSON,

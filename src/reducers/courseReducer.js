@@ -158,7 +158,6 @@ export default function(state = initialState, action) {
       if( state[courseName] ){
         action.payload.courseId = theCourse._id
         theCourse.lessons = [...theCourse.lessons, action.payload]
-        console.log('updated Lessons', theCourse.lessons)
       }
       // not having a new course means we are in edit mode or view mode
       // meaning we HAVE loaded a course from the server API

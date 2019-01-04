@@ -46,8 +46,11 @@ class CourseForm extends Component {
     const { errors } = this.props; 
     
     return (
-      <div className="course-form">
+      <section className="course-form">
         <div className="container">
+          <button onClick={this.props.history.goBack} className="btn btn-light">
+              Go Back
+          </button>
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center mt-4 mb-4">Create Course</h1>
@@ -73,16 +76,14 @@ class CourseForm extends Component {
                  <h3>Set Course Price</h3>
                   <input
                     type="number"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors
-                    })}
+                    className='form-control form-control-lg'
                     placeholder="0"
                     name="price"
                     value={this.props.newCourse.price}
                     onChange={this.onChange}
                   />
-                  {/* {info && <small className="form-text text-muted">{info}</small>} */}
-                  {/* {errors && <div className="invalid-feedback">{errors}</div>} */}
+                  {/* <small className="form-text text-muted">{info}</small> */}
+                  {/* <div className="invalid-feedback">{errors}</div> */}
                 </div>
                 <Link to="/lesson-form" className="btn btn-lg btn-success mt-3 font-weight-bold">
                   Add Lesson
@@ -93,7 +94,7 @@ class CourseForm extends Component {
             </div>
           </div>
         </div>
-    </div>
+    </section>
     )
   }
 }

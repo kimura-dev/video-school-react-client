@@ -37,7 +37,8 @@ function truncate(str, no_words) {
             return (
                     <div className="course-catalog-list-item col-4 mb-3">
                       <div className="inner-list-item">
-                        <img className="list-img" src={require('../../../img/course-img.jpg')} />
+                        <img className="list-img" src={require('../../../img/course-img.jpg')} alt="course thumbnail"/>
+                        {/* <img className="list-img" src="https://source.unsplash.com/random/300x200" alt="course thumbnail"/> */}
                         <h2 className="list-item-title">{course.title}</h2>
                         <p className="list-item-description">{truncate(course.description,40)}</p> 
                         <div classname="">
