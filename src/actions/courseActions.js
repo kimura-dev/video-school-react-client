@@ -44,14 +44,11 @@ export const createCourse = (courseData, history)  => dispatch => {
         })
       )
       .catch(err => 
-        // since this is an ajax call and we are waiting we need to call dispatch - Redux Thunk
         dispatch({
           type: GET_ERRORS,
-          payload: err.response.data.message
+          payload: err.response.data
         })
-      
-      )
-      .catch(err => console.log(err));
+      );
 };
 
 //Update a new Course

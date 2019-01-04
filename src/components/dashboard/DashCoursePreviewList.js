@@ -68,7 +68,7 @@ class DashCoursePreviewList extends Component {
       courses = usersCourses.purchasedCourses.map( course => {
         return (
           <CourseListItem 
-            key={course._id} 
+            // key={course._id} 
             course={course} 
             courseRole="student"
           />

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// Need withRouter to use history
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 import { createCourse, updateNewCourse } from '../../actions/courseActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
@@ -20,6 +20,7 @@ class CourseForm extends Component {
   }
 
   // will test for properties
+  // If we recieve new props and errors is included
   componentWillReceiveProps(nextProps) {
     if(nextProps.errors) {
       this.setState({errors:nextProps.errors})
@@ -42,7 +43,7 @@ class CourseForm extends Component {
   }
 
   render() {
-    // const { errors } = this.state.errors; 
+    const { errors } = this.props; 
     
     return (
       <div className="course-form">
@@ -58,7 +59,7 @@ class CourseForm extends Component {
                   type="text"
                   value={this.props.newCourse.title}
                   onChange={this.onChange}
-                  // error={errors.username}
+                  error={errors.title}
                 />
                 <TextAreaFieldGroup 
                   placeholder="Description"
@@ -66,29 +67,23 @@ class CourseForm extends Component {
                   type="text"
                   value={this.props.newCourse.description}
                   onChange={this.onChange}
-                  // error={errors.username}
+                  error={errors.description}
                 />
                  <div className="form-group">
                  <h3>Set Course Price</h3>
                   <input
                     type="number"
-                    className='form-control form-control-lg'
+                    className={classnames('form-control form-control-lg', {
+                      'is-invalid': errors
+                    })}
                     placeholder="0"
                     name="price"
                     value={this.props.newCourse.price}
                     onChange={this.onChange}
                   />
-                  {/* {info && <small className="form-text text-muted">{info}</small>}
-                  {error && <div className="invalid-feedback">{error}</div>} */}
+                  {/* {info && <small className="form-text text-muted">{info}</small>} */}
+                  {/* {errors && <div className="invalid-feedback">{errors}</div>} */}
                 </div>
-                {/* <TextFieldGroup 
-                  placeholder="Price"
-                  name='price'
-                  type="number"
-                  value={this.props.newCourse.price}
-                  onChange={this.onChange}
-                  // error={errors.username}
-                /> */}
                 <Link to="/lesson-form" className="btn btn-lg btn-success mt-3 font-weight-bold">
                   Add Lesson
                 </Link>
@@ -106,11 +101,13 @@ class CourseForm extends Component {
 CourseForm.propTypes = {
   createCourse: PropTypes.func.isRequired, 
   updateNewCourse: PropTypes.func.isRequired,
-  newCourse: PropTypes.object.isRequired
+  newCourse: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  newCourse: state.courses.newCourse
+  newCourse: state.courses.newCourse,
+  errors: state.errors // this.props.errors
 });
 
 export default connect(mapStateToProps, { createCourse, updateNewCourse })(withRouter(CourseForm));

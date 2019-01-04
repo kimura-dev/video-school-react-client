@@ -11,6 +11,7 @@ import {
   EDIT_COURSE, 
   DELETE_COURSE, 
   DELETE_NEW_COURSE_LESSON, 
+  DELETE_SELECTED_COURSE_LESSON,
   COURSE_LOADING,
   SET_CURRENT_COURSE,
   SET_CURRENT_USER,
@@ -155,6 +156,7 @@ export default function(state = initialState, action) {
       let theCourse = {...state[courseName]};
 
       if( state[courseName] ){
+        action.payload.courseId = theCourse._id
         theCourse.lessons = [...theCourse.lessons, action.payload]
         console.log('updated Lessons', theCourse.lessons)
       }
@@ -229,10 +231,16 @@ export default function(state = initialState, action) {
           selectedCourse: null,
           loading: true
         }
+    case DELETE_SELECTED_COURSE_LESSON:
+        return {
+          ...state,
+          selectedCourses: state.selectedCourse.lessons.splice(action.payload,1),
+          loading: false
+        }
     case DELETE_NEW_COURSE_LESSON:
       return {
         ...state,
-        courses: state.courses.splice(action.payload,1),
+        newCourses: state.newCourse.lessons.splice(action.payload,1),
         loading: false
       }
     case DELETE_COURSE:

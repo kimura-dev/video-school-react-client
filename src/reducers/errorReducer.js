@@ -1,5 +1,6 @@
 import { GET_ERRORS } from '../actions/types';
 
+// Will be the errors obj itself
 const initialState = {};
 
 export default function(state = initialState, action) {

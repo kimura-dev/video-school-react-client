@@ -76,11 +76,11 @@ export const  loginUser = (userData) => dispatch => {
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
-    .catch(err => dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data.message
-    })
-  );
+  //   .catch(err => dispatch({
+  //     type: GET_ERRORS,
+  //     payload: err.response.data.message
+  //   })
+  // );
 }
 
 // Set Logged in User
@@ -93,6 +93,7 @@ export const setCurrentUser = (decoded) =>  {
 
 // Log user out
 export const logoutUser = () => dispatch => {
+  // history.push('/login') 
   // Remove the token from localStorage
   localStorage.removeItem('jwtToken');
   // Remove auth header for future requests

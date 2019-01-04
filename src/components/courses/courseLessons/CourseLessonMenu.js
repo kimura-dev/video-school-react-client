@@ -11,7 +11,7 @@ import './CourseLessonMenu.css';
 class CourseLessonMenu extends Component {
   render() {
     let courseRole = getCourseRole(this.props.auth.user.user, this.props.course);
-    let classNames = 'CourseLessonMenu sidebar';
+    let classNames = 'CourseLessonMenu sidebar bg-info';
     let list = <Spinner/>;
 
 

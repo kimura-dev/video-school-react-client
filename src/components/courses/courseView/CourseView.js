@@ -87,7 +87,6 @@ class CourseView extends Component {
           <CourseLessonList  
             watchedLessons={watchedLessons} 
             lessons={course.lessons}
-            // onLessonClick={this.onLessonClick}
             courseRole={courseRole}
           />
         </div>

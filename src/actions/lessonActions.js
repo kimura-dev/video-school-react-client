@@ -7,6 +7,7 @@ import {
    GET_ERRORS,
    SET_CURRENT_LESSON,
    SET_CURRENT_COURSE,
+   DELETE_LESSON,
   } from './types';
 import {setCourseLoading } from './courseActions';
 
@@ -79,4 +80,17 @@ export const setLessonLoading = () => {
   return {
     type: LESSON_LOADING
   }
+}
+
+// Delete Course
+export const deleteLesson = (id) => dispatch => {
+  dispatch(setCourseLoading());
+  axios.delete(`/api/course/${id}`)
+    .then(res => 
+      dispatch({
+        type: DELETE_LESSON,
+        payload: res.data
+      })
+    )
+    .catch(err => console.log(err))
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { deleteLesson } from '../../../actions/lessonActions';
 import './CourseLessonListItem.css'
 
 export default function CourseLessonListItem(props) {
@@ -16,7 +17,7 @@ export default function CourseLessonListItem(props) {
         <li className={liClasses}>{lesson.title}
           <div className="btnBox">
             <button 
-                onClick={props.onDeleteLesson}
+                onClick={deleteLesson(lesson._id)}
                 className="btn btn-danger m-2">
                 Delete
             </button>

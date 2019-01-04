@@ -4,6 +4,7 @@ import {
   ADD_SELECTED_COURSE_LESSON,
   DELETE_LESSON,
   DELETE_NEW_COURSE_LESSON,
+  DELETE_SELECTED_COURSE_LESSON,
   UPDATE_NEW_LESSON,
   GET_ERRORS
   } from './types';
@@ -36,18 +37,6 @@ export const updateNewLesson = (newData) => dispatch => {
   })
 }
  
-  // export const addCourseLesson = (lessonData, history) => dispatch => {
-  //   axios.post('/api/lesson')
-  //     .then(lesson => 
-  //       dispatch({
-  //         type: ADD_COURSE_LESSON,
-  //         payload: lessonData,
-  //         history: history.push('/course-form')
-  //       })
-  //     )
-  // };
-
-
 // Delete A Lesson
 export const deleteLesson = (id) => dispatch => {
   // dispatch(setLessonLoading());
@@ -62,6 +51,14 @@ export const deleteLesson = (id) => dispatch => {
 }
 
 // Delete Course
+export const deleteSelectedCourseLesson = (index) => dispatch => {
+  dispatch({
+    type: DELETE_SELECTED_COURSE_LESSON,
+    payload: index
+  })
+}
+
+// Delete Course
 export const deleteNewCourseLesson = (index) => dispatch => {
   dispatch({
     type: DELETE_NEW_COURSE_LESSON,
@@ -69,3 +66,5 @@ export const deleteNewCourseLesson = (index) => dispatch => {
   })
 
 }
+
+
