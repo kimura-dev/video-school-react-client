@@ -29,8 +29,8 @@ function truncate(str, no_words) {
         <section className="catalog-course-list">
         <h1 className="course-list-title">Catalog</h1>
 
-        <div class="catalog">  
-          <div className="container">
+        <div className="catalog">  
+          <div className="container"> 
             <div className="catalog-course-item-container">
         {
           allCourses.map(course => {
