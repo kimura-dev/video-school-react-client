@@ -8,11 +8,20 @@ import Spinner from '../../common/Spinner';
 import './CourseLessonMenu.css';
 
 
+
+
 class CourseLessonMenu extends Component {
+
+
   render() {
+    if(!this.props.auth.user){
+      return null;
+    } 
+    
     let courseRole = getCourseRole(this.props.auth.user.user, this.props.course);
     let classNames = 'CourseLessonMenu sidebar bg-info';
     let list = <Spinner/>;
+
 
 
 

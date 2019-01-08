@@ -21,11 +21,11 @@ class CourseForm extends Component {
 
   // will test for properties
   // If we recieve new props and errors is included
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
-      this.setState({errors:nextProps.errors})
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if(nextProps.errors) {
+  //     this.setState({errors: nextProps.errors})
+  //   }
+  // }
 
   onChange(e) {
     this.props.updateNewCourse({[e.target.name]: e.target.value })

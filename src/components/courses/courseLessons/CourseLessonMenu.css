@@ -4,7 +4,7 @@
   transition: width .5s;
   /* position: fixed;  */
   float: left;
-  position: relative;
+  position: absolute;
   z-index: 1; /* Stay on top */
   /* top: 0;
   left: 0; */
@@ -14,6 +14,7 @@
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
+
 .sidebar .closebtn {
   position: absolute;
   top: 0;
@@ -22,6 +23,11 @@
   margin-left: 50px;
 }
 
-.expanded {
+.sidebar.expanded {
   width: 300px;
+  padding: 10px;
+}
+.sidebar.expanded + div {
+  margin-left: 300px;
+  transition: margin .5s;
 }

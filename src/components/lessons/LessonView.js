@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CourseLessonMenu from '../courses/courseLessons/CourseLessonMenu';
+// import CourseLessonMenu from '../courses/courseLessons/CourseLessonMenu';
 import { getLesson } from '../../actions/lessonActions';
-import { toggleLessonList  as toggleMenu } from '../../actions/uiActions';
+import { toggleLessonList  as toggleMenu, collapseLessonList } from '../../actions/uiActions';
 import LessonViewNavbar from './LessonViewNavbar';
 import LessonVideoPlayer from './LessonVideoPlayer';
 import Spinner from '../common/Spinner';
@@ -27,12 +27,16 @@ import './LessonView.css';
       this.props.getLesson(this.props.match.params.id);
     }
   }
+
+  componentWillUnmount(){
+    this.props.collapseLessonList();
+  }
   
   
   render() {
     let videoPlayer = <Spinner/>;
     let classNames = 'LessonView';
-    let menu = <CourseLessonMenu />;
+    // let menu = <CourseLessonMenu />;
 
     if(this.props.lesson){
       videoPlayer = <LessonVideoPlayer videoUrl={this.props.lesson.videoUrl} />;
@@ -45,7 +49,7 @@ import './LessonView.css';
     return (
       <div className={classNames}>
         <LessonViewNavbar toggleMenu={this.props.toggleMenu} />
-        {menu}
+        {/* {menu} */}
         {videoPlayer}
       </div>
     )
@@ -62,4 +66,4 @@ const mapStateToProps = (state) => ({
   courses: state.courses.allCourses
 });
 
-export default connect(mapStateToProps, { getLesson, toggleMenu })(LessonView);
+export default connect(mapStateToProps, { getLesson, toggleMenu, collapseLessonList })(LessonView);
