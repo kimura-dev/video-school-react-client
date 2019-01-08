@@ -55,10 +55,10 @@ export const registerUser = (userData, history)  => dispatch => {
         // since this is an ajax call and we are waiting we need to call dispatch - Redux Thunk
         dispatch({
           type: GET_ERRORS,
-          payload: err.response.data.message
+          payload: err.response.data
         })
-      
       );
+
 };
 
 // Login - Get User Token

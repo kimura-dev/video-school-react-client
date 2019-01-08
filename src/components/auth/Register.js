@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-// import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
@@ -75,7 +74,6 @@ class Register extends Component {
                   type="text"
                   value={this.state.firstname}
                   onChange={this.onChange}
-                  // error={errors}
                 />
                 <TextFieldGroup 
                   placeholder="Last Name"
@@ -83,7 +81,6 @@ class Register extends Component {
                   type="text"
                   value={this.state.lastname}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <TextFieldGroup 
                   placeholder="Username"
@@ -99,7 +96,6 @@ class Register extends Component {
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <TextFieldGroup 
                   placeholder="Password"
@@ -107,16 +103,16 @@ class Register extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  // error={errors.username}
+                  error={errors.password}
                 />
-                <TextFieldGroup 
+                {/* <TextFieldGroup 
                   placeholder="Confirm Password"
                   name='password2'
                   type="password"
                   value={this.state.password2}
                   onChange={this.onChange}
                   // error={errors.username}
-                />
+                /> */}
                 <input type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2 font-weight-bold" />
               </form>
             </div>
