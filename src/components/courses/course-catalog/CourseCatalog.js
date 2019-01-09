@@ -17,7 +17,7 @@ function truncate(str, no_words) {
           <div className="catalog-container">
             <div className="catalog-search-box">
               <h1 className="catalog-title display-3 pt-5">Welcome!</h1>
-              <p className="catalog-text p-3">Search Video School below for all the latest courses.</p>
+              <h3 className="catalog-text p-3">Search Video School below for all the latest courses.</h3>
               {/* <form className="form-inline mr-auto pb-3">
                 <input type="text" className="form-control ml-2 " placeholder="Search for a Course"/>
                 <button className="btn btn-outline-success">Search</button>
