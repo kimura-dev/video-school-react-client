@@ -45,13 +45,13 @@ class DashCoursePreviewList extends Component {
     const  courseRole  = this.props.courseRole || 'student';
 
     if(courseRole === 'teacher') {
-      courses = usersCourses.authoredCourses.map(course => {
+      courses = usersCourses.authoredCourses.map((course, index) => {
         return (
          
           <CourseListItem 
             course={course} 
             courseRole="teacher"
-            key={course._id}
+            key={index}
             />
         )
       })
@@ -65,12 +65,13 @@ class DashCoursePreviewList extends Component {
 
       icon = (<i className="fa fa-book mr-3 purchased-icon text-white"></i>)
     
-      courses = usersCourses.purchasedCourses.map( course => {
+      courses = usersCourses.purchasedCourses.map( (course, index) => {
         return (
           <CourseListItem 
             // key={course._id} 
             course={course} 
             courseRole="student"
+            key={index}
           />
         )
       })
