@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {API_BASE_URL} from '../config';
 import {
    GET_ALL_LESSONS,
    EDIT_LESSON,
@@ -14,7 +15,7 @@ import {setCourseLoading } from './courseActions';
 // Get A Lesson
 export const getLesson = (id) => dispatch => {
   dispatch(setLessonLoading());
-  axios.get(`/api/lesson/${id}`)
+  axios.get(`${API_BASE_URL}/lesson/${id}`)
     .then(res => {  
       dispatch({
         type: SET_CURRENT_LESSON,
@@ -45,7 +46,7 @@ export const setCurrentLesson = (id) => dispatch => {
 // Get All Lessons 
 export const getAllLessons = () => dispatch => {
   dispatch(setLessonLoading());
-  axios.get('/api/lesson')
+  axios.get(`${API_BASE_URL}/lesson`)
     .then(res => 
       dispatch({
         type: GET_ALL_LESSONS,
@@ -62,7 +63,7 @@ export const getAllLessons = () => dispatch => {
 // Edit A Lesson
 export const editLesson = (lesson, history) => dispatch => {
   dispatch(setLessonLoading());
-  axios.put(`/api/lesson/${lesson._id}`, lesson)
+  axios.put(`${API_BASE_URL}/lesson/${lesson._id}`, lesson)
     .then(res => 
       dispatch({
         type: EDIT_LESSON,
@@ -84,7 +85,7 @@ export const setLessonLoading = () => {
 // Delete Course
 export const deleteLesson = (id) => dispatch => {
   dispatch(setLessonLoading());
-  axios.delete(`/api/lesson/${id}`)
+  axios.delete(`${API_BASE_URL}/lesson/${id}`)
     .then(res => 
       dispatch({
         type: DELETE_LESSON,

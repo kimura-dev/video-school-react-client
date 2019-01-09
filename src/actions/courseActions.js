@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {API_BASE_URL} from '../config';
 import {
   CREATE_COURSE,
   GET_COURSE,
@@ -15,6 +16,7 @@ import {
   SELECTED_COURSE_FIELD_CHANGE,
   SET_COURSE_LOADED
   } from './types';
+
 
 
 
@@ -35,7 +37,7 @@ import {
   // Create Course
 export const createCourse = (courseData, history)  => dispatch => {
   axios
-      .post('/api/course', courseData)
+      .post(`${API_BASE_URL}/course`, courseData)
       .then(res => 
         dispatch({
           type: CREATE_COURSE,
@@ -80,7 +82,7 @@ export const selectedCourseFieldChange = (name, value) => dispatch => {
 // Get A Course 
 export const getCourse = (id) => dispatch => {
   dispatch(setCourseLoading());
-  axios.get(`/api/course/${id}`)
+  axios.get(`${API_BASE_URL}/course/${id}`)
     .then(res => 
       dispatch({
         type: GET_COURSE,
@@ -100,7 +102,7 @@ export const getCourse = (id) => dispatch => {
 // Get All Course 
 export const getAllCourses = () => dispatch => {
 
-  axios.get('/api/course')
+  axios.get(`${API_BASE_URL}/course`)
     .then(res => {
       // console.log(res.data)
 
@@ -118,7 +120,7 @@ export const getAllCourses = () => dispatch => {
 // Get Authored Courses
 export const getAuthoredCourses = (username) => dispatch => {
   dispatch(setCourseLoading());
-  axios.get(`/api/course/author/${username}`)
+  axios.get(`${API_BASE_URL}/course/author/${username}`)
     .then(res => 
       dispatch({
         type: GET_AUTHORED_COURSES,
@@ -131,7 +133,7 @@ export const getAuthoredCourses = (username) => dispatch => {
 // Get Purchased Courses
 export const getPurchasedCourses = (username) => dispatch => {
   dispatch(setCourseLoading());
-  axios.get(`/api/users/${username}/courses`)
+  axios.get(`${API_BASE_URL}/users/${username}/courses`)
     .then(res => 
       dispatch({
         type: GET_PURCHASED_COURSES,
@@ -145,7 +147,7 @@ export const getPurchasedCourses = (username) => dispatch => {
 export const editCourse = (course, history) => dispatch => {
   dispatch(setCourseLoading());  
 
-  axios.put(`/api/course/${course._id}`, course)
+  axios.put(`${API_BASE_URL}/course/${course._id}`, course)
     .then(res => 
       dispatch({
         type: EDIT_COURSE,
@@ -159,7 +161,7 @@ export const editCourse = (course, history) => dispatch => {
 // Delete Course
 export const deleteCourse = (id) => dispatch => {
   dispatch(setCourseLoading());
-  axios.delete(`/api/course/${id}`)
+  axios.delete(`${API_BASE_URL}/course/${id}`)
     .then(res => 
       dispatch({
         type: DELETE_COURSE,

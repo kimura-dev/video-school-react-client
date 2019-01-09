@@ -1,14 +1,16 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
+import {API_BASE_URL} from '../config';
 import { GET_ERRORS, SET_CURRENT_USER, PURCHASE_COURSE } from './types';
+
 
 
 
 export const purchaseCourse = (id, token) => dispatch => {
   // dispatch(setCourseLoading());
   axios
-    .post(`/api/course/${id}/purchase/${token}`)
+    .post(`${API_BASE_URL}/course/${id}/purchase/${token}`)
     .then(res => {
       dispatch({
         type: PURCHASE_COURSE,
@@ -20,7 +22,7 @@ export const purchaseCourse = (id, token) => dispatch => {
 }
 
 export const refreshUserLogin = (history) => dispatch => {
-  axios.post('/api/auth/refresh')
+  axios.post(`${API_BASE_URL}/auth/refresh`)
   .then(res => {
     // Save to localStorage
     const token = res.data.authToken;
@@ -37,7 +39,7 @@ export const refreshUserLogin = (history) => dispatch => {
 }
 
 export const refreshUserData = (username) => dispatch => {
-  axios.get(`/api/users/${username}`)
+  axios.get(`${API_BASE_URL}/users/${username}`)
     .then(res => {
       let user = res.data;
     
@@ -49,7 +51,7 @@ export const refreshUserData = (username) => dispatch => {
 
 export const registerUser = (userData, history)  => dispatch => {
   axios
-      .post('/api/users', userData)
+      .post(`${API_BASE_URL}/users`, userData)
       .then(res => history.push('/login'))
       .catch(err => 
         // since this is an ajax call and we are waiting we need to call dispatch - Redux Thunk
@@ -63,7 +65,7 @@ export const registerUser = (userData, history)  => dispatch => {
 
 // Login - Get User Token
 export const  loginUser = (userData) => dispatch => {
-  axios.post('/api/auth/login', userData)
+  axios.post(`${API_BASE_URL}/auth/login`, userData)
     .then(res => {
       // Save to localStorage
       const token = res.data.authToken;

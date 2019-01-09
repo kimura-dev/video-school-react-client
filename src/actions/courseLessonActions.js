@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {API_BASE_URL} from '../config';
 import {
   ADD_NEW_COURSE_LESSON,
   ADD_SELECTED_COURSE_LESSON,
@@ -40,7 +41,7 @@ export const updateNewLesson = (newData) => dispatch => {
 // Delete A Lesson
 export const deleteLesson = (id) => dispatch => {
   // dispatch(setLessonLoading());
-  axios.delete(`/api/lesson/${id}`)
+  axios.delete(`${API_BASE_URL}/lesson/${id}`)
     .then(res => 
       dispatch({
         type: DELETE_LESSON,
