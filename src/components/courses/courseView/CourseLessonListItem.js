@@ -13,7 +13,7 @@ export function CourseLessonListItem(props) {
 
   let pageName = props.history.location.pathname.split('/').filter(Boolean).shift()
 
-  let liClasses = "bd-highlight bg-warning shadow p-1 mb-3 rounded text-black lesson-list-item";
+  let liClasses = "bd-highlight bg-warning shadow p-3 mb-3 rounded text-black lesson-list-item";
   
   if(props.mode === 'menu'){
      liClasses = "lesson-item list-group-item list-group-item-action text-black";
@@ -78,6 +78,7 @@ export function CourseLessonListItem(props) {
 
   // default view
   return (
+    <h3 className="mb-3">Lesson cannot be viewed until course is purchased</h3>
     <li className={liClasses}>
       {lesson.title}
     </li>
