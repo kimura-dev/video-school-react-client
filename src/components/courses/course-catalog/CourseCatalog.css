@@ -1,14 +1,19 @@
 .catalog-search-box {
   height: 450px;
   background-image: -webkit-linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../../../img/course-catalog-img.jpg');
+  padding: 3%;
 }
 
 .catalog-title {
   color: #fff;
+  margin-left: 3%;
+  position: relative;
+  top: 25px;
 }
 
 .catalog-text {
   color: #fff;
+  margin-left: 3%;
 }
 
 .course-list-title {
