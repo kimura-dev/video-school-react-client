@@ -8,7 +8,6 @@ import { GET_ERRORS, SET_CURRENT_USER, PURCHASE_COURSE } from './types';
 
 
 export const purchaseCourse = (id, token) => dispatch => {
-  // dispatch(setCourseLoading());
   axios
     .post(`${API_BASE_URL}/course/${id}/purchase/${token}`)
     .then(res => {
@@ -44,7 +43,6 @@ export const refreshUserData = (username) => dispatch => {
       let user = res.data;
     
       dispatch(setCurrentUser(user))
-      // dispatch(setCurrentUser);
     })
     .catch(err => console.log(err));
 }
@@ -78,11 +76,6 @@ export const  loginUser = (userData) => dispatch => {
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
-  //   .catch(err => dispatch({
-  //     type: GET_ERRORS,
-  //     payload: err.response.data.message
-  //   })
-  // );
 }
 
 // Set Logged in User
@@ -95,7 +88,6 @@ export const setCurrentUser = (decoded) =>  {
 
 // Log user out
 export const logoutUser = () => dispatch => {
-  // history.push('/login') 
   // Remove the token from localStorage
   localStorage.removeItem('jwtToken');
   // Remove auth header for future requests

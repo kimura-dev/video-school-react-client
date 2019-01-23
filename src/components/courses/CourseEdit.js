@@ -30,9 +30,6 @@ class CourseForm extends Component {
 
   // When component loads this runs and looks for the current course
   componentDidMount() {
-    console.log('Mounting');
-    // console.log({selectedCourse: this.props.courses.selectedCourse});
-
     // Prevent getCourse if we know we are already editing a course
     if(this.props.match.params.id && !this.props.courses.loaded){ 
       this.props.getCourse(this.props.match.params.id);
@@ -41,18 +38,12 @@ class CourseForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     // Checking for the current course. Then if there is a course we supply the component with the course info
-
-
     if (this.props.courses && this.props.courses.selectedCourse && !this.props.courses.loaded){
         if(!prevProps.selectedCourse || this.props.courses.selectedCourse._id !== prevProps.selectedCourse._id) {
-          console.log('Updating');
-
           this.props.setCourseLoaded(true);
-
           const course = this.props.courses.selectedCourse;
 
           if(this.props.courses.selectedCourse._id !== this.state._id){
-            console.log('Initializng form editor');
             // If a course field doesnt exist we set to empty string
             course._id = !isEmpty(course._id) ? course._id : '';
             course.title = !isEmpty(course.title) ? course.title : '';
@@ -76,21 +67,17 @@ class CourseForm extends Component {
   }
 
   onChange(e) {
-    this.props.selectedCourseFieldChange(e.target.name, e.target.value);
-    // this.setState({ [e.target.name]: e.target.value })
-   
+    this.props.selectedCourseFieldChange(e.target.name, e.target.value);   
   }
 
   onSubmit(e) {
     e.preventDefault();
     const editCourse = this.props.courses.selectedCourse;
-   
     this.props.editCourse(editCourse, this.props.history);
   }
 
 
   render() {
-    // const { errors } = this.state.errors; 
     let state = this.props.courses.selectedCourse;
 
     if(this.props.courses.loading) {
@@ -101,7 +88,6 @@ class CourseForm extends Component {
 
     return (
       <div className="course-form">
-      {/* <Spinner /> */}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -117,7 +103,6 @@ class CourseForm extends Component {
                   type="text"
                   value={state.title}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <h3>Description</h3>
                 <TextAreaFieldGroup 
@@ -126,7 +111,6 @@ class CourseForm extends Component {
                   type="text"
                   value={state.description}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                  <div className="form-group">
                   <h3>Price</h3>
@@ -139,14 +123,6 @@ class CourseForm extends Component {
                       onChange={this.onChange}
                     />
                   </div>
-                {/* <TextFieldGroup 
-                  placeholder="Price"
-                  name='price'
-                  type="text"
-                  value={state.price}
-                  onChange={this.onChange}
-                  // error={errors.username}
-                /> */}
                 <Link to="/lesson-form" className="btn btn-lg btn-success">
                   Add Lesson
                 </Link>
@@ -177,10 +153,9 @@ CourseForm.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth, // .auth comes from my root reducer
+  auth: state.auth, 
   errors: state.errors,
   courses: state.courses
-  //now we can say this.props.auth
 });
 
 export default connect(mapStateToProps, { editCourse , getCourse, setCourseLoaded, selectedCourseFieldChange })(withRouter(CourseForm));

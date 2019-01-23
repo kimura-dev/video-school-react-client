@@ -12,7 +12,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload), // boolean value
-        // user: { user: action.payload }
         user:  action.payload 
       }
      case PURCHASE_COURSE:

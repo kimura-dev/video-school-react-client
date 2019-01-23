@@ -16,9 +16,7 @@ import {
   SELECTED_COURSE_FIELD_CHANGE,
   SET_COURSE_LOADED
   } from './types';
-
-
-
+  
 
   export const setCourseLoaded = (boolean) => dispatch => {
     dispatch({

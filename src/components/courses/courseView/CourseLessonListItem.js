@@ -30,11 +30,6 @@ export function CourseLessonListItem(props) {
   }
 
   function handleOnClickLessonDelete(e){
-    // deleteLesson - AJAX on CourseView
-    // deleteSelectedCourseLesson - Editing a lesson on a course that has been saved
-    // deleteNewCourseLesson - Editing a lesson on a course that hasnt been saved yet
-
-    console.log('handle on click running');
     
     if(props.courses.selectedCourse) {
       if(pageName === 'course'){

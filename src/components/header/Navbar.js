@@ -46,7 +46,7 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <div className="container">
-        <Link className="navbar-brand" to="/">VS LOGO</Link>
+        <Link className="navbar-brand" to="/"><img class="logo-img" src={require('../../img/vidschool1.png')} alt="Video School"/></Link>
         <button className="navbar-toggler" data-toggle="collapse" data-target="#mobile-nav">
          <span className="navbar-toggler-icon"></span>
         </button>

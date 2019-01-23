@@ -18,17 +18,11 @@ function truncate(str, no_words) {
             <div className="catalog-search-box">
               <h1 className="catalog-title display-3 pt-5">Welcome!</h1>
               <h3 className="catalog-text p-3">Search Video School below for all the latest courses.</h3>
-              {/* <form className="form-inline mr-auto pb-3">
-                <input type="text" className="form-control ml-2 " placeholder="Search for a Course"/>
-                <button className="btn btn-outline-success">Search</button>
-              </form> */}
             </div>
           </div>
 
-          
         <section className="catalog-course-list">
         <h1 className="course-list-title">Catalog</h1>
-
         <div className="catalog">  
           <div className="container"> 
             <div className="catalog-course-item-container">
@@ -53,7 +47,7 @@ function truncate(str, no_words) {
                     </div> 
             )
       }, )
-        }
+        } 
           </div>
           </div>
           </div>

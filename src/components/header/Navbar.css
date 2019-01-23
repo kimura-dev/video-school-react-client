@@ -1,3 +1,20 @@
 a.nav-link {
   font-size: 16px;
 }
+ 
+.navbar-brand {
+  width: 60px;
+}
+
+.navbar {
+  margin-bottom: 15px
+}
+
+nav .container {
+  margin-left: 0;
+}
+
+div#mobile-nav {
+  font-weight: 300;
+  letter-spacing: 1.5px;
+}

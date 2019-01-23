@@ -12,10 +12,7 @@ import Spinner from '../../common/Spinner';
 import './CourseView.css';
 
 class CourseView extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
+ 
   componentDidMount() {
     let urlString = this.props.match.params;
     let courseId = this.props.match.params.id;
