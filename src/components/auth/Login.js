@@ -76,7 +76,7 @@ class Login extends Component {
                 onChange={this.onChange}
                 // error={errors}
               />
-              <input type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2 font-weight-bold" />
+              <input id="login-submit-btn" type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2 font-weight-bold" />
             </form>
           </div>
         </div>

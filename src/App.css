@@ -18,4 +18,7 @@ ul {
   list-style: none;
 }
 
-
+.submit-btn {
+  width: 25%;
+  margin: auto;
+}

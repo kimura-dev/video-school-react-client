@@ -17,7 +17,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
+              <h1 id="dashboard-header" className="display-4">Dashboard</h1>
               <Link to="/course-form" className="btn btn-success mr-2 font-weight-bold">
                 Create New Course
               </Link>
