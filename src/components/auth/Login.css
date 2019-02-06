@@ -1,5 +1,5 @@
 .login {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 input.btn.btn-success.btn-block.mt-4.mb-4.p-2.font-weight-bold {

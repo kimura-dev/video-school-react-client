@@ -23,7 +23,14 @@ class Login extends Component {
   componentDidMount() {
     if(this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
+    } else {
+      console.log(this.props.location.pathname);
+      if(this.props.location.pathname.toLowerCase() === '/demo'){
+        this.props.loginUser({username: 'guest', password: '123456'});
+      }
     }
+
+
   }
 
   componentWillReceiveProps(nextProps) {
