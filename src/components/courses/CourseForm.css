@@ -2,3 +2,7 @@ input.btn.btn-success.btn-block.p-2.mt-5.mb-5.font-weight-bold {
   margin-right: auto;
   width: 25%;
 }
+
+.course-form {
+  min-height: 100vh;
+}
