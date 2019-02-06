@@ -18,5 +18,9 @@ Courses can be browsed and purchased through the course catalog section.
 
 ![screenshot 12](https://user-images.githubusercontent.com/37715269/52378055-8677ea00-2a1b-11e9-98fa-c1d47404a16b.png)
 
+Courses can be created and maintained through the Course Create and Course View pages
+
+
+
 
 
