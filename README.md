@@ -16,8 +16,6 @@ Courses can be browsed and purchased through the course catalog section.
 
 ![screenshot 13](https://user-images.githubusercontent.com/37715269/52378042-7c55eb80-2a1b-11e9-95ce-47b9e3b52a59.png)
 
-![screenshot 12](https://user-images.githubusercontent.com/37715269/52378055-8677ea00-2a1b-11e9-98fa-c1d47404a16b.png)
-
 Courses can be created and maintained through the Course Create and Course View pages
 
 ![screenshot 14](https://user-images.githubusercontent.com/37715269/52378227-01410500-2a1c-11e9-9baa-60a0490a439c.png)
@@ -28,4 +26,10 @@ Courses can be created and maintained through the Course Create and Course View 
 Lessons
 ---
 Each course has lessons that are added to them and each lesson displays the content that the teacher wish to share with the user. The lessons are displayed in full screen format.
+
+![screenshot 17](https://user-images.githubusercontent.com/37715269/52378471-980dc180-2a1c-11e9-8e2a-43588315f432.png)
+
+Build
+---
+This application was built using ReactJS, Mongoose, Express, and NodeJS
 
