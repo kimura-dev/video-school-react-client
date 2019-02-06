@@ -20,7 +20,12 @@ Courses can be browsed and purchased through the course catalog section.
 
 Courses can be created and maintained through the Course Create and Course View pages
 
+![screenshot 14](https://user-images.githubusercontent.com/37715269/52378227-01410500-2a1c-11e9-9baa-60a0490a439c.png)
+
+![screenshot 15](https://user-images.githubusercontent.com/37715269/52378236-069e4f80-2a1c-11e9-87f7-e05d4374573f.png)
 
 
-
+Lessons
+---
+Each course has lessons that are added to them and each lesson displays the content that the teacher wish to share with the user. The lessons are displayed in full screen format.
 
