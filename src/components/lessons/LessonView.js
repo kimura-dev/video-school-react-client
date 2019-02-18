@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import CourseLessonMenu from '../courses/courseLessons/CourseLessonMenu';
 import { getLesson } from '../../actions/lessonActions';
 import { toggleLessonList  as toggleMenu, collapseLessonList } from '../../actions/uiActions';
 import LessonViewNavbar from './LessonViewNavbar';
@@ -11,9 +10,6 @@ import './LessonView.css';
 
 
  class LessonView extends Component {
-  //  constructor(props) {
-  //    super(props);
-  //  }
 
    componentDidMount() {
     if(this.props.match.params){

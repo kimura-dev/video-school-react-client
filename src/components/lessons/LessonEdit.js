@@ -8,6 +8,7 @@ import { addNewCourseLesson, addSelectedCourseLesson } from '../../actions/cours
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 import Spinner from '../common/Spinner';
+import './LessonForm.css';
 
 
 class LessonForm extends Component {
@@ -18,8 +19,23 @@ class LessonForm extends Component {
   }
 
   componentDidMount() {
-    if(this.props.selectedCourse){
+    // Edit New Course Mode
+    if(this.props.newCourse){
+      let lesson = this.props.newCourse.lessons.find((course) => course._id === this.props.match.params.id );
+      if(!lesson){
+        lesson = this.props.newCourse.lessons[this.props.match.params.id];
+      }
+      if(lesson){
+        this.props.setCurrentLesson(lesson);
+      }
+    }
+
+    // Edit Saved Course Mode
+    else if(this.props.selectedCourse){
       let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
+      if(!lesson){
+        lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
+      }
       if(lesson){
         this.props.setCurrentLesson(lesson);
       }
@@ -100,6 +116,8 @@ class LessonForm extends Component {
 LessonForm.propTypes = {
   editLesson: PropTypes.func.isRequired,
   setCurrentLesson: PropTypes.func.isRequired,
+  addSelectedCourseLesson: PropTypes.func.isRequired,
+  addNewCourseLesson: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
@@ -111,4 +129,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { editLesson, setCurrentLesson })(withRouter(LessonForm));
+export default connect(mapStateToProps, { editLesson, setCurrentLesson, addSelectedCourseLesson, addNewCourseLesson })(withRouter(LessonForm));

@@ -18,16 +18,16 @@ class NavBar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <Link className="nav-link" to="/dashboard">Dashboard</Link>
+        <Link className="nav-link text-light" to="/dashboard">Dashboard</Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/course-catalog">Catalog</Link>
+        <Link className="nav-link text-light" to="/course-catalog">Catalog</Link>
       </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/course-form">Create Course</Link>
+          <Link className="nav-link text-light" to="/course-form">Create Course</Link>
         </li>
         <li className="nav-item">
-         <a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link">Logout</a>
+         <a href="#" onClick={this.onLogoutClick.bind(this)} className="nav-link text-light">Logout</a>
         </li>
       </ul>
     );
@@ -35,10 +35,10 @@ class NavBar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/login">Login</Link>
+          <Link className="nav-link text-light" to="/login">Login</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/register">Signup</Link>
+          <Link className="nav-link text-light" to="/register">Signup</Link>
         </li>
       </ul>
     );
@@ -46,7 +46,7 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <div className="container">
-        <Link className="navbar-brand" to="/"><img class="logo-img" src={require('../../img/vidschool1.png')} alt="Video School"/></Link>
+        <Link className="navbar-brand" to="/"><img className="logo-img" src={require('../../img/vidschool1.png')} alt="Video School"/></Link>
         <button className="navbar-toggler" data-toggle="collapse" data-target="#mobile-nav">
          <span className="navbar-toggler-icon"></span>
         </button>

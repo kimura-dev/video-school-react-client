@@ -4,7 +4,7 @@ import friendlyDate from '../../common/friendlyDate';
 // need to know about course and lessons watched
 
 export default function CourseData(props) {
-  const {course, watchedLessons, user} = props;
+  const {course, user} = props;
  
   let author = course.username;
   let currentUser = user.user.username;

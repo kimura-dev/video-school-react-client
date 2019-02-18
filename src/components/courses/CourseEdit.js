@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import classnames from 'classnames';
 import { connect } from 'react-redux';
-// import { Field, reduxForm } from 'redux-form';
 import { getCourse, editCourse, setCourseLoaded, selectedCourseFieldChange } from '../../actions/courseActions';
 import CourseLessonList from './courseView/CourseLessonList';
 import TextFieldGroup  from '../common/TextFieldGroup';

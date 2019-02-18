@@ -43,7 +43,7 @@ export function CourseLessonListItem(props) {
   }
 
   if(courseRole === 'author') {
-
+    let lessonId = lesson._id || props.index;
     return (
         <li className={liClasses}>{lesson.title}
           <div className="btnBox">
@@ -52,7 +52,7 @@ export function CourseLessonListItem(props) {
                 className="btn btn-danger m-2">
                 Delete
             </button>
-            <Link to={`/edit-lesson/${lesson._id}`} className="btn btn-success m-2">
+            <Link to={`/edit-lesson/${lessonId}`} className="btn btn-success m-2">
               Edit
             </Link>
           </div>

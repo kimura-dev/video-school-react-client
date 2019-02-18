@@ -8,3 +8,8 @@
 section.course-description-section {
   padding-bottom: 10px;
 }
+
+button.btn.btn-light {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

@@ -136,6 +136,7 @@ export default function(state = initialState, action) {
       //   loading: false,
       //   loaded: true
       // }
+      
     case ADD_SELECTED_COURSE_LESSON:
       
       let newState = {

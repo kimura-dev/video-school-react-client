@@ -4,13 +4,10 @@ import {
    GET_ALL_LESSONS,
    EDIT_LESSON,
    LESSON_LOADING, 
-   GET_ERRORS,
    SET_CURRENT_LESSON,
    SET_CURRENT_COURSE,
    DELETE_LESSON,
   } from './types';
-import {setCourseLoading } from './courseActions';
-
   
 // Get A Lesson
 export const getLesson = (id) => dispatch => {
