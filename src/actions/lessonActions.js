@@ -59,16 +59,25 @@ export const getAllLessons = () => dispatch => {
 
 // Edit A Lesson
 export const editLesson = (lesson, history) => dispatch => {
-  dispatch(setLessonLoading());
-  axios.put(`${API_BASE_URL}/lesson/${lesson._id}`, lesson)
-    .then(res => 
+  
+    if(lesson._id){
+      dispatch(setLessonLoading());
+      axios.put(`${API_BASE_URL}/lesson/${lesson._id}`, lesson)
+        .then(res => 
+          dispatch({
+            type: EDIT_LESSON,
+            history: history.goBack(),
+            payload: res.data
+          })
+        )
+        .catch(err => console.log(err))
+    } else {
       dispatch({
         type: EDIT_LESSON,
         history: history.goBack(),
-        payload: res.data
+        payload: lesson
       })
-    )
-    .catch(err => console.log(err))
+    }
 }
 
 

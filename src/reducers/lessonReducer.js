@@ -8,7 +8,6 @@ import {
         SET_CURRENT_LESSON 
       } 
       from '../actions/types';
-import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
 const initialState = {
   lesson: null,
@@ -44,12 +43,9 @@ export default function(state = initialState, action) {
           loading: false
         }
     case EDIT_LESSON:
+    console.log('editLesson with state:' + JSON.stringify(state));
         return {
           ...state,
-          selectedCourse: {
-            ...state.selectedCourse, 
-            lessons: copyArrayWithEditedItemById( state.selectedCourse.lessons, action.payload) 
-          },
           loading: false
         }
     case SET_CURRENT_LESSON:

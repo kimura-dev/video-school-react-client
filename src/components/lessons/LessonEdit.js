@@ -22,8 +22,11 @@ class LessonForm extends Component {
     // Edit New Course Mode
     if(this.props.newCourse){
       let lesson = this.props.newCourse.lessons.find((course) => course._id === this.props.match.params.id );
+      // let lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
       if(!lesson){
-        lesson = this.props.newCourse.lessons[this.props.match.params.id];
+        const paramId = this.props.match.params.id;
+        const index = parseInt(this.props.match.params.id, 10);
+        lesson = this.props.newCourse.lessons[index];
       }
       if(lesson){
         this.props.setCurrentLesson(lesson);
@@ -33,6 +36,7 @@ class LessonForm extends Component {
     // Edit Saved Course Mode
     else if(this.props.selectedCourse){
       let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
+
       if(!lesson){
         lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
       }
@@ -53,12 +57,8 @@ class LessonForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newLesson = this.props.lessons.selectedLesson;
-    // this.props.editLesson(newLesson, this.props.history);
-    if(this.props.selectedCourse){ 
-      this.props.addSelectedCourseLesson(newLesson, this.props.history);
-    } else {
-      this.props.addNewCourseLesson(newLesson, this.props.history);
-    }
+
+    this.props.editLesson(newLesson, this.props.history);
   }
 
   render() {
@@ -126,6 +126,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   lessons: state.lessons,
   selectedCourse : state.courses.selectedCourse,
+  newCourse : state.courses.newCourse,
   errors: state.errors
 });
 

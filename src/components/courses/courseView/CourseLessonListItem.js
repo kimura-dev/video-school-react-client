@@ -10,7 +10,7 @@ import './CourseLessonListItem.css'
 
 export function CourseLessonListItem(props) {
   const {lesson, courseRole, mode} = props;
-
+  // console.log(this.props.location.pathname);
   let pageName = props.history.location.pathname.split('/').filter(Boolean).shift()
 
   let liClasses = "bd-highlight bg-warning shadow p-3 mb-3 rounded text-black lesson-list-item";
@@ -59,6 +59,7 @@ export function CourseLessonListItem(props) {
         </li>
         )
   }
+ 
 
 
   if(courseRole === 'student'){

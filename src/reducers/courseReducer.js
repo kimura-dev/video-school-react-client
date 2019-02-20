@@ -9,6 +9,7 @@ import {
   UPDATE_NEW_COURSE, 
   UPDATE_NEW_LESSON, 
   EDIT_COURSE, 
+  EDIT_LESSON,
   DELETE_COURSE, 
   DELETE_NEW_COURSE_LESSON, 
   DELETE_SELECTED_COURSE_LESSON,
@@ -22,6 +23,7 @@ import {
   GET_LESSON
 } from '../actions/types';
 import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
+
 
 const initialState = {
   course: null, // for viewing
@@ -127,7 +129,28 @@ export default function(state = initialState, action) {
         loading: false,
         loaded: false
       }
-
+      case EDIT_LESSON:
+        if(state.selectedCourse){
+          return {
+            ...state,
+  
+            selectedCourse: {
+              ...state.selectedCourse, 
+              lessons: copyArrayWithEditedItemById( state.selectedCourse.lessons, action.payload) 
+            },
+            loading: false
+          }
+        } else {
+          return {
+            ...state,
+  
+            newCourse: {
+              ...state.newCourse, 
+              lessons: copyArrayWithEditedItemById( state.newCourse.lessons, action.payload) 
+            },
+            loading: false
+          }
+        }
     case ADD_NEW_COURSE_LESSON:
       // return {
       //   ...state,
@@ -222,8 +245,8 @@ export default function(state = initialState, action) {
 
         return {
           ...state,
-          allCourses: copyArrayWithEditedItemById(editedCourse, state.allCourses),
-          authoredCourses: copyArrayWithEditedItemById(editedCourse, state.authoredCourses),
+          allCourses: copyArrayWithEditedItemById(state.allCourses, editedCourse),
+          authoredCourses: copyArrayWithEditedItemById(state.authoredCourses, editedCourse),
           selectedCourse: null,
           loading: true
         }

@@ -12,11 +12,20 @@ import {
   COURSE_LOADING,
   SET_CURRENT_COURSE, 
   GET_ERRORS,
+  UPDATE_COURSE,
   UPDATE_NEW_COURSE,
   SELECTED_COURSE_FIELD_CHANGE,
   SET_COURSE_LOADED
   } from './types';
   
+
+  export const updateCourse = (courseData /* history*/) => dispatch => {
+    dispatch({
+      type: UPDATE_COURSE,
+      payload: courseData
+      // history: history.goBack()
+    })
+  };
 
   export const setCourseLoaded = (boolean) => dispatch => {
     dispatch({
@@ -87,13 +96,6 @@ export const getCourse = (id) => dispatch => {
         payload: res.data
       })
     )
-    // .catch(err => 
-    //   dispatch({
-    //     type: GET_ERRORS,
-    //     payload: err.response.data
-    //   })
-    // )
-
     .catch(err => console.log(err))
 };
 

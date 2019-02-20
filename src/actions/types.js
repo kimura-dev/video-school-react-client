@@ -6,6 +6,7 @@ export const PURCHASE_COURSE = 'PURCHASE_COURSE';
 
 // Course Types
 export const CREATE_COURSE = 'CREATE_COURSE';
+export const UPDATE_COURSE = 'UPDATE_COURSE';
 export const GET_COURSE = 'GET_COURSE';
 export const GET_ALL_COURSES = 'GET_ALL_COURSES';
 export const GET_PURCHASED_COURSES = 'GET_PURCHASED_COURSES';

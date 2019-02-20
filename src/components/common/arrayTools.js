@@ -6,8 +6,8 @@ export function copyArrayWithEditedItemById( items, editedItem ){
     return matched;
   })
 
-  if(index) {
-     updatedItems[index] = editedItem;
+  if(index + 1) {
+    updatedItems[index] = editedItem;
   }
   
   return updatedItems;
