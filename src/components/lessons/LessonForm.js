@@ -32,13 +32,18 @@ class LessonForm extends Component {
       videoUrl: this.props.newLesson.videoUrl
     }
   
+    // This is where app is breaking beczuse on a newCourse creation a selectedCourse can still be in redux state
+    // so this will run all the time adding the lesson to the selectedCourse and not the newCourse.
+    // Is there a way to say   -  if(newCourse (has values)){}
+    //  && typeof this.props.newCourse.title === "undefined" && typeof this.props.newCourse.title === "undefined"
+    //!!! BREAKING !!! 
     if(this.props.selectedCourse){ 
       this.props.addSelectedCourseLesson(newLesson, this.props.history);
     } else {
       this.props.addNewCourseLesson(newLesson, this.props.history);
     }
   }
-
+// ------------------------------------------------ //
   render() {
     // const { errors } = this.state.errors; 
 

@@ -20,25 +20,29 @@ class LessonForm extends Component {
 
   componentDidMount() {
     // Edit New Course Mode
-    if(this.props.newCourse){
-      let lesson = this.props.newCourse.lessons.find((course) => course._id === this.props.match.params.id );
-      // let lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
+    if(this.props.selectedCourse){
+      console.log('selectedCourse')
+      let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
       if(!lesson){
+        console.log('seconde if')
         const paramId = this.props.match.params.id;
-        const index = parseInt(this.props.match.params.id, 10);
-        lesson = this.props.newCourse.lessons[index];
+        const index = parseInt(paramId, 10);
+        lesson = this.props.selectedCourse.lessons[index];
       }
       if(lesson){
+        console.log('third if')
+
         this.props.setCurrentLesson(lesson);
       }
-    }
 
-    // Edit Saved Course Mode
-    else if(this.props.selectedCourse){
-      let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
+    } 
+    // Edit a  lesson
+    else {
+      console.log('selectedCourse')
+      let lesson = this.props.newCourse.lessons.find((course) => course._id === this.props.match.params.id );
 
       if(!lesson){
-        lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
+        lesson = this.props.newCourse.lessons[this.props.match.params.id];
       }
       if(lesson){
         this.props.setCurrentLesson(lesson);
@@ -76,9 +80,12 @@ class LessonForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+              {/* <Link to="/dashboard" className="btn btn-light">
                 Go Back
-              </Link>
+              </Link> */}
+              <button onClick={this.props.history.goBack} className="btn btn-light">
+                  Go Back
+              </button>
               <h1 className="display-4 text-center">Edit Lesson</h1>
               {/* <p className="lead text-center">Supply lesson details below</p> */}
               <form onSubmit={this.onSubmit}>

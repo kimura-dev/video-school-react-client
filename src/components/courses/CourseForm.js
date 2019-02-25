@@ -18,11 +18,9 @@ class CourseForm extends Component {
 
   }
 
-  // will test for properties
-  // If we recieve new props and errors is included
-  // componentWillReceiveProps(nextProps) {
-  //   if(nextProps.errors) {
-  //     this.setState({errors: nextProps.errors})
+  // componentDidMount(){
+  //   if(this.props.selectedCourse){
+  //     console.log('selectedCourse present on course form')
   //   }
   // }
 
@@ -43,6 +41,11 @@ class CourseForm extends Component {
 
   render() {
     const { errors } = this.props; 
+    console.log(this.props.history.location.pathname); // ---> /course-form
+
+    // function goBack(){
+
+    // }
     
     return (
       <section className="course-form">

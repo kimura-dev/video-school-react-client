@@ -36,7 +36,7 @@ function truncate(str, no_words) {
                         <h2 className="list-item-title">{course.title}</h2>
                         <input type ='hidden' className="course_id_hidden"  key={index} />
                         <p className="list-item-description">{truncate(course.description,40)}</p> 
-                        <div classname="">
+                        <div className="">
                           <Link to={`/course/${course._id}`} className="btn btn-success course-list-item-btn">
                             View Course »
                           </Link>
