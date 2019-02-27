@@ -18,7 +18,6 @@ import './LessonView.css';
   }
 
   componentDidUpdate(oldProps, oldState) {
-    // General componentDidUpdate pattern
     if(oldProps.match.params && this.props.match.params && this.props.match.params.id !== oldProps.match.params.id ){
       this.props.getLesson(this.props.match.params.id);
     }
@@ -32,7 +31,6 @@ import './LessonView.css';
   render() {
     let videoPlayer = <Spinner/>;
     let classNames = 'LessonView';
-    // let menu = <CourseLessonMenu />;
 
     if(this.props.lesson){
       videoPlayer = <LessonVideoPlayer videoUrl={this.props.lesson.videoUrl} />;
@@ -45,7 +43,6 @@ import './LessonView.css';
     return (
       <div className={classNames}>
         <LessonViewNavbar toggleMenu={this.props.toggleMenu} />
-        {/* {menu} */}
         {videoPlayer}
       </div>
     )

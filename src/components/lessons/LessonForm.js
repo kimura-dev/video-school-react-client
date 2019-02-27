@@ -13,7 +13,6 @@ class LessonForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  // will test for properties
   componentWillReceiveProps(nextProps) {
     if(nextProps.errors) {
       this.setState({errors:nextProps.errors})
@@ -30,13 +29,11 @@ class LessonForm extends Component {
       title: this.props.newLesson.title,
       description: this.props.newLesson.description,
       videoUrl: this.props.newLesson.videoUrl
-    }
-    
+    } 
     this.props.addCourseLesson(newLesson, this.props.history);
   }
-// ------------------------------------------------ //
+
   render() {
-    // const { errors } = this.state.errors; 
 
     return (
       <div className="lesson-form">
@@ -47,7 +44,6 @@ class LessonForm extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create A Lesson</h1>
-              {/* <p className="lead text-center">Supply lessons details below</p> */}
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
                   placeholder="Title"
@@ -55,7 +51,6 @@ class LessonForm extends Component {
                   type="text"
                   value={this.props.newLesson.title}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <TextAreaFieldGroup 
                   placeholder="Description"
@@ -63,7 +58,6 @@ class LessonForm extends Component {
                   type="text"
                   value={this.props.newLesson.description}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <TextFieldGroup 
                   placeholder="Video Url"
@@ -71,7 +65,6 @@ class LessonForm extends Component {
                   type="text"
                   value={this.props.newLesson.videoUrl}
                   onChange={this.onChange}
-                  // error={errors.username}
                 />
                 <input type="submit" className="btn btn-success btn-block mt-4 mb-4 p-3" />
               </form>

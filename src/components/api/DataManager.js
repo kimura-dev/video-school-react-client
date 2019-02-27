@@ -8,7 +8,6 @@ class DataManager extends Component {
   // On App Load
   componentDidMount() {
     this.props.getAllCourses();
-    // this.props.refreshUserLogin(this.props.history);
     if(this.props.auth.user && this.props.auth.user.user){
       // this.props.refreshUserData(this.props.auth.user.user.username);
     }
@@ -31,10 +30,5 @@ const mapStateToProps = (state) => ({
   courses : state.courses,
   auth: state.auth
 });
-
-// const mapStateToProps = (state) => ({
-//   courses : state.courses.allCourses,
-//   user: state.auth
-// });
 
 export default connect(mapStateToProps, { getAllCourses, refreshUserLogin, refreshUserData })(DataManager);

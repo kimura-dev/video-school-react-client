@@ -1,4 +1,3 @@
-
 export default function getCourseRole(user, course) { 
   if(course && user && course.username === user.username) {
     return 'author';

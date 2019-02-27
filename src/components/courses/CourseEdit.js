@@ -26,7 +26,6 @@ class CourseForm extends Component {
 
   }
 
-  // When component loads this runs and looks for the current course
   componentDidMount() {
     // Prevent getCourse if we know we are already editing a course
     if(this.props.match.params.id && !this.props.courses.loaded){ 

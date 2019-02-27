@@ -5,7 +5,6 @@ import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import './Login.css';
 
-
 class Login extends Component {
   constructor(props) {
     super();
@@ -28,8 +27,6 @@ class Login extends Component {
         this.props.loginUser({username: 'guest', password: '123456'});
       }
     }
-
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,8 +53,6 @@ class Login extends Component {
   }
 
   render() {
-    // const { errors } = this.state;
-
     return (
       <div className="login">
       <div className="container">
@@ -72,7 +67,6 @@ class Login extends Component {
                 type="text"
                 value={this.state.username}
                 onChange={this.onChange}
-                // error={errors}
               />
               <TextFieldGroup 
                 placeholder="Password"
@@ -80,7 +74,6 @@ class Login extends Component {
                 type="password"
                 value={this.state.password}
                 onChange={this.onChange}
-                // error={errors}
               />
               <input id="login-submit-btn" type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2 font-weight-bold" />
             </form>

@@ -7,12 +7,7 @@ import CourseLessonList from '../courseView/CourseLessonList';
 import Spinner from '../../common/Spinner';
 import './CourseLessonMenu.css';
 
-
-
-
 class CourseLessonMenu extends Component {
-
-
   render() {
     if(!this.props.auth.user){
       return null;
@@ -22,16 +17,11 @@ class CourseLessonMenu extends Component {
     let classNames = 'CourseLessonMenu sidebar bg-info';
     let list = <Spinner/>;
 
-
-
-
     if(this.props.course){
       list = <CourseLessonList  
-              // watchedLessons={this.props.watchedLessons} 
               lessons={this.props.course.lessons}
               courseRole={courseRole}
               mode='menu'
-              // onLessonClick={this.props.onLessonClick}
               />
     }
 
@@ -46,7 +36,6 @@ class CourseLessonMenu extends Component {
         </div>
         {list}
       </div>
-
     )
   }
 }
@@ -55,14 +44,12 @@ CourseLessonMenu.propTypes = {
   expandLessonList: PropTypes.func.isRequired,
   collapseLessonList: PropTypes.func.isRequired,
   expanded: PropTypes.bool,
-  // watchedLessons: PropTypes.array.isRequired,
   selectedLesson: PropTypes.object,
   course: PropTypes.object,
   auth: PropTypes.object.isRequired  
 }
 
 const mapStateToProps = (state) => ({
-  // watchedLessons: state.auth.user.user.watchedLessons,
   course: state.courses.selectedCourse,
   auth: state.auth,
   selectedLesson: state.lessons.selectedLesson,

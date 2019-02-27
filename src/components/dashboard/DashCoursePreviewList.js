@@ -9,7 +9,6 @@ import './DashCoursePreviewList.css'
 class DashCoursePreviewList extends Component {
   constructor(props){
     super(props)
-
     this.state = {
       loading: true,
       shouldUpdate: true
@@ -34,25 +33,22 @@ class DashCoursePreviewList extends Component {
   }
 
   render() {
-
     let courses = '';
     let title = '';
     let noCourses = '';
     let linkBtn = '';
     let icon = '';
     let usersCourses = this.props.courses;
-    
     const  courseRole  = this.props.courseRole || 'student';
 
     if(courseRole === 'teacher') {
       courses = usersCourses.authoredCourses.map((course, index) => {
         return (
-         
           <CourseListItem 
             course={course} 
             courseRole="teacher"
             key={index}
-            />
+          />
         )
       })
       icon = (<i className="fa fa-user-md mr-3 text-dark author-icon"/>)
@@ -62,13 +58,10 @@ class DashCoursePreviewList extends Component {
                   Create A Course
                 </Link>)
     } else {
-
       icon = (<i className="fa fa-book mr-3 purchased-icon text-white"></i>)
-    
       courses = usersCourses.purchasedCourses.map( (course, index) => {
         return (
           <CourseListItem 
-            // key={course._id} 
             course={course} 
             courseRole="student"
             key={index}
@@ -107,7 +100,6 @@ DashCoursePreviewList.propTypes = {
   getAuthoredCourses: PropTypes.func.isRequired,
   getPurchasedCourses: PropTypes.func.isRequired,
   setCourseLoaded: PropTypes.func.isRequired,
-  // deleteCourses: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired

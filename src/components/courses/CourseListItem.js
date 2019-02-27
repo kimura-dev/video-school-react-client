@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom';
         <Link to={`/edit-course/${course._id}`} className="btn btn-md btn-info">
           EDIT
         </Link>
-        {/* <button className="btn btn-md btn-danger m-2">DELETE</button> */}
       </div>
   
   </li>
@@ -30,15 +29,3 @@ import { Link } from 'react-router-dom';
 
 
 }
-
-// CourseListItem.propTypes = {
-//   deleteCourse: PropTypes.func.isRequired,
-//   courses: PropTypes.object.isRequired
-// }
-
-// const mapStateToProps = (state) => ({
-
-//   courses: state.courses
-// });
-
-// export default connect(mapStateToProps, { deleteCourse })(CourseListItem)

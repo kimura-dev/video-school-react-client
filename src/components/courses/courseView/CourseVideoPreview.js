@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './CourseVideoPreview.css';
-// import CourseProgressBar from './CourseProgressBar'
 
 function isLessonIdNotInWatchedLessons(lesson_id, watchedLessons){
   if(watchedLessons && watchedLessons.includes instanceof Function){

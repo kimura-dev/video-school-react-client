@@ -5,8 +5,6 @@ import courseReducer from './courseReducer';
 import lessonReducer from './lessonReducer';
 import uiReducer from './uiReducer';
 
-
-
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,

@@ -31,7 +31,6 @@ export const getLesson = (id) => dispatch => {
     .catch(err => console.log(err))
 }
 
-  
 export const setCurrentLesson = (id) => dispatch => {
   dispatch({
     type: SET_CURRENT_LESSON,
@@ -39,7 +38,6 @@ export const setCurrentLesson = (id) => dispatch => {
   })
 }
   
-
 // Get All Lessons 
 export const getAllLessons = () => dispatch => {
   dispatch(setLessonLoading());
@@ -50,10 +48,6 @@ export const getAllLessons = () => dispatch => {
         payload: res.data
       })
     )
-    // .catch(err => dispatch({
-    //   type: GET_ERRORS,
-    //   payload: {}
-    // }))
     .catch(err => console.log(err))
 }
 
@@ -79,7 +73,6 @@ export const editLesson = (lesson, history) => dispatch => {
       })
     }
 }
-
 
 // Lesson Loading
 export const setLessonLoading = () => {

@@ -17,7 +17,7 @@ class Dashboard extends Component {
   render() {
     const user  = this.props.auth.user;
     const { authoredCourses, purchasedCourses } = this.props.courses;
-
+    
     return (
       <div className="Dashboard">
         <div className="container">

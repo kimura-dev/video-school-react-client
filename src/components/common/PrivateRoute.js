@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      // Check to see if logg in
+      // Check to see if logged in
       auth.isAuthenticated === true ? (
         // if logged in show the component
         <Component {...props} />

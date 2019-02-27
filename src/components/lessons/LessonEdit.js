@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -37,7 +36,6 @@ class LessonForm extends Component {
     else if(this.props.selectedCourse && this.props.selectedCourse.lessons){
 
       let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
-      // let lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
       if(!lesson){
         const paramId = this.props.match.params.id;
         const index = parseInt(paramId, 10);
@@ -68,7 +66,6 @@ class LessonForm extends Component {
   }
 
   render() {
-    // const { errors } = this.state.errors; 
     let state = this.props.lessons.selectedLesson;
 
     if(this.props.lessons.loading) {
@@ -82,14 +79,10 @@ class LessonForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              {/* <Link to="/dashboard" className="btn btn-light">
-                Go Back
-              </Link> */}
               <button onClick={this.props.history.goBack} className="btn btn-light">
                   Go Back
               </button>
               <h1 className="display-4 text-center">Edit Lesson</h1>
-              {/* <p className="lead text-center">Supply lesson details below</p> */}
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup 
                   placeholder="Title"

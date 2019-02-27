@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 
  class Spinner extends Component {
-
-  
    render () {
 
     if(this.props.loading){
@@ -19,17 +17,12 @@ import { connect } from 'react-redux';
         </div>
       );
     }
-
     return null;
-     
    }
-  
 };
-
 
 const mapStateToProps = (state) => ({
   loading: state.courses.loading
 });
-
 
 export default connect(mapStateToProps)(Spinner);

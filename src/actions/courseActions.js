@@ -19,27 +19,10 @@ import {
   } from './types';
   
 
-  // export const addLesson = (lessonData, history) => dispatch => {
-  //   if(selectedCourse._id){
-  //     axios
-  //       .put( `${API_BASE_URL}/lesson/${id}`, lessonData)
-  //       .then(res => 
-  //         dispatch({
-  //           type: ADD_LESSON,
-  //           history: history.goBack(),
-  //           payload: res.data
-  //         })
-  //       )
-  //   } else {
-
-  //   }
-  // };
-
-  export const updateCourse = (courseData /* history*/) => dispatch => {
+  export const updateCourse = (courseData) => dispatch => {
     dispatch({
       type: UPDATE_COURSE,
       payload: courseData
-      // history: history.goBack()
     })
   };
 
@@ -89,7 +72,6 @@ export const updateSelectedCourse = (newData) => dispatch => {
 export const setCurrentCourse = (course) => dispatch => {
     dispatch({
       type: SET_CURRENT_COURSE,
-      // history: history.push('/dashboard'),
       payload: course
     })
 }
@@ -120,16 +102,12 @@ export const getAllCourses = () => dispatch => {
 
   axios.get(`${API_BASE_URL}/course`)
     .then(res => {
-      // console.log(res.data)
-
       dispatch({
         type: GET_ALL_COURSES,
         payload: res.data
       })
     }
-      
-)
-   
+  )
     .catch(err => console.log(err))
 }
 

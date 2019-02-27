@@ -58,7 +58,6 @@ class CourseForm extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center mt-4 mb-4">Create Course</h1>
-              {/* <p className="lead text-center">Supply course details below</p> */}
               <form onSubmit={this.onSubmit}> 
                 <TextFieldGroup 
                   placeholder="Title"
@@ -86,8 +85,6 @@ class CourseForm extends Component {
                     value={this.props.selectedCourse.price}
                     onChange={this.onChange}
                   />
-                  {/* <small className="form-text text-muted">{info}</small> */}
-                  {/* <div className="invalid-feedback">{errors}</div> */}
                 </div>
                 <Link to="/lesson-form" className="btn btn-lg btn-success mt-3 font-weight-bold">
                   Add Lesson
@@ -113,7 +110,7 @@ CourseForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   selectedCourse: state.courses.selectedCourse,
-  errors: state.errors // this.props.errors
+  errors: state.errors 
 });
 
 export default connect(mapStateToProps, { createCourse, updateSelectedCourse, setCurrentCourse })(withRouter(CourseForm));

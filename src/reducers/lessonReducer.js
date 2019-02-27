@@ -43,7 +43,6 @@ export default function(state = initialState, action) {
           loading: false
         }
     case EDIT_LESSON:
-    console.log('editLesson with state:' + JSON.stringify(state));
         return {
           ...state,
           loading: false

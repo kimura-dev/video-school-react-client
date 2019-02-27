@@ -6,7 +6,6 @@ import { registerUser } from '../../actions/authActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import './Register.css';
 
-
 class Register extends Component {
   constructor(props) {
     super();
@@ -53,7 +52,6 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     }
-    // this.props.history allows you to redirect from an action, this is used with "withRouter"
     this.props.registerUser(newUser, this.props.history);
   }
 
@@ -106,14 +104,6 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                {/* <TextFieldGroup 
-                  placeholder="Confirm Password"
-                  name='password2'
-                  type="password"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                  // error={errors.username}
-                /> */}
                 <input type="submit" className="btn btn-success btn-block mt-4 mb-4 p-2 font-weight-bold" />
               </form>
             </div>
@@ -131,9 +121,8 @@ Register.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth, // .auth comes from my root reducer
+  auth: state.auth, 
   errors: state.errors
-  //now we can say this.props.auth
 });
 
 export default connect(mapStateToProps, { registerUser })(withRouter(Register));

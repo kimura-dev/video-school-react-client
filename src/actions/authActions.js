@@ -5,8 +5,6 @@ import {API_BASE_URL} from '../config';
 import { GET_ERRORS, SET_CURRENT_USER, PURCHASE_COURSE } from './types';
 
 
-
-
 export const purchaseCourse = (id, token) => dispatch => {
   axios
     .post(`${API_BASE_URL}/course/${id}/purchase/${token}`)
@@ -52,7 +50,6 @@ export const registerUser = (userData, history)  => dispatch => {
       .post(`${API_BASE_URL}/users`, userData)
       .then(res => history.push('/login'))
       .catch(err => 
-        // since this is an ajax call and we are waiting we need to call dispatch - Redux Thunk
         dispatch({
           type: GET_ERRORS,
           payload: err.response.data
