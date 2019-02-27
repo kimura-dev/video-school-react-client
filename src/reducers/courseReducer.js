@@ -4,9 +4,8 @@ import {
   GET_ALL_COURSES, 
   GET_AUTHORED_COURSES, 
   GET_PURCHASED_COURSES,
-  ADD_NEW_COURSE_LESSON, 
-  ADD_SELECTED_COURSE_LESSON,
-  UPDATE_NEW_COURSE, 
+  ADD_COURSE_LESSON, 
+  UPDATE_SELECTED_COURSE, 
   UPDATE_NEW_LESSON, 
   EDIT_COURSE, 
   EDIT_LESSON,
@@ -26,15 +25,7 @@ import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
 
 const initialState = {
-  course: null, // for viewing
-  // brand new course on course form no ajax calls on newCourse or newLessson
-  newCourse: {
-    title: '',
-    description:'',
-    price: 0,
-    lessons:[]
-  }, 
-  // for adding a newLesson onto a newCourse so they can be sent together
+ 
   newLesson: {
     title:'',
     description:'',
@@ -89,7 +80,7 @@ export default function(state = initialState, action) {
         ...state,
         authoredCourses: [ ...state.authoredCourses, action.payload],
         allCourses: [ ...state.allCourses, action.payload],
-        newCourse: {},
+        selectedCourse: null,
         loading: false
       }
     case GET_COURSE:
@@ -116,21 +107,21 @@ export default function(state = initialState, action) {
         purchaseToken: action.payload,
         loading: false
       }
-    case UPDATE_NEW_COURSE:
-      const newCourse = {
-        ...state.newCourse
+    case UPDATE_SELECTED_COURSE:
+      const selectedCourse = {
+        ...state.selectedCourse
       }
       Object.keys(action.payload).forEach(key => {
-        newCourse[key] = action.payload[key]
+        selectedCourse[key] = action.payload[key]
       })
       return {
         ...state,
-        newCourse,
+        selectedCourse,
         loading: false,
         loaded: false
       }
       case EDIT_LESSON:
-        if(state.selectedCourse){
+        if(state.selectedCourse && state.selectedCourse._id){
           return {
             ...state,
   
@@ -143,50 +134,22 @@ export default function(state = initialState, action) {
         } else {
           return {
             ...state,
-  
-            newCourse: {
-              ...state.newCourse, 
-              lessons: copyArrayWithEditedItemById( state.newCourse.lessons, action.payload) 
+            selectedCourse: {
+              ...state.selectedCourse, 
+              lessons: copyArrayWithEditedItemById( state.selectedCourse.lessons, action.payload) 
             },
             loading: false
           }
         }
-    case ADD_NEW_COURSE_LESSON:
-      // return {
-      //   ...state,
-      //   newCourse:  {...state.newCourse, lessons: [ ...state.newCourse.lessons, action.payload]},
-      //   newLesson: {},
-      //   loading: false,
-      //   loaded: true
-      // }
-      
-    case ADD_SELECTED_COURSE_LESSON:
-      
-      let newState = {
-        ...state, 
+    case ADD_COURSE_LESSON:
+      return {
+        ...state,
+        selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, action.payload]},
         newLesson: {},
-        loading: false
-      };
-
-      let courseName = 'newCourse';
-
-      if( state.selectedCourse ){
-        courseName = 'selectedCourse';
+        loading: false,
+        loaded: true
       }
-      let theCourse = {...state[courseName]};
-
-      if( state[courseName] ){
-        action.payload.courseId = theCourse._id
-        theCourse.lessons = [...theCourse.lessons, action.payload]
-      }
-      // not having a new course means we are in edit mode or view mode
-      // meaning we HAVE loaded a course from the server API
-      newState.loaded = !!state.selectedCourse;
-
-      newState[courseName] = theCourse;
-
-      return newState;
-      
+   
     case UPDATE_NEW_LESSON:
       const newLesson = {
         ...state.newLesson
@@ -214,12 +177,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         allCourses: action.payload || [],
+        // selectedCourse: null,
         loading: false
       }
     case GET_AUTHORED_COURSES:
         return {
           ...state,
           authoredCourses: action.payload || [],
+          // selectedCourse: null,
           loading: false
         }
     case PURCHASE_COURSE:

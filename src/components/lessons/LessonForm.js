@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addNewCourseLesson, updateNewLesson, addSelectedCourseLesson } from '../../actions/courseLessonActions';
+import { addCourseLesson, updateNewLesson } from '../../actions/courseLessonActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 
@@ -31,12 +31,8 @@ class LessonForm extends Component {
       description: this.props.newLesson.description,
       videoUrl: this.props.newLesson.videoUrl
     }
-  
-    if(this.props.selectedCourse){ 
-      this.props.addSelectedCourseLesson(newLesson, this.props.history);
-    } else {
-      this.props.addNewCourseLesson(newLesson, this.props.history);
-    }
+    
+    this.props.addCourseLesson(newLesson, this.props.history);
   }
 
   render() {
@@ -88,8 +84,7 @@ class LessonForm extends Component {
 }
 
 LessonForm.propTypes = {
-  addNewCourseLesson: PropTypes.func.isRequired,
-  addSelectedCourseLesson: PropTypes.func.isRequired,
+  addCourseLesson: PropTypes.func.isRequired,
   updateNewLesson: PropTypes.func.isRequired,
   newLesson: PropTypes.object.isRequired
 }
@@ -99,4 +94,4 @@ const mapStateToProps = (state) => ({
   selectedCourse: state.courses.selectedCourse
 });
 
-export default connect(mapStateToProps, { addNewCourseLesson, updateNewLesson, addSelectedCourseLesson })(withRouter(LessonForm));
+export default connect(mapStateToProps, { addCourseLesson, updateNewLesson })(withRouter(LessonForm));
