@@ -13,11 +13,27 @@ import {
   SET_CURRENT_COURSE, 
   GET_ERRORS,
   UPDATE_COURSE,
-  UPDATE_NEW_COURSE,
+  UPDATE_SELECTED_COURSE,
   SELECTED_COURSE_FIELD_CHANGE,
   SET_COURSE_LOADED
   } from './types';
   
+
+  // export const addLesson = (lessonData, history) => dispatch => {
+  //   if(selectedCourse._id){
+  //     axios
+  //       .put( `${API_BASE_URL}/lesson/${id}`, lessonData)
+  //       .then(res => 
+  //         dispatch({
+  //           type: ADD_LESSON,
+  //           history: history.goBack(),
+  //           payload: res.data
+  //         })
+  //       )
+  //   } else {
+
+  //   }
+  // };
 
   export const updateCourse = (courseData /* history*/) => dispatch => {
     dispatch({
@@ -61,9 +77,9 @@ export const createCourse = (courseData, history)  => dispatch => {
 };
 
 //Update a new Course
-export const updateNewCourse = (newData) => dispatch => {
+export const updateSelectedCourse = (newData) => dispatch => {
   dispatch({
-    type: UPDATE_NEW_COURSE,
+    type: UPDATE_SELECTED_COURSE,
     payload: newData
   })
 }

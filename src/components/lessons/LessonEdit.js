@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { editLesson, setCurrentLesson } from '../../actions/lessonActions';
-import { addNewCourseLesson, addSelectedCourseLesson } from '../../actions/courseLessonActions';
+import { addCourseLesson } from '../../actions/courseLessonActions';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 import Spinner from '../common/Spinner';
@@ -19,35 +19,37 @@ class LessonForm extends Component {
   }
 
   componentDidMount() {
-    // Edit New Course Mode
-    if(this.props.selectedCourse){
-      console.log('selectedCourse')
+
+    // Edit Saved Course Mode
+    if(this.props.selectedCourse._id){
       let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
+
       if(!lesson){
-        console.log('seconde if')
-        const paramId = this.props.match.params.id;
-        const index = parseInt(paramId, 10);
-        lesson = this.props.selectedCourse.lessons[index];
+        lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
       }
       if(lesson){
         console.log('third if')
 
         this.props.setCurrentLesson(lesson);
       }
+    }
+    // Edit New Course Mode
+    else if(this.props.selectedCourse && this.props.selectedCourse.lessons){
 
-    } 
-    // Edit a  lesson
-    else {
-      console.log('selectedCourse')
-      let lesson = this.props.newCourse.lessons.find((course) => course._id === this.props.match.params.id );
-
+      let lesson = this.props.selectedCourse.lessons.find((course) => course._id === this.props.match.params.id );
+      // let lesson = this.props.selectedCourse.lessons[this.props.match.params.id];
       if(!lesson){
-        lesson = this.props.newCourse.lessons[this.props.match.params.id];
+        const paramId = this.props.match.params.id;
+        const index = parseInt(paramId, 10);
+        lesson = this.props.selectedCourse.lessons[index];
       }
       if(lesson){
         this.props.setCurrentLesson(lesson);
       }
+    } else {
+      console.log('Edit a lesson w/out a selectedCourse or lessons');
     }
+
   }
 
   onChange(e) {
@@ -123,8 +125,7 @@ class LessonForm extends Component {
 LessonForm.propTypes = {
   editLesson: PropTypes.func.isRequired,
   setCurrentLesson: PropTypes.func.isRequired,
-  addSelectedCourseLesson: PropTypes.func.isRequired,
-  addNewCourseLesson: PropTypes.func.isRequired,
+  addCourseLesson: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
@@ -133,8 +134,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   lessons: state.lessons,
   selectedCourse : state.courses.selectedCourse,
-  newCourse : state.courses.newCourse,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { editLesson, setCurrentLesson, addSelectedCourseLesson, addNewCourseLesson })(withRouter(LessonForm));
+export default connect(mapStateToProps, { editLesson, setCurrentLesson, addCourseLesson })(withRouter(LessonForm));

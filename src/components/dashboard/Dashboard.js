@@ -2,11 +2,17 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setCurrentCourse } from '../../actions/courseActions';
 import Spinner from '../common/Spinner';
 import DashCoursePreviewList from './DashCoursePreviewList';
 import './Dashboard.css';
 
 class Dashboard extends Component {
+
+  componentWillMount(){
+    
+    this.props.setCurrentCourse(null);
+  }
 
   render() {
     const user  = this.props.auth.user;
@@ -34,6 +40,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  setCurrentCourse: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired
@@ -45,6 +52,6 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, {})(
+export default connect(mapStateToProps, { setCurrentCourse })(
   Dashboard
 );

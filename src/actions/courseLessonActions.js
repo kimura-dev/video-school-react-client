@@ -1,8 +1,7 @@
 import axios from 'axios';
 import {API_BASE_URL} from '../config';
 import {
-  ADD_NEW_COURSE_LESSON,
-  ADD_SELECTED_COURSE_LESSON,
+  ADD_COURSE_LESSON,
   DELETE_LESSON,
   DELETE_NEW_COURSE_LESSON,
   DELETE_SELECTED_COURSE_LESSON,
@@ -10,24 +9,14 @@ import {
   } from './types';
 
    //Save A Lesson
-   export const addNewCourseLesson = (lessonData, history) => dispatch => {
+   export const addCourseLesson = (lessonData, history) => dispatch => {
     dispatch({
-      type: ADD_NEW_COURSE_LESSON,
+      type: ADD_COURSE_LESSON,
       payload: lessonData,
       history: history.goBack()
     })
   };
 
-  
-  // addselectedCourseLesson
-  // type change and history changes lessonData still payload
-  export const addSelectedCourseLesson = (lessonData, history) => dispatch => {
-    dispatch({
-      type: ADD_SELECTED_COURSE_LESSON,
-      payload: lessonData,
-      history: history.goBack(/*`/edit-course/${courseId}`*/)
-    })
-  };
 
   //Update a new Course
 export const updateNewLesson = (newData) => dispatch => {
