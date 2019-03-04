@@ -23,9 +23,11 @@ class Landing extends Component {
                   <h1 className="display-3 mt-5 mb-4 text-uppercase font-weight-bold">Video School</h1>
                   <p className="lead">Welcome, Video School is a place  where teachers and students can exchange they're knowledge by creating, disturbuting and viewing one anothers online video courses. You can create a course for distrubution or purchase a course for your own viewing purposes. Whether your on a quest for knowledge or you seek to spread it, Video School, is the online video tutorial site for you!</p>
                   <hr />
-                  <Link to="/register" className="btn btn-lg btn-success mr-2">Sign Up</Link>
-                  <Link to="/login" className="btn btn-lg btn-light">Login</Link>
-                  <Link to="/demo" className="btn btn-lg btn-light demo-btn">Demo</Link>
+                  <div className="landing_btns">
+                    <Link to="/register" className="btn btn-lg btn-success">Sign Up</Link>
+                    <Link to="/login" className="btn btn-lg btn-light">Login</Link>
+                    <Link to="/demo" className="btn btn-lg btn-light demo-btn">Demo</Link>
+                  </div>
                 </div>
               </div>
             </div>

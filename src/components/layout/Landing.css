@@ -41,3 +41,13 @@ a.btn.btn-lg.btn-light.demo-btn {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.landing_btns {
+  display: flex;
+  justify-content: center;
+}
+
+a.btn.btn-lg.btn-success {
+  margin-top: 10px;
+  margin-right: 8px;
+}

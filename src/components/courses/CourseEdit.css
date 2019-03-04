@@ -1,3 +1,8 @@
 a.btn.btn-light {
   margin-top: 10px;
 }
+
+ul.d-flex.flex-column.bd-highlight {
+  position: relative;
+  right: 40px;
+}
