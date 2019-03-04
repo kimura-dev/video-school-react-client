@@ -141,6 +141,8 @@ export const getPurchasedCourses = (username) => dispatch => {
 export const editCourse = (course, history) => dispatch => {
   dispatch(setCourseLoading());  
 
+  console.log(course);
+
   axios.put(`${API_BASE_URL}/course/${course._id}`, course)
     .then(res => 
       dispatch({

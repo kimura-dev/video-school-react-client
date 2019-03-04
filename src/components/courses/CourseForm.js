@@ -104,7 +104,7 @@ CourseForm.propTypes = {
   createCourse: PropTypes.func.isRequired, 
   updateSelectedCourse: PropTypes.func.isRequired,
   setCurrentCourse: PropTypes.func.isRequired,
-  selectedCourse: PropTypes.object.isRequired,
+  selectedCourse: PropTypes.object,
   errors: PropTypes.object.isRequired
 }
 

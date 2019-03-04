@@ -75,7 +75,7 @@ export function CourseLessonListItem(props) {
   // default view
   return (
     <div>
-      <h3 className="mb-3">Lesson cannot be viewed until course is purchased</h3>
+      <p className="mb-3 text-white">Lesson cannot be viewed until course is purchased</p>
       <li className={liClasses}>
         {lesson.title}
       </li>

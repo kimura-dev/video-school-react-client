@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCourse, editCourse, setCourseLoaded, selectedCourseFieldChange } from '../../actions/courseActions';
+import { getCourse, editCourse, setCourseLoaded, selectedCourseFieldChange, updateSelectedCourse } from '../../actions/courseActions';
 import CourseLessonList from './courseView/CourseLessonList';
 import TextFieldGroup  from '../common/TextFieldGroup';
 import TextAreaFieldGroup  from '../common/TextAreaFieldGroup';
 import isEmpty from '../../validation/is-empty';
 import Spinner from '../common/Spinner';
+import './CourseEdit.css';
 
 
 class CourseForm extends Component {
@@ -64,12 +65,15 @@ class CourseForm extends Component {
   }
 
   onChange(e) {
-    this.props.selectedCourseFieldChange(e.target.name, e.target.value);   
+    // this.props.selectedCourseFieldChange(e.target.name, e.target.value);   
+    this.props.updateSelectedCourse({[e.target.name]: e.target.value })
+
   }
 
   onSubmit(e) {
     e.preventDefault();
     const editCourse = this.props.courses.selectedCourse;
+    console.log(editCourse);
     this.props.editCourse(editCourse, this.props.history);
   }
 
@@ -144,15 +148,14 @@ CourseForm.propTypes = {
   getCourse: PropTypes.func.isRequired,
   setCourseLoaded: PropTypes.func.isRequired,
   selectedCourseFieldChange: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  updateSelectedCourse: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth, 
   errors: state.errors,
   courses: state.courses
 });
 
-export default connect(mapStateToProps, { editCourse , getCourse, setCourseLoaded, selectedCourseFieldChange })(withRouter(CourseForm));
+export default connect(mapStateToProps, { editCourse , getCourse, setCourseLoaded, selectedCourseFieldChange, updateSelectedCourse })(withRouter(CourseForm));

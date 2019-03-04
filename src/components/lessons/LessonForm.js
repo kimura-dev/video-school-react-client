@@ -13,12 +13,6 @@ class LessonForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
-      this.setState({errors:nextProps.errors})
-    }
-  }
-
   onChange(e) {
     this.props.updateNewLesson({[e.target.name]: e.target.value })
   }
@@ -26,6 +20,7 @@ class LessonForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newLesson = {
+      // courseId: this.props.selectedCourse._id,
       title: this.props.newLesson.title,
       description: this.props.newLesson.description,
       videoUrl: this.props.newLesson.videoUrl

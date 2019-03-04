@@ -26,6 +26,7 @@ import { copyArrayWithEditedItemById } from '../components/common/arrayTools';
 
 const initialState = {
   newLesson: {
+    // courseId: '',
     title:'',
     description:'',
     videoUrl:''
@@ -134,7 +135,7 @@ export default function(state = initialState, action) {
       case ADD_COURSE_LESSON:
         return {
           ...state,
-          selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, action.payload]},
+          selectedCourse:  {...state.selectedCourse, lessons: [ ...state.selectedCourse.lessons, {...action.payload, courseId: state.selectedCourse._id}]},
           newLesson: {},
           loading: false,
           loaded: true
@@ -195,6 +196,7 @@ export default function(state = initialState, action) {
           }
       case EDIT_COURSE:
           let editedCourse = action.payload // Find the old array state.allCourses
+          console.log(editedCourse);
 
           return {
             ...state,
